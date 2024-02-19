@@ -1,18 +1,21 @@
 package com.bullethell.game.gameObject;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Rectangle;
 
 public abstract class GameObject {
-	protected Vector2 position;
-	protected Vector2 size;
-	
-	public GameObject(Vector2 position, Vector2 size)
-	{
-		this.position = position;
-		this.size = size;
-	}
-	
-	public abstract void update(float delta);
-	public abstract void draw(SpriteBatch draw);
+    protected Rectangle bounds;
+
+    public GameObject(float x, float y, float width, float height)
+    {
+        this.bounds = new Rectangle(x, y, width, height);
+    }
+
+    public abstract void update(float delta);
+    public abstract void draw(SpriteBatch batch);
+
+    public Rectangle getBounds()
+    {
+        return bounds;
+    }
 }
