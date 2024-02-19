@@ -1,6 +1,8 @@
 package com.bullethell.game.gameObject;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+//import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Player extends GameObject implements IMovable {
@@ -9,7 +11,7 @@ public class Player extends GameObject implements IMovable {
     public Player(float x, float y)
     {
         super(x, y, 64, 64); // Example size, adjust as needed
-        texture = new Texture("TODO");
+        //texture = new Texture("TODO");
     }
 
     @Override
@@ -24,12 +26,19 @@ public class Player extends GameObject implements IMovable {
         move(delta);
     }
 
+//    @Override
+//    public void draw(SpriteBatch batch)
+//    {
+//        batch.draw(texture, bounds.x, bounds.y);
+//    }
+    
     @Override
-    public void draw(SpriteBatch batch)
+    public void draw(ShapeRenderer shape)
     {
-        batch.draw(texture, bounds.x, bounds.y);
+        shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+        shape.setColor(Color.GREEN);
     }
-
+    
     @Override
     public void dispose()
     {
