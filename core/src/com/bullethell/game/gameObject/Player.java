@@ -19,7 +19,7 @@ public class Player extends GameObject implements IMovable{
 	@Override
 	public void update(float delta)
 	{
-		
+		move(delta);
 	}
 	
 	@Override
