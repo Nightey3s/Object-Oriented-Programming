@@ -3,9 +3,9 @@ package com.bullethell.game.gameObject;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-public class Player extends GameObject implements IMovable{
+public class Enemy extends GameObject implements IMovable {
 	
-	public Player(Vector2 position, Vector2 size)
+	public Enemy(Vector2 position, Vector2 size)
 	{
 		super(position, size);
 	}
