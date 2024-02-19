@@ -13,6 +13,7 @@ public abstract class GameObject {
 
     public abstract void update(float delta);
     public abstract void draw(SpriteBatch batch);
+    public abstract void dispose();
 
     public Rectangle getBounds()
     {
