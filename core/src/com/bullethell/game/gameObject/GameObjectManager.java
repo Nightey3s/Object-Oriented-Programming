@@ -1,6 +1,7 @@
 package com.bullethell.game.gameObject;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+//import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
@@ -25,11 +26,19 @@ public class GameObjectManager implements Disposable {
         }
     }
 
-    public void draw(SpriteBatch batch)
+//    public void draw(SpriteBatch batch)
+//    {
+//        for (GameObject gameObject : gameObjects)
+//        {
+//            gameObject.draw(batch);
+//        }
+//    }
+    
+    public void draw(ShapeRenderer shape)
     {
         for (GameObject gameObject : gameObjects)
         {
-            gameObject.draw(batch);
+            gameObject.draw(shape);
         }
     }
 
