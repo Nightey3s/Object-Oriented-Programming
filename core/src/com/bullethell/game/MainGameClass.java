@@ -1,6 +1,7 @@
 package com.bullethell.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -19,6 +20,8 @@ public class MainGameClass extends ApplicationAdapter {
     Enemy enemy;
     Projectile projectile;
     PowerUp powerUp;
+    
+    float deltaTime;
     
     @Override
     public void create () {
@@ -40,7 +43,9 @@ public class MainGameClass extends ApplicationAdapter {
     @Override
     public void render () {
         ScreenUtils.clear(0.1f, 0.1f, 0.1f, 1);
+        deltaTime = Gdx.graphics.getDeltaTime();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled); // Or Line, depending on your preference
+        gameObjectManager.update(deltaTime);
         gameObjectManager.draw(shapeRenderer); // Pass the ShapeRenderer to the draw method
         shapeRenderer.end();
     }
