@@ -11,10 +11,12 @@ import com.bullethell.game.gameObject.GameObjectManager;
 import com.bullethell.game.gameObject.Player;
 import com.bullethell.game.gameObject.PowerUp;
 import com.bullethell.game.gameObject.Projectile;
+import com.bullethell.game.collision.CollisionManager;
 
 public class MainGameClass extends ApplicationAdapter {
     GameObjectManager gameObjectManager;
     ShapeRenderer shapeRenderer;
+    CollisionManager collisionManager;
     
     Player player;
     Enemy enemy;
@@ -27,6 +29,7 @@ public class MainGameClass extends ApplicationAdapter {
     public void create () {
         gameObjectManager = new GameObjectManager();
         shapeRenderer = new ShapeRenderer(); // Initialize the ShapeRenderer
+        collisionManager = new CollisionManager();
         
         // Initialize your game objects here and add them to the manager
         player = new Player(100, 100);
@@ -38,6 +41,13 @@ public class MainGameClass extends ApplicationAdapter {
         gameObjectManager.addGameObject(enemy);
         gameObjectManager.addGameObject(projectile);
         gameObjectManager.addGameObject(powerUp);
+
+        // Add the game objects to the collision manager
+        collisionManager.isCollidable(player);
+        collisionManager.isCollidable(enemy);
+        collisionManager.isCollidable(projectile);
+        collisionManager.isCollidable(powerUp);
+
     }
 
     @Override
@@ -48,6 +58,16 @@ public class MainGameClass extends ApplicationAdapter {
         gameObjectManager.update(deltaTime);
         gameObjectManager.draw(shapeRenderer); // Pass the ShapeRenderer to the draw method
         shapeRenderer.end();
+
+        // Collision detection cycle (Might need to move to simulation class)
+        for (int i = 0; i < collisionManager.getCollisionList().size; i++) {
+            for (int j = i + 1; j < collisionManager.getCollisionList().size; j++) {
+                if (collisionManager.checkCollision(collisionManager.getCollisionItem(i), collisionManager.getCollisionItem(j))) {
+                    System.out.println("Collision detected between" + collisionManager.getCollisionItem(i) + "and" + collisionManager.getCollisionItem(j));
+                }
+            }
+        }
+
     }
     
     @Override

@@ -4,7 +4,6 @@ import com.bullethell.game.gameObject.GameObject;
 
 public interface iCollision {
     
-    public void isCollidable(GameObject Object); // Interface connects to gameObject and appends to CollisionList
-
+    public void isCollidable(GameObject Object); // Interface connects to gameObject and appends to CollisionList collisionManager.isCollidable(gameObject);
 
 }
