@@ -37,13 +37,9 @@ public class CollisionManager implements iCollision{
         return Object1.getBounds().overlaps(Object2.getBounds());
     }
 
-    // 1. Iterate through the collisionList > 2. Check for collision (obj1,obj2) > 3. Resolve collision
-    
-
-
     public void resolveCollision(GameObject Object1, GameObject Object2) {  
         if (Object1 instanceof Player && Object2 instanceof Enemy) {
-            // // if object 1 is a player and object 2 is an enemy, object 1 takes damage and object 2 is destroyed.
+            // If object 1 is a player and object 2 is an enemy, object 1 takes damage and object 2 is destroyed etc.
         }
         else if (Object1 instanceof Enemy && Object2 instanceof Player) {
             // Then do something
@@ -55,17 +51,5 @@ public class CollisionManager implements iCollision{
             // Then do something
         }
     }
-
-    public void getBounds(Enemy triangle) {
-        // EMPTY
-    };
-
-    public void getBounds(Player rectangle) {
-        // EMPTY
-    };
-
-    // Implement listener function to check for collision
-
-    
 
 }
