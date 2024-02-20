@@ -20,6 +20,8 @@ public class MainGameClass extends ApplicationAdapter {
     Projectile projectile;
     PowerUp powerUp;
     
+    float deltaTime;
+    
     @Override
     public void create () {
         gameObjectManager = new GameObjectManager();
