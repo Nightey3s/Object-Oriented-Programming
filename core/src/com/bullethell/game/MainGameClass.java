@@ -43,7 +43,9 @@ public class MainGameClass extends ApplicationAdapter {
     @Override
     public void render () {
         ScreenUtils.clear(0.1f, 0.1f, 0.1f, 1);
+        deltaTime = Gdx.graphics.getDeltaTime();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled); // Or Line, depending on your preference
+        gameObjectManager.update(deltaTime);
         gameObjectManager.draw(shapeRenderer); // Pass the ShapeRenderer to the draw method
         shapeRenderer.end();
     }
