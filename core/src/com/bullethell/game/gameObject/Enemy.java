@@ -6,18 +6,21 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Enemy extends GameObject implements IMovable {
-    private Texture texture;
+    //private Texture texture;
+    private float speed;
 
     public Enemy(float x, float y)
     {
         super(x, y, 64, 64); // Example size, adjust as needed
         //texture = new Texture("TODO");
+        speed = (float) (Math.random() * 75 + 25); // Random speed from 25 to 100
     }
 
     @Override
     public void move(float delta)
     {
         // Implement movement logic here
+    	bounds.y -= speed * delta;
     }
 
     @Override
@@ -52,6 +55,7 @@ public class Enemy extends GameObject implements IMovable {
     @Override
     public void dispose()
     {
-        texture.dispose();
+        //texture.dispose();
+    	
     }
 }
