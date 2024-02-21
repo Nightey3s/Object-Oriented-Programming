@@ -40,16 +40,13 @@ public class CollisionManager implements iCollision{
 
     public void resolveCollision(GameObject Object1, GameObject Object2) {  
         if (Object1 instanceof Player && Object2 instanceof Enemy) {
-            // If object 1 is a player and object 2 is an enemy, object 1 takes damage and object 2 is destroyed etc.
+            System.out.println("Player moved into the enemy - takes damage");
         }
         else if (Object1 instanceof Enemy && Object2 instanceof Player) {
-            // Then do something
-        }
-        else if (Object1 instanceof Enemy && Object2 instanceof Enemy) {
-            // Then do something
+            System.out.println("Enemy hit the Player - takes damage");
         }
         else if (Object1 instanceof Player && Object2 instanceof PowerUp) {
-            // Then do something
+            System.out.println("Player picked up power up");
         }
     }
 
