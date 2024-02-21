@@ -63,7 +63,7 @@ public class MainGameClass extends ApplicationAdapter {
         for (int i = 0; i < collisionManager.getCollisionList().size; i++) {
             for (int j = i + 1; j < collisionManager.getCollisionList().size; j++) {
                 if (collisionManager.checkCollision(collisionManager.getCollisionItem(i), collisionManager.getCollisionItem(j))) {
-                    System.out.println("Collision detected between" + collisionManager.getCollisionItem(i) + "and" + collisionManager.getCollisionItem(j));
+                    collisionManager.resolveCollision(collisionManager.getCollisionItem(i), collisionManager.getCollisionItem(j));
                 }
             }
         }

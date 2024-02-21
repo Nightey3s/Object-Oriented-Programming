@@ -4,6 +4,7 @@ import com.badlogic.gdx.utils.Array;
 import com.bullethell.game.gameObject.GameObject;
 import com.bullethell.game.gameObject.Enemy;
 import com.bullethell.game.gameObject.Player;
+import com.bullethell.game.gameObject.PowerUp;
 
 public class CollisionManager implements iCollision{
     private Array<GameObject> collisionList;
@@ -47,7 +48,7 @@ public class CollisionManager implements iCollision{
         else if (Object1 instanceof Enemy && Object2 instanceof Enemy) {
             // Then do something
         }
-        else if (Object1 instanceof Player && Object2 instanceof Player) {
+        else if (Object1 instanceof Player && Object2 instanceof PowerUp) {
             // Then do something
         }
     }
