@@ -55,6 +55,7 @@ public class Enemy extends GameObject implements IMovable {
     public void dispose()
     {
         //texture.dispose();
+    	this.dispose();
     	
     }
 }
