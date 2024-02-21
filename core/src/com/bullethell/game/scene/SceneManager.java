@@ -3,7 +3,7 @@ package com.bullethell.game.scene;
 import com.badlogic.gdx.utils.Array;
 import com.bullethell.game.scene.Scene;
 
-public class SceneManager implements iScene{
+public class SceneManager{
     private Scene currentScene;
     private Array<Scene> sceneList;
 
@@ -34,7 +34,7 @@ public class SceneManager implements iScene{
         sceneList.add(new MainMenu());
         sceneList.add(new GameScene());
         // Default Scene
-        setCurrentScene(sceneList.get(1));
+        setCurrentScene(sceneList.get(0));
     }
 
     public void changeScene(Scene newScene) {

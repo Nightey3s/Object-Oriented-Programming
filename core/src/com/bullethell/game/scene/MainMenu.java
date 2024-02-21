@@ -3,7 +3,7 @@ package com.bullethell.game.scene;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
-public class MainMenu extends Scene implements iScene{
+public class MainMenu extends Scene{
     
     public MainMenu() {
         super();
