@@ -38,8 +38,8 @@ public class Projectile extends GameObject implements IMovable {
     @Override
     public void draw(ShapeRenderer shape)
     {
+    	shape.setColor(Color.WHITE);
         shape.ellipse(bounds.x, bounds.y, bounds.width, bounds.height);
-        shape.setColor(Color.WHITE);
     }
 
     @Override
