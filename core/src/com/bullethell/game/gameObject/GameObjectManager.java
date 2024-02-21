@@ -14,6 +14,9 @@ public class GameObjectManager implements Disposable {
     {
         gameObjects = new Array<>();
         collisionManager = new CollisionManager();
+        createPlayer(100, 100);
+        createEnemy(200, 200);
+        createPowerUp(400, 400);
     }
     
     public void createPlayer(float x, float y) {
