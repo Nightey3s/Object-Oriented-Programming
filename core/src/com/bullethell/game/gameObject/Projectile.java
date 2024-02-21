@@ -11,16 +11,16 @@ public class Projectile extends GameObject implements IMovable {
     private float screeHeight = Gdx.graphics.getHeight();
     public Projectile(float x, float y)
     {
-        super(x, y, 3, 10); // Example size, adjust as needed
+        super(x, y, 3, 15); // Example size, adjust as needed
         //texture = new Texture("TODO");
-        speed = 500.0f;
+        this.speed = 500.0f;
     }
 
     @Override
     public void move(float delta)
     {
         // Implement projectile movement logic here
-    	bounds.y += speed * delta;
+    	this.bounds.y += this.speed * delta;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class Projectile extends GameObject implements IMovable {
     
     public void checkBounds()
     {
-    	if (bounds.y + bounds.height > screeHeight)
+    	if (this.bounds.y + this.bounds.height > screeHeight)
     	{
     		this.outOfBounds = true;
     	}
@@ -53,7 +53,7 @@ public class Projectile extends GameObject implements IMovable {
     public void draw(ShapeRenderer shape)
     {
     	shape.setColor(Color.WHITE);
-        shape.ellipse(bounds.x, bounds.y, bounds.width, bounds.height);
+        shape.ellipse(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
     }
 
     @Override
