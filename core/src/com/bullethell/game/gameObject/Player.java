@@ -2,8 +2,7 @@ package com.bullethell.game.gameObject;
 
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
+import com.bullethell.game.IO.InputManager;
 import com.badlogic.gdx.graphics.Color;
 
 public class Player extends GameObject implements IMovable {
@@ -25,54 +24,7 @@ public class Player extends GameObject implements IMovable {
     @Override
     public void move(float delta)
     {
-        float currentSpeed = this.speed;
-        float boundHeight = Gdx.graphics.getHeight();
-        float boundWidth = Gdx.graphics.getWidth();
-
-        
-        // Implement movement logic here
-        if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT))
-        {
-        	// Speed up
-            currentSpeed *= 2.0f;
-        }
-        
-		if (Gdx.input.isKeyPressed(Keys.W))
-		{
-		    // Move up
-			if (this.bounds.y + this.bounds.height + currentSpeed * delta < boundHeight)
-			{
-				this.bounds.y += currentSpeed * delta;
-			}
-		    
-		}
-		if (Gdx.input.isKeyPressed(Keys.A))
-		{
-		    // Move left
-			if (this.bounds.x + currentSpeed * delta > 0)
-			{
-				this.bounds.x -= currentSpeed * delta;
-			}
-		}
-		
-		if (Gdx.input.isKeyPressed(Keys.S))
-		{
-		    // Move down
-			if (this.bounds.y + currentSpeed * delta > 0)
-			{
-				this.bounds.y -= currentSpeed * delta;
-			}
-		}
-		
-		if (Gdx.input.isKeyPressed(Keys.D))
-		{
-		    // Move right
-			if (this.bounds.x + this.bounds.width + currentSpeed * delta < boundWidth)
-			{
-				this.bounds.x += currentSpeed * delta;
-			}
-		}
-        
+    	InputManager.handleMovement(this.bounds, this.speed, delta);
     }
   
     @Override
