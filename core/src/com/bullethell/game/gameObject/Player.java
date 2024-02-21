@@ -11,11 +11,17 @@ public class Player extends GameObject implements IMovable {
     private Texture texture;
     private float speed;
 
-    public Player(float x, float y)
+    private float fireTimer = 0.0f;
+    private final float FIRE_RATE = 0.15f;//0.15 seconds
+       
+    private GameObjectManager gameObjectManager;
+
+    public Player(float x, float y, GameObjectManager gameObjectManager)
     {
         super(x, y, 64, 64); // Example size, adjust as needed
         //texture = new Texture("TODO");
         speed = 100.0f;
+        this.gameObjectManager = gameObjectManager;
     }
 
     @Override
@@ -47,7 +53,7 @@ public class Player extends GameObject implements IMovable {
 		    // Move left
 			if (bounds.x + currentSpeed * delta >= 0)
 			{
-				bounds.x -= currentSpeed * delta;
+				this.bounds.x -= currentSpeed * delta;
 			}
 		}
 		
@@ -56,7 +62,7 @@ public class Player extends GameObject implements IMovable {
 		    // Move down
 			if (bounds.y + currentSpeed * delta >= 0)
 			{
-				bounds.y -= currentSpeed * delta;
+				this.bounds.y -= currentSpeed * delta;
 			}
 		}
 		
@@ -65,17 +71,34 @@ public class Player extends GameObject implements IMovable {
 		    // Move right
 			if (bounds.x + bounds.width + currentSpeed * delta <= boundWidth)
 			{
-				bounds.x += currentSpeed * delta;
+				this.bounds.x += currentSpeed * delta;
 			}
 		}
         
     }
-
+  
     @Override
     public void update(float delta)
     {
         move(delta);
+        fireTimer += delta;
+        if (fireTimer >= FIRE_RATE) {
+            fireProjectile();
+            fireTimer = 0; // Reset the fire timer
+        }
+        
     }
+
+    private void fireProjectile()
+    {
+        // Example projectile position; adjust according to your needs
+        float projectileX = (this.bounds.x + this.bounds.width /2);
+        float projectileY = this.bounds.y + this.bounds.height + .1f;
+
+        // Create a projectile at the player's position (or offset as needed)
+        gameObjectManager.createProjectile(projectileX, projectileY);
+    }
+
 
 //    @Override
 //    public void draw(SpriteBatch batch)
@@ -86,8 +109,8 @@ public class Player extends GameObject implements IMovable {
     @Override
     public void draw(ShapeRenderer shape)
     {
+    	shape.setColor(Color.GREEN);
         shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
-        shape.setColor(Color.GREEN);
     }
     
     @Override
@@ -95,4 +118,5 @@ public class Player extends GameObject implements IMovable {
     {
         texture.dispose();
     }
+
 }
