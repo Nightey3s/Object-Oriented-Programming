@@ -3,10 +3,9 @@ package com.bullethell.game.gameObject;
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 
 public class PowerUp extends GameObject {
-    private Texture texture;
+
 
     public PowerUp(float x, float y)
     {
@@ -38,6 +37,6 @@ public class PowerUp extends GameObject {
     @Override
     public void dispose()
     {
-        texture.dispose();
+        this.dispose();
     }
 }

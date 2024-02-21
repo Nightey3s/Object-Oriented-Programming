@@ -2,13 +2,13 @@ package com.bullethell.game.gameObject;
 
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 
 public class Projectile extends GameObject implements IMovable {
-    private Texture texture;
     private float speed;
-    
+    private boolean outOfBounds = false;
+    private float screeHeight = Gdx.graphics.getHeight();
     public Projectile(float x, float y)
     {
         super(x, y, 3, 10); // Example size, adjust as needed
@@ -27,6 +27,20 @@ public class Projectile extends GameObject implements IMovable {
     public void update(float delta)
     {
         move(delta);
+        checkBounds();
+    }
+    
+    public void checkBounds()
+    {
+    	if (bounds.y + bounds.height > screeHeight)
+    	{
+    		this.outOfBounds = true;
+    	}
+    }
+    
+    public boolean isOutOfBounds()
+    {
+    	return this.outOfBounds;
     }
 
 //    @Override
@@ -45,6 +59,6 @@ public class Projectile extends GameObject implements IMovable {
     @Override
     public void dispose()
     {
-        texture.dispose();
+        this.dispose();
     }
 }
