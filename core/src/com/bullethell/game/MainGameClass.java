@@ -4,23 +4,12 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.bullethell.game.gameObject.Enemy;
 import com.bullethell.game.gameObject.GameObjectManager;
-import com.bullethell.game.gameObject.Player;
-import com.bullethell.game.gameObject.PowerUp;
-import com.bullethell.game.gameObject.Projectile;
 
 public class MainGameClass extends ApplicationAdapter {
-    GameObjectManager gameObjectManager;
-    ShapeRenderer shapeRenderer;
-
-    
-    Player player;
-    Enemy enemy;
-    Projectile projectile;
-    PowerUp powerUp;
-    
-    float deltaTime;
+	private GameObjectManager gameObjectManager;
+    private ShapeRenderer shapeRenderer;  
+    private float deltaTime;
     
     @Override
     public void create () {
@@ -30,9 +19,8 @@ public class MainGameClass extends ApplicationAdapter {
         // Use GameObjectManager to create game objects
         gameObjectManager.createPlayer(100, 100);
         gameObjectManager.createEnemy(200, 200);
-        gameObjectManager.createProjectile(300, 300);
+        //gameObjectManager.createProjectile(300, 300);
         gameObjectManager.createPowerUp(400, 400);
-
     }
 
     @Override
