@@ -12,14 +12,14 @@ public class Enemy extends GameObject implements IMovable {
     {
         super(x, y, 64, 64); // Example size, adjust as needed
         //texture = new Texture("TODO");
-        speed = (float) (Math.random() * 75 + 25); // Random speed from 25 to 100
+        this.speed = (float) (Math.random() * 75 + 25); // Random speed from 25 to 100
     }
 
     @Override
     public void move(float delta)
     {
         // Implement movement logic here
-    	bounds.y -= speed * delta;
+    	this.bounds.y -= this.speed * delta;
     }
 
     @Override
@@ -38,15 +38,15 @@ public class Enemy extends GameObject implements IMovable {
     public void draw(ShapeRenderer shape)
     {
     	shape.setColor(Color.RED);
-        float halfWidth = bounds.width / 2;
+        float halfWidth = this.bounds.width / 2;
         // Coordinates for the base of the triangle
-        float baseLeftX = bounds.x;
-        float baseLeftY = bounds.y;
-        float baseRightX = bounds.x + bounds.width;
-        float baseRightY = bounds.y;
+        float baseLeftX = this.bounds.x;
+        float baseLeftY = this.bounds.y;
+        float baseRightX = this.bounds.x + this.bounds.width;
+        float baseRightY = this.bounds.y;
         // Coordinates for the peak of the triangle
-        float peakX = bounds.x + halfWidth;
-        float peakY = bounds.y + bounds.height;
+        float peakX = this.bounds.x + halfWidth;
+        float peakY = this.bounds.y + this.bounds.height;
         shape.triangle(baseLeftX, baseLeftY, peakX, peakY, baseRightX, baseRightY);
         
     }
