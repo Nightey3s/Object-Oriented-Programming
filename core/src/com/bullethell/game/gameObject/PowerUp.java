@@ -3,10 +3,9 @@ package com.bullethell.game.gameObject;
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 
 public class PowerUp extends GameObject {
-    private Texture texture;
+
 
     public PowerUp(float x, float y)
     {
@@ -29,15 +28,15 @@ public class PowerUp extends GameObject {
     @Override
     public void draw(ShapeRenderer shape)
     {
-    	float radius = bounds.height / 2;
+    	float radius = this.bounds.height / 2;
     	shape.setColor(Color.BLUE);
-        shape.circle(bounds.x + radius, bounds.y + radius, radius);
+        shape.circle(this.bounds.x + radius, this.bounds.y + radius, radius);
         
     }
 
     @Override
     public void dispose()
     {
-        texture.dispose();
+        this.dispose();
     }
 }

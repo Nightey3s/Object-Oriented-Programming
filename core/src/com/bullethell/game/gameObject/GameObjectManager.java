@@ -9,21 +9,25 @@ import com.bullethell.game.collision.CollisionManager;
 public class GameObjectManager implements Disposable {
     private Array<GameObject> gameObjects;
     private CollisionManager collisionManager;
-
+    
     public GameObjectManager()
     {
         gameObjects = new Array<>();
         collisionManager = new CollisionManager();
+        createPlayer(100, 100);
+        createEnemy(200, 200);
+        createPowerUp(400, 400);
     }
     
-    public void createPlayer(float x, float y) {
+    public void createPlayer(float x, float y)
+    {
         Player player = new Player(x, y, this);
         addGameObject(player);
         collisionManager.isCollidable(player);
-
     }
 
-    public void createEnemy(float x, float y) {
+    public void createEnemy(float x, float y)
+    {
         Enemy enemy = new Enemy(x, y);
         addGameObject(enemy);
         collisionManager.isCollidable(enemy);
@@ -52,6 +56,12 @@ public class GameObjectManager implements Disposable {
         for (GameObject gameObject : gameObjects)
         {
             gameObject.update(delta);
+            if (gameObject instanceof Projectile && ((Projectile) gameObject).isOutOfBounds())
+            {
+            	
+            	System.out.println("Projectile Destroyed");
+            	
+            }
         }
         
         // Collision detection cycle (Might need to move to simulation class)

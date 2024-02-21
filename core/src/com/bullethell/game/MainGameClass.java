@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.bullethell.game.gameObject.Enemy;
 import com.bullethell.game.gameObject.GameObjectManager;
 import com.bullethell.game.gameObject.Player;
 import com.bullethell.game.gameObject.PowerUp;
@@ -33,6 +32,7 @@ public class MainGameClass extends ApplicationAdapter {
             sceneManager.changeScene(sceneManager.getSceneItem(1));
         }
 
+  
     }
     
     @Override
