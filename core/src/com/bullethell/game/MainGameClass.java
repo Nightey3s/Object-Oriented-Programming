@@ -26,7 +26,6 @@ public class MainGameClass extends ApplicationAdapter {
         gameObjectManager.update(deltaTime);
         gameObjectManager.draw(shapeRenderer); // Pass the ShapeRenderer to the draw method
         shapeRenderer.end();
-
     }
     
     @Override
