@@ -10,7 +10,7 @@ public class PowerUp extends GameObject {
 
     public PowerUp(float x, float y)
     {
-        super(x, y, 48, 48); // Example size, adjust as needed
+        super(x, y, 64, 64); // Example size, adjust as needed
         //texture = new Texture("TODO");
     }
 
@@ -29,8 +29,10 @@ public class PowerUp extends GameObject {
     @Override
     public void draw(ShapeRenderer shape)
     {
-        shape.circle(bounds.x, bounds.y, bounds.height/2);
-        shape.setColor(Color.BLUE);
+    	float radius = bounds.height / 2;
+    	shape.setColor(Color.BLUE);
+        shape.circle(bounds.x + radius, bounds.y + radius, radius);
+        
     }
 
     @Override
