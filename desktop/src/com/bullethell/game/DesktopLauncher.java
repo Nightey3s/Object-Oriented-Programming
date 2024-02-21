@@ -10,6 +10,6 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("bullet hell");
-		new Lwjgl3Application(new MainGameClass(), config);
+		new Lwjgl3Application(new Main(), config);
 	}
 }
