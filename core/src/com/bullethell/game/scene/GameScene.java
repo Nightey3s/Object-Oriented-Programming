@@ -36,5 +36,11 @@ public class GameScene extends Scene{
         gameObjectManager.draw(shapeRenderer); // Pass the ShapeRenderer to the draw method
         shapeRenderer.end();
     }
+    
+    @Override
+    public void dispose()
+    {
+    	super.dispose();
+    }
 
 }

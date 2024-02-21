@@ -6,6 +6,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.bullethell.game.IO.InputManager;
 import com.bullethell.game.gameObject.GameObjectManager;
+import com.bullethell.game.scene.GameScene;
+import com.bullethell.game.scene.MainMenu;
+import com.bullethell.game.scene.Scene;
 import com.bullethell.game.scene.SceneManager;
 
 public class MainGameClass extends ApplicationAdapter {
@@ -24,15 +27,29 @@ public class MainGameClass extends ApplicationAdapter {
     
     @Override
     public void render() {
-        sceneManager.loadScene();
+        
         // if press space, change scene to game
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && sceneManager.getCurrentScene() == sceneManager.getSceneItem(0)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        	
+        	if (sceneManager.getCurrentScene() instanceof MainMenu) {
+            	sceneManager.startGame();
+                sceneManager.changeScene(sceneManager.getSceneItem(2));
+        	}else {
+        		sceneManager.changeScene(sceneManager.getSceneItem(2));
+			}
+
+        }
+        
+        if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
             sceneManager.changeScene(sceneManager.getSceneItem(1));
         }
         
-        if (Gdx.input.isKeyPressed(Input.Keys.P) && sceneManager.getCurrentScene() == sceneManager.getSceneItem(1)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+        	sceneManager.quitGame();
             sceneManager.changeScene(sceneManager.getSceneItem(0));
+            
         }
+        sceneManager.loadScene();
   
     }
     

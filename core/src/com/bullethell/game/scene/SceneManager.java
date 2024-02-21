@@ -31,14 +31,15 @@ public class SceneManager{
 
     public void initScenes() { 
         // Add all scenes to the sceneList
-        sceneList.add(new MainMenu());
-        sceneList.add(new GameScene());
+        sceneList.insert(0, new MainMenu());
+        sceneList.insert(1, new PauseScene());
         // Default Scene
         setCurrentScene(sceneList.get(0));
     }
 
     public void changeScene(Scene newScene) {
-        // currentScene.dispose(); do we need to Clean up the current scene?
+        //currentScene.dispose();
+    	
         this.currentScene = newScene;
     }
 
@@ -47,5 +48,17 @@ public class SceneManager{
     }
 
 
+    public void startGame()
+    {
+    	sceneList.insert(2, new GameScene());
+    	setCurrentScene(sceneList.get(2));
+    }
+    
+    public void quitGame()
+    {
+    	Scene scene = sceneList.pop();
+    	scene.dispose();
+    }
+    
 
 }
