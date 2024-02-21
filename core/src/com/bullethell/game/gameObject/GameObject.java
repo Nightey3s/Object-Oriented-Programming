@@ -11,6 +11,7 @@ public abstract class GameObject {
     {
         this.bounds = new Rectangle(x, y, width, height);
     }
+    
 
     public abstract void update(float delta);
     //public abstract void draw(SpriteBatch batch);
@@ -20,5 +21,15 @@ public abstract class GameObject {
     public Rectangle getBounds()
     {
         return bounds;
+    }
+    
+    public float getXPos()
+    {
+    	return this.bounds.x;
+    }
+    
+    public float getYPos()
+    {
+    	return this.bounds.y;
     }
 }

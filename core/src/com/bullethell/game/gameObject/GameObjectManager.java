@@ -4,14 +4,43 @@ package com.bullethell.game.gameObject;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+import com.bullethell.game.collision.CollisionManager;
 
 public class GameObjectManager implements Disposable {
     private Array<GameObject> gameObjects;
+    private CollisionManager collisionManager;
 
     public GameObjectManager()
     {
         gameObjects = new Array<>();
+        collisionManager = new CollisionManager();
     }
+    
+    public void createPlayer(float x, float y) {
+        Player player = new Player(x, y, this);
+        addGameObject(player);
+        collisionManager.isCollidable(player);
+
+    }
+
+    public void createEnemy(float x, float y) {
+        Enemy enemy = new Enemy(x, y);
+        addGameObject(enemy);
+        collisionManager.isCollidable(enemy);
+    }
+
+    public void createProjectile(float x, float y) {
+        Projectile projectile = new Projectile(x, y);
+        addGameObject(projectile);
+        collisionManager.isCollidable(projectile);
+    }
+
+    public void createPowerUp(float x, float y) {
+        PowerUp powerUp = new PowerUp(x, y);
+        addGameObject(powerUp);
+        collisionManager.isCollidable(powerUp);
+    }
+
 
     public void addGameObject(GameObject gameObject)
     {
@@ -23,6 +52,15 @@ public class GameObjectManager implements Disposable {
         for (GameObject gameObject : gameObjects)
         {
             gameObject.update(delta);
+        }
+        
+        // Collision detection cycle (Might need to move to simulation class)
+        for (int i = 0; i < collisionManager.getCollisionList().size; i++) {
+            for (int j = i + 1; j < collisionManager.getCollisionList().size; j++) {
+                if (collisionManager.checkCollision(collisionManager.getCollisionItem(i), collisionManager.getCollisionItem(j))) {
+                	collisionManager.resolveCollision(collisionManager.getCollisionItem(i), collisionManager.getCollisionItem(j));
+                }
+            }
         }
     }
 
