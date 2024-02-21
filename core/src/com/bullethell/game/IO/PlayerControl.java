@@ -4,10 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Rectangle;
 
-public class InputManager {
-	public static PlayerControl playerControl = new PlayerControl();
-
-    public static void handleMovement(Rectangle bounds, float speed, float delta) {
+public class PlayerControl {
+	
+	public void handleMovement(Rectangle bounds, float speed, float delta) {
         float currentSpeed = speed;
         float boundHeight = Gdx.graphics.getHeight();
         float boundWidth = Gdx.graphics.getWidth();
@@ -30,4 +29,3 @@ public class InputManager {
         }
     }
 }
-
