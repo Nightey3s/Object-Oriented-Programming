@@ -1,7 +1,6 @@
 package com.bullethell.game.scene;
 
 import com.badlogic.gdx.utils.Array;
-import com.bullethell.game.scene.Scene;
 
 public class SceneManager{
     private Scene currentScene;
