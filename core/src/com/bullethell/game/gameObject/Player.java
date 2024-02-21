@@ -5,10 +5,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 
 public class Player extends GameObject implements IMovable {
-    private Texture texture;
     private float speed;
 
     private float fireTimer = 0.0f;
@@ -116,7 +114,7 @@ public class Player extends GameObject implements IMovable {
     @Override
     public void dispose()
     {
-        texture.dispose();
+        this.dispose();
     }
 
 }
