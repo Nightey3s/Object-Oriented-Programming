@@ -31,7 +31,10 @@ public class MainGameClass extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && sceneManager.getCurrentScene() == sceneManager.getSceneItem(0)) {
             sceneManager.changeScene(sceneManager.getSceneItem(1));
         }
-
+        
+        if (Gdx.input.isKeyPressed(Input.Keys.P) && sceneManager.getCurrentScene() == sceneManager.getSceneItem(1)) {
+            sceneManager.changeScene(sceneManager.getSceneItem(0));
+        }
   
     }
     
