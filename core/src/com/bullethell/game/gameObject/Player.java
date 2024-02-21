@@ -24,7 +24,8 @@ public class Player extends GameObject implements IMovable {
     @Override
     public void move(float delta)
     {
-    	InputManager.handleMovement(this.bounds, this.speed, delta);
+    	//InputManager.handleMovement(this.bounds, this.speed, delta);
+    	InputManager.playerControl.handleMovement(this.bounds, this.speed, delta);
     }
   
     @Override

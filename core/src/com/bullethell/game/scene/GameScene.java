@@ -25,12 +25,6 @@ public class GameScene extends Scene{
         super();
         gameObjectManager = new GameObjectManager();
         shapeRenderer = new ShapeRenderer(); // Initialize the ShapeRenderer
-
-        // Use GameObjectManager to create game objects
-        gameObjectManager.createPlayer(100, 100);
-        gameObjectManager.createEnemy(200, 200);
-        gameObjectManager.createProjectile(300, 300);
-        gameObjectManager.createPowerUp(400, 400);  
     }
 
     @Override
