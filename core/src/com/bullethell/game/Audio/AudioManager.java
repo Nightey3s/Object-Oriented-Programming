@@ -1,4 +1,4 @@
-package com.bullethell.game.gameObject;
+package com.bullethell.game.Audio;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -20,6 +20,10 @@ public class AudioManager {
     private float bulletSoundVolume = 1.0f;
     private float bulletCollisionVolume = 1.0f;
 
+    public AudioManager() {
+    	loadAudio();
+    }
+    
     public void loadAudio() {
         // Load audio files
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("backgroundMusic.mp3"));
