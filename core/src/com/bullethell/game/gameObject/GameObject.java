@@ -6,6 +6,10 @@ import com.badlogic.gdx.math.Rectangle;
 
 public abstract class GameObject {
     protected Rectangle bounds;
+    
+    public GameObject() {
+    	
+    }
 
     public GameObject(float x, float y, float width, float height)
     {
