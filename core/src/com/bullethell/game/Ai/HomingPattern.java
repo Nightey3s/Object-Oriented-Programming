@@ -3,13 +3,11 @@ package com.bullethell.game.Ai;
 import com.bullethell.game.gameObject.Enemy;
 import com.bullethell.game.gameObject.GameObject;
 
-public class FollowingPattern extends AIPatterns {
-	private int xspeed = 100;
-	private int yspeed = 70;
+public class HomingPattern extends AIPatterns {
 	private float delta;
 	private GameObject target;
 
-	public FollowingPattern(GameObject target, float delta) {
+	public HomingPattern(GameObject target, float delta) {
 		this.target = target;
 		this.delta = delta;
 	}
@@ -26,8 +24,8 @@ public class FollowingPattern extends AIPatterns {
 			dx /= distance;
 			dy /= distance;
 
-			entity.getBounds().x += dx * xspeed * delta;
-			entity.getBounds().y += dx * yspeed * delta;
+			entity.getBounds().x += dx * entity.getSpeed() * delta;
+			entity.getBounds().y += dx * entity.getSpeed() * 0.7 * delta;
 		}
 
 	}

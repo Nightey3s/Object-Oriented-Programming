@@ -7,8 +7,6 @@ public class GothroughPattern extends AIPatterns {
 	private float gameX;
 	private float gameY;
 	private float delta;
-	private float xspeed = 150;
-	private float yspeed = 100;
 
 	public GothroughPattern(float gameX, float gameY, float delta) {
 		this.gameX = gameX;
@@ -22,13 +20,13 @@ public class GothroughPattern extends AIPatterns {
 		Rectangle bound = entity.getBounds();
 		if (bound.x + bound.getWidth() > gameX / 2) {
 
-			bound.x += xspeed * delta;
+			bound.x += entity.getSpeed() * delta;
 		}
 		if (bound.x - bound.getWidth() < gameX / 2) {
-			bound.x += xspeed * delta;
+			bound.x += entity.getSpeed() * delta;
 		}
 		if (Math.abs(bound.x + bound.getWidth() / 2 - gameX / 2) < 150) {
-			bound.y += yspeed * delta;
+			bound.y += entity.getSpeed() * delta;
 		}
 
 	}

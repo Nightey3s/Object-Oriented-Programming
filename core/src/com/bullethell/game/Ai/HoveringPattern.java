@@ -1,16 +1,13 @@
 package com.bullethell.game.Ai;
 
 import java.util.Random;
-
+import com.badlogic.gdx.math.Rectangle;
 import com.bullethell.game.gameObject.Enemy;
-import com.bullethell.game.gameObject.Player;
 
 public class HoveringPattern extends AIPatterns {
 	private Random rand = new Random();
 	private float delta;
 	private float yboundary;
-	private float yspeed = 80;
-	private float xspeed = 100;
 
 	public HoveringPattern(float yboundary, float delta) {
 		this.yboundary = yboundary;
@@ -19,16 +16,18 @@ public class HoveringPattern extends AIPatterns {
 
 	@Override
 	public void move(Enemy entity) {
+		Rectangle bound = entity.getBounds();
+		float speed = entity.getSpeed();
 		// TODO Auto-generated method stub
-		if (entity.getBounds().y != yboundary) {
-			entity.getBounds().y += (yboundary - entity.getBounds().y) * yspeed;
+		if (bound.y != yboundary) {
+			bound.y += (yboundary - bound.y) * speed;
 		} else {
 			int counter = rand.nextInt(22);
 			if (counter > 5 && counter < 21) {
 				if (counter < 13) {
-					entity.getBounds().x += xspeed * delta;
+					bound.x += speed * delta;
 				} else {
-					entity.getBounds().x -= xspeed * delta;
+					bound.x -= speed * delta;
 				}
 			}
 		}
