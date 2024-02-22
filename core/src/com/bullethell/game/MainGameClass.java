@@ -19,7 +19,7 @@ public class MainGameClass {
     }
     
     public void render() {
-        
+
         InputManager.ScreenControl(sceneManager);
         sceneManager.loadScene();
   
