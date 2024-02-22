@@ -2,9 +2,11 @@ package com.bullethell.game.collision;
 
 import com.badlogic.gdx.utils.Array;
 import com.bullethell.game.gameObject.GameObject;
+import com.bullethell.game.Audio.AudioManager;
 import com.bullethell.game.gameObject.Enemy;
 import com.bullethell.game.gameObject.Player;
 import com.bullethell.game.gameObject.PowerUp;
+import com.bullethell.game.gameObject.Projectile;
 
 public class CollisionManager implements iCollision{
     private Array<GameObject> collisionList;
@@ -41,12 +43,19 @@ public class CollisionManager implements iCollision{
     public void resolveCollision(GameObject Object1, GameObject Object2) {  
         if (Object1 instanceof Player && Object2 instanceof Enemy) {
             System.out.println("Player moved into the enemy - takes damage");
+            AudioManager.getInstance().playCollisionSound();
         }
         else if (Object1 instanceof Enemy && Object2 instanceof Player) {
             System.out.println("Enemy hit the Player - takes damage");
+            AudioManager.getInstance().playCollisionSound();
         }
         else if (Object1 instanceof Player && Object2 instanceof PowerUp) {
             System.out.println("Player picked up power up");
+            AudioManager.getInstance().playCollectSound();
+        }
+        else if((Object1 instanceof Projectile || Object2 instanceof Projectile) && (Object1 instanceof Enemy || Object2 instanceof Enemy)) { 
+        	System.out.println("Projectile hit enemy");
+        	AudioManager.getInstance().playBulletCollision();
         }
     }
 

@@ -1,4 +1,4 @@
-package com.bullethell.game.gameObject;
+package com.bullethell.game.Audio;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.MathUtils;
 
 public class AudioManager {
+	private static AudioManager instance;
     private Music backgroundMusic;
     private Sound collisionSound;
     private Sound collectSound;
@@ -20,6 +21,10 @@ public class AudioManager {
     private float bulletSoundVolume = 1.0f;
     private float bulletCollisionVolume = 1.0f;
 
+    public AudioManager() {
+    	loadAudio();
+    }
+    
     public void loadAudio() {
         // Load audio files
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("backgroundMusic.mp3"));
@@ -28,9 +33,17 @@ public class AudioManager {
         startGameSound = Gdx.audio.newSound(Gdx.files.internal("StartGame.wav"));
         bulletSound = Gdx.audio.newSound(Gdx.files.internal("bulletSound.wav"));
         bulletCollision = Gdx.audio.newSound(Gdx.files.internal("bulletCollision.wav"));
-
-        // Play background music
-        backgroundMusic.setLooping(true);
+    }
+    
+    public static synchronized AudioManager getInstance() {
+        if (instance == null) {
+            instance = new AudioManager();
+        }
+        return instance;
+    }
+    
+    public void playBackgroundMusic() {
+    	backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(backgroundMusicVolume);
         backgroundMusic.play();
     }
@@ -79,7 +92,7 @@ public class AudioManager {
     public void playBulletCollision() {
         bulletCollision.play(bulletCollisionVolume);
     }
-
+    
     public void dispose() {
         backgroundMusic.dispose();
         collisionSound.dispose();
