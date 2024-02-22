@@ -3,6 +3,7 @@ package com.bullethell.game.IO;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.bullethell.game.scene.GameScene;
+import com.bullethell.game.scene.MainMenu;
 import com.bullethell.game.scene.SceneManager;
 
 public class InputManager {
