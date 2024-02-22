@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.bullethell.game.Ai.AIPatterns;
 import com.bullethell.game.Ai.AiManager;
+import com.bullethell.game.Audio.AudioManager;
 import com.bullethell.game.collision.CollisionManager;
 
 public class GameObjectManager implements Disposable {
@@ -40,6 +41,7 @@ public class GameObjectManager implements Disposable {
 		Projectile projectile = new Projectile(x, y);
 		addGameObject(projectile);
 		collisionManager.isCollidable(projectile);
+		AudioManager.getInstance().playBulletSound();
 	}
 
 	public void createPowerUp(float x, float y) {
