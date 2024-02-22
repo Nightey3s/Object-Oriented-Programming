@@ -16,7 +16,9 @@ public class PauseScene extends Scene {
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             batch.begin();
             font.draw(batch, "Pause Screen!", Gdx.graphics.getWidth()*.25f, Gdx.graphics.getHeight() * .75f);
-            font.draw(batch, "Press space to play.", Gdx.graphics.getWidth()*.25f, Gdx.graphics.getHeight() * .25f);
+            font.draw(batch, "Press Space to continue.", Gdx.graphics.getWidth()*.25f, Gdx.graphics.getHeight() * .25f);
+            font.draw(batch, "Press P to pause.", Gdx.graphics.getWidth()*.20f, Gdx.graphics.getHeight() * .20f);
+            font.draw(batch, "Press Q to quit to main menu.", Gdx.graphics.getWidth()*.15f, Gdx.graphics.getHeight() * .15f);
             batch.end();
     }
 

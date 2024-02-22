@@ -38,7 +38,6 @@ public class SceneManager{
 
     public void changeScene(Scene newScene) {
         //currentScene.dispose();
-    	
         this.currentScene = newScene;
     }
 

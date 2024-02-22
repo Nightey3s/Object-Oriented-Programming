@@ -7,9 +7,11 @@ import com.bullethell.game.scene.MainMenu;
 import com.bullethell.game.scene.SceneManager;
 
 public class InputManager {
+	
+	public InputManager() {}
 	public static PlayerControl playerControl = new PlayerControl();
 
-    public static void ScreenControl(SceneManager sceneManager) {
+    public void ScreenControl(SceneManager sceneManager) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
         	
         	if (sceneManager.getCurrentScene() instanceof MainMenu) {

@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 public class Projectile extends GameObject implements IMovable {
     private float speed;
     private boolean outOfBounds = false;
-    private float screeHeight = Gdx.graphics.getHeight();
+    private float screenHeight = Gdx.graphics.getHeight();
     public Projectile(float x, float y)
     {
         super(x, y, 3, 15); // Example size, adjust as needed
@@ -32,7 +32,7 @@ public class Projectile extends GameObject implements IMovable {
     
     public void checkBounds()
     {
-    	if (this.bounds.y + this.bounds.height > screeHeight)
+    	if (this.bounds.y + this.bounds.height > screenHeight)
     	{
     		this.outOfBounds = true;
     	}
