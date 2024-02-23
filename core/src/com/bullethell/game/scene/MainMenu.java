@@ -18,6 +18,7 @@ public class MainMenu extends Scene{
             font.draw(batch, "Press Space to play.", Gdx.graphics.getWidth()*.25f, Gdx.graphics.getHeight() * .25f);
             font.draw(batch, "Press P to pause.", Gdx.graphics.getWidth()*.20f, Gdx.graphics.getHeight() * .20f);
             font.draw(batch, "Press Q to quit to main menu.", Gdx.graphics.getWidth()*.15f, Gdx.graphics.getHeight() * .15f);
+            font.draw(batch, "Press H to view high scores.", Gdx.graphics.getWidth()*.10f, Gdx.graphics.getHeight() * .10f);
             batch.end();
     }
 

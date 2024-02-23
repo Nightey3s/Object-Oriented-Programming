@@ -8,27 +8,31 @@ import com.bullethell.game.Ai.AIPatterns;
 import com.bullethell.game.Ai.AiManager;
 import com.bullethell.game.Audio.AudioManager;
 import com.bullethell.game.collision.CollisionManager;
+import com.bullethell.game.scene.SceneManager;
+
 
 public class GameObjectManager implements Disposable {
-	private Array<GameObject> gameObjects;
-	private CollisionManager collisionManager;
-	private AiManager aiManager;
+    private Array<GameObject> gameObjects;
+    private CollisionManager collisionManager;
+    private AiManager aiManager;
+    private SceneManager sceneManager; // Add SceneManager field
 
-	public GameObjectManager() {
-		gameObjects = new Array<>();
-		collisionManager = new CollisionManager();
-		aiManager = new AiManager();
-		createPlayer(100, 100);
+    public GameObjectManager(SceneManager sceneManager) { // Add SceneManager parameter
+        this.sceneManager = sceneManager; // Initialize SceneManager field
+        gameObjects = new Array<>();
+        collisionManager = new CollisionManager();
+        aiManager = new AiManager();
+        createPlayer(100, 100);
 
-		createEnemy(200, 200);
-		createPowerUp(400, 400);
-	}
+        createEnemy(200, 200);
+        createPowerUp(400, 400);
+    }
 
-	public void createPlayer(float x, float y) {
-		Player player = new Player(x, y, this);
-		addGameObject(player);
-		collisionManager.isCollidable(player);
-	}
+    public void createPlayer(float x, float y) {
+        Player player = new Player(x, y, this, sceneManager); // Pass SceneManager to Player constructor
+        addGameObject(player);
+        collisionManager.isCollidable(player);
+    }
 
 	public void createEnemy(float x, float y) {
 		Enemy enemy = new Enemy(x, y);

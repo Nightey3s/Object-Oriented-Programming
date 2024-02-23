@@ -2,8 +2,11 @@ package com.bullethell.game.IO;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.bullethell.game.ScoreManager;
+import com.bullethell.game.scene.EndScene;
 import com.bullethell.game.scene.GameScene;
 import com.bullethell.game.scene.MainMenu;
+import com.bullethell.game.scene.PauseScene;
 import com.bullethell.game.scene.SceneManager;
 
 public class InputManager {
@@ -16,10 +19,15 @@ public class InputManager {
         	
         	if (sceneManager.getCurrentScene() instanceof MainMenu) {
             	sceneManager.startGame();
-                sceneManager.changeScene(sceneManager.getSceneItem(2));
-        	}else {
-        		sceneManager.changeScene(sceneManager.getSceneItem(2));
+                sceneManager.changeScene(sceneManager.getSceneItem(3));
+        	}else if (sceneManager.getCurrentScene() instanceof PauseScene){
+        		sceneManager.changeScene(sceneManager.getSceneItem(3));
 			}
+            else if(sceneManager.getCurrentScene() instanceof EndScene) {
+                ScoreManager.getInstance().resetScore();
+                sceneManager.changeScene(sceneManager.getSceneItem(0));
+            }
+        	
 
         }
         
@@ -27,10 +35,13 @@ public class InputManager {
             sceneManager.changeScene(sceneManager.getSceneItem(1));
         }
         
-        if (Gdx.input.isKeyJustPressed(Input.Keys.Q) && !(sceneManager.getCurrentScene() instanceof MainMenu)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Q) && (sceneManager.getCurrentScene() instanceof GameScene)) {
         	sceneManager.quitGame();
             sceneManager.changeScene(sceneManager.getSceneItem(0));
             
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.H) && (sceneManager.getCurrentScene() instanceof MainMenu)) { 
+            sceneManager.changeScene(sceneManager.getSceneItem(2)); 
         }
     }
 }

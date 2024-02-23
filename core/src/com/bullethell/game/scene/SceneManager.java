@@ -1,15 +1,33 @@
 package com.bullethell.game.scene;
 
+import com.bullethell.game.ScoreManager;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import com.badlogic.gdx.utils.Array;
 
 public class SceneManager{
     private Scene currentScene;
     private Array<Scene> sceneList;
+    private List<Integer> highScores;
 
     public SceneManager() {
         sceneList = new Array<Scene>();
         currentScene = null;
+        highScores = new ArrayList<Integer>();
         initScenes();
+    }
+
+    public void setFinalScore() {
+        int finalScore = ScoreManager.getInstance().getScore();
+        // Add the final score to high scores list
+        highScores.add(finalScore);
+        // Sort the high scores list in descending order
+        Collections.sort(highScores, Collections.reverseOrder());
+        // Keep only the top 5 high scores
+        if (highScores.size() > 5) {
+            highScores = highScores.subList(0, 5);
+        }
     }
 
     public Scene getCurrentScene() {
@@ -32,6 +50,7 @@ public class SceneManager{
         // Add all scenes to the sceneList
         sceneList.insert(0, new MainMenu());
         sceneList.insert(1, new PauseScene());
+        sceneList.insert(2, new EndScene(highScores, this)); // Add EndScene to sceneList
         // Default Scene
         setCurrentScene(sceneList.get(0));
     }
@@ -45,18 +64,15 @@ public class SceneManager{
         this.currentScene.sceneRender();
     }
 
-
     public void startGame()
     {
-    	sceneList.insert(2, new GameScene());
-    	setCurrentScene(sceneList.get(2));
+        sceneList.insert(3, new GameScene(this));
+        setCurrentScene(sceneList.get(3));
     }
     
     public void quitGame()
     {
-    	Scene scene = sceneList.pop();
-    	scene.dispose();
+        Scene scene = sceneList.pop();
+        scene.dispose();
     }
-    
-
 }

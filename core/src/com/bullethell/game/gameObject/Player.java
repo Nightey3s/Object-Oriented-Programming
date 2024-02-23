@@ -3,22 +3,52 @@ package com.bullethell.game.gameObject;
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.bullethell.game.IO.InputManager;
+import com.bullethell.game.collision.CollisionManager;
 import com.badlogic.gdx.graphics.Color;
+import com.bullethell.game.scene.SceneManager;
 
 public class Player extends GameObject implements IMovable {
     private float speed;
+    private int health;
+    private boolean isAlive = true;
+
 
     private float fireTimer = 0.0f;
     private final float FIRE_RATE = 0.15f;//0.15 seconds
        
     private GameObjectManager gameObjectManager;
+    private SceneManager sceneManager; // 
+    
 
-    public Player(float x, float y, GameObjectManager gameObjectManager)
+    public Player(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager)
     {
         super(x, y, 64, 64); // Example size, adjust as needed
         //texture = new Texture("TODO");
         this.speed = 100.0f;
         this.gameObjectManager = gameObjectManager;
+        this.sceneManager = sceneManager; 
+        this.health = 100;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+    
+   
+    public void playerDied() {
+        sceneManager.setFinalScore();    
+        sceneManager.changeScene(sceneManager.getSceneItem(2));
+        isAlive = false;
+        
+    }
+    public boolean isAlive() {
+        return isAlive;
+    }
+    public void takeDamage(int damage) {
+        this.health -= damage;
+        if (this.health <= 0) {
+            playerDied(); // Call playerDied method when health is 0 or less
+        }
     }
 
     @Override
@@ -37,6 +67,7 @@ public class Player extends GameObject implements IMovable {
             fireProjectile();
             fireTimer = 0; // Reset the fire timer
         }
+       
         
     }
 
