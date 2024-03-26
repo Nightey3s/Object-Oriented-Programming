@@ -24,15 +24,6 @@ public class SceneManager{
         multiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(multiplexer);
         initScenes();
-        defaultSceneProcessors();
-    }
-
-    public void defaultSceneProcessors() {
-        this.multiplexer.clear();
-        for (Scene scene : sceneList) {
-            multiplexer.addProcessor(scene.getStage());
-        }
-        Gdx.input.setInputProcessor(multiplexer); // set default input processor index 0;
     }
 
     public static SceneManager getInstance() {
@@ -76,6 +67,7 @@ public class SceneManager{
         sceneList.insert(1, new PauseScene());
         sceneList.insert(2, new EndScene(highScores, this)); // Add EndScene to sceneList
         // Default Scene
+        multiplexer.addProcessor(sceneList.get(0).getStage());
         setCurrentScene(sceneList.get(0));
     }
 
@@ -101,7 +93,8 @@ public class SceneManager{
        for (Scene scene : sceneList) {
             if (scene instanceof GameScene) {
                 scene.dispose();
-            }
+            } else
+            return;
         }
     }
 }
