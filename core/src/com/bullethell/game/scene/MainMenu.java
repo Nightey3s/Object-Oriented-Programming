@@ -30,8 +30,16 @@ public class MainMenu extends Scene{
             }
         });
 
+        TextButton highscoreButton = createButton("High Scores",Gdx.graphics.getWidth() / 2,150, new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().getSceneItem(2)); 
+            }
+        });
+
         this.stage.addActor(playButton);
         this.stage.addActor(exitButton);
+        this.stage.addActor(highscoreButton);
     }
 
 
