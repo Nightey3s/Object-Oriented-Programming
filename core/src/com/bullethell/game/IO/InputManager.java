@@ -18,9 +18,9 @@ public class InputManager {
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
         	
         	if (sceneManager.getCurrentScene() instanceof MainMenu) {
-            	sceneManager.startGame();
+            	sceneManager.startGame(); // Mainmenu play
                 sceneManager.changeScene(sceneManager.getSceneItem(3));
-        	}else if (sceneManager.getCurrentScene() instanceof PauseScene){
+        	}else if (sceneManager.getCurrentScene() instanceof PauseScene){ // Pause Screen Continue.
         		sceneManager.changeScene(sceneManager.getSceneItem(3));
 			}
             else if(sceneManager.getCurrentScene() instanceof EndScene) {
@@ -32,12 +32,12 @@ public class InputManager {
         }
         
         if (Gdx.input.isKeyJustPressed(Input.Keys.P) && sceneManager.getCurrentScene() instanceof GameScene) {
-            sceneManager.changeScene(sceneManager.getSceneItem(1));
+            sceneManager.changeScene(sceneManager.getSceneItem(1)); // Pause when in game
         }
         
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q) && (sceneManager.getCurrentScene() instanceof GameScene)) {
         	sceneManager.quitGame();
-            sceneManager.changeScene(sceneManager.getSceneItem(0));
+            sceneManager.changeScene(sceneManager.getSceneItem(0)); 
             
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.H) && (sceneManager.getCurrentScene() instanceof MainMenu)) { 

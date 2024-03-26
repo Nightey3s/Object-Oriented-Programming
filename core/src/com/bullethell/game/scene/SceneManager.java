@@ -4,19 +4,35 @@ import com.bullethell.game.ScoreManager;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class SceneManager{
     private static SceneManager instance;
     private Scene currentScene;
     private Array<Scene> sceneList;
     private List<Integer> highScores;
+    private InputMultiplexer multiplexer; // Switch multiplexer to handle input for different scenes
 
     public SceneManager() {
         sceneList = new Array<Scene>();
         currentScene = null;
         highScores = new ArrayList<Integer>();
+        multiplexer = new InputMultiplexer();
+        Gdx.input.setInputProcessor(multiplexer);
         initScenes();
+        defaultSceneProcessors();
+    }
+
+    public void defaultSceneProcessors() {
+        this.multiplexer.clear();
+        for (Scene scene : sceneList) {
+            multiplexer.addProcessor(scene.getStage());
+        }
+        Gdx.input.setInputProcessor(multiplexer); // set default input processor index 0;
     }
 
     public static SceneManager getInstance() {
@@ -63,8 +79,10 @@ public class SceneManager{
         setCurrentScene(sceneList.get(0));
     }
 
-    public void changeScene(Scene newScene) {
+    public void changeScene(Scene newScene) { // Change multiplexer aswell.
         //currentScene.dispose();
+        this.multiplexer.clear();
+        this.multiplexer.addProcessor(newScene.getStage());
         this.currentScene = newScene;
     }
 
@@ -80,7 +98,10 @@ public class SceneManager{
     
     public void quitGame()
     {
-        Scene scene = sceneList.pop();
-        scene.dispose();
+       for (Scene scene : sceneList) {
+            if (scene instanceof GameScene) {
+                scene.dispose();
+            }
+        }
     }
 }

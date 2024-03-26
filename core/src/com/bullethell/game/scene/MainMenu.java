@@ -30,18 +30,10 @@ public class MainMenu extends Scene{
             }
         });
 
-        stage.addActor(playButton);
-        stage.addActor(exitButton);
+        this.stage.addActor(playButton);
+        this.stage.addActor(exitButton);
     }
 
-    private TextButton createButton(String text,  int x, int y,ClickListener listener) { // Function to create buttons
-        TextButton button = new TextButton(text, skin);
-        button.setHeight(40);
-        button.setWidth(100);
-        button.setPosition(x - button.getWidth() / 2, y - button.getHeight() / 2);
-        button.addListener(listener);
-        return button;
-    }
 
     @Override
     public void sceneRender() {
