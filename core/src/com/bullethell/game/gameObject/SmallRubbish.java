@@ -10,8 +10,8 @@ public class SmallRubbish extends TextureObject implements IMovable{
 	private float speed;
 	
 
-	public SmallRubbish(float speed,float x, float y) {
-		super("SmallRubbish.png",x,y,50,50);
+	public SmallRubbish(String tex, float speed,float x, float y) {
+		super(tex,x,y,50,50);
 		this.speed = speed;
 	}
 
