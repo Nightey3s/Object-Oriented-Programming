@@ -7,6 +7,7 @@ import java.util.List;
 import com.badlogic.gdx.utils.Array;
 
 public class SceneManager{
+    private static SceneManager instance;
     private Scene currentScene;
     private Array<Scene> sceneList;
     private List<Integer> highScores;
@@ -16,6 +17,13 @@ public class SceneManager{
         currentScene = null;
         highScores = new ArrayList<Integer>();
         initScenes();
+    }
+
+    public static SceneManager getInstance() {
+        if (instance == null) {
+            instance = new SceneManager();
+        }
+        return instance;
     }
 
     public void setFinalScore() {

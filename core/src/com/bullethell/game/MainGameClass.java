@@ -14,7 +14,7 @@ public class MainGameClass {
     private AudioManager audioManager;
     
     public MainGameClass () {
-        sceneManager = new SceneManager();
+        sceneManager = SceneManager.getInstance();
         inputManager = new InputManager();
         audioManager = new AudioManager();
         shapeRenderer = new ShapeRenderer();
