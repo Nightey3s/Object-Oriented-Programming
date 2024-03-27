@@ -28,7 +28,7 @@ public class GameObjectManager implements Disposable {
         collisionManager = new CollisionManager();
         aiManager = new AiManager();
         createPlayer(100, 100);
-        createEnemy(200, 200);
+        createEnemy(200, 800);
 		createBigRubbish(300, 300, 100, 100);
         createPowerUp(400, 400);
 		createEarth(0, -250, Gdx.graphics.getWidth(), Gdx.graphics.getWidth());
@@ -74,7 +74,7 @@ public class GameObjectManager implements Disposable {
 	public void createShip(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
 		Ship ship = ObjectFactory.createShip(x, y, gameObjectManager, sceneManager);
 		addGameObject(ship);
-		//collisionManager.isCollidable(ship);
+		collisionManager.isCollidable(ship);
 	}
 
 	public void createBigRubbish(float x, float y, int width, int height) {

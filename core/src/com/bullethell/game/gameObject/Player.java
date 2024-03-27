@@ -33,7 +33,6 @@ public class Player extends GameObject implements IMovable {
     public int getHealth() {
         return health;
     }
-    
    
     public void playerDied() {
         sceneManager.setFinalScore();    
