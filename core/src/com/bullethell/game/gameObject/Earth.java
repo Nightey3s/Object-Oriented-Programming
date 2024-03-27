@@ -14,7 +14,9 @@ public class Earth extends GameObject{
 
 	public Earth(float x,float y,int width,int height) {
 		super(x, y, width, height);
+
 		this.tex = new Texture(Gdx.files.internal("Earth.png"));
+
 		sprite = new Sprite(this.tex);
 		sprite.setSize(width, height);
 		sprite.setOriginCenter();

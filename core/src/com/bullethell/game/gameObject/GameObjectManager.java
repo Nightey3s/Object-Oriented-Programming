@@ -29,6 +29,7 @@ public class GameObjectManager implements Disposable {
         aiManager = new AiManager();
         createPlayer(100, 100);
         createEnemy(200, 200);
+		createBigRubbish(300, 300, 100, 100);
         createPowerUp(400, 400);
 		createEarth(Gdx.graphics.getWidth()/2, 50, 200, 200);
 		createShip(200, 200, this, this.sceneManager);
@@ -39,33 +40,33 @@ public class GameObjectManager implements Disposable {
 	}
 
     public void createPlayer(float x, float y) {
-        Player player = new Player(x, y, this, sceneManager); // Pass SceneManager to Player constructor
+        Player player = ObjectFactory.createPlayer(x, y, this, sceneManager); // Pass SceneManager to Player constructor
         addGameObject(player);
         collisionManager.isCollidable(player);
     }
 
 	public void createEnemy(float x, float y) {
-		Enemy enemy = new Enemy(x, y);
+		Enemy enemy = ObjectFactory.createEnemy(x, y);
 		addGameObject(enemy);
 		collisionManager.isCollidable(enemy);
 		aiManager.addEnemy(enemy);
 	}
 
 	public void createProjectile(float x, float y) {
-		Projectile projectile = new Projectile(x, y);
+		Projectile projectile = ObjectFactory.createProjectile(x, y);
 		addGameObject(projectile);
 		collisionManager.isCollidable(projectile);
 		AudioManager.getInstance().playBulletSound();
 	}
 
 	public void createPowerUp(float x, float y) {
-		PowerUp powerUp = new PowerUp(x, y);
+		PowerUp powerUp = ObjectFactory.createPowerUp(x, y);
 		addGameObject(powerUp);
 		collisionManager.isCollidable(powerUp);
 	}
 
 	public void createEarth(float x, float y, int width, int height) {
-		Earth earth = ObjectFactory.createEarth(x, y, width, height);
+		GameObject earth = ObjectFactory.createEarth(x, y, width, height);
 		addGameObject(earth);
 		collisionManager.isCollidable(earth);
 	}
@@ -74,6 +75,12 @@ public class GameObjectManager implements Disposable {
 		Ship ship = ObjectFactory.createShip(x, y, gameObjectManager, sceneManager);
 		addGameObject(ship);
 		//collisionManager.isCollidable(ship);
+	}
+
+	public void createBigRubbish(float x, float y, int width, int height) {
+		GameObject bigRubbish = ObjectFactory.createBigRubbish(x, y, width, height);
+		addGameObject(bigRubbish);
+		collisionManager.isCollidable(bigRubbish);
 	}
 
 	public void addGameObject(GameObject gameObject) {

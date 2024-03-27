@@ -24,6 +24,11 @@ public class Enemy extends GameObject implements IMovable {
 		this.speed = (float) (Math.random() * 75 + 25); // Random speed from 25 to 100
 	}
 
+	public Enemy(float x, float y, int width, int height, float speed){
+		super(x, y, width, height);
+		this.speed = speed;
+	}
+
 	@Override
 	public void move(float delta) {
 		// Implement movement logic here
@@ -51,8 +56,10 @@ public class Enemy extends GameObject implements IMovable {
 		move(delta);
 	}
 
-    @Override
-    public void draw(SpriteBatch batch) {
+
+   @Override
+   public void draw(SpriteBatch batch) {
+		 
     }
 
 	@Override

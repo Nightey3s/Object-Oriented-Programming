@@ -2,6 +2,7 @@ package com.bullethell.game.Factory;
 
 import com.bullethell.game.gameObject.*;
 import com.bullethell.game.scene.SceneManager;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ObjectFactory {
@@ -16,7 +17,7 @@ public class ObjectFactory {
 		return new Player(x, y, gameObjectManager, sceneManager);
 	}
 
-	public static Earth createEarth(float x, float y, int width, int height) {
+	public static GameObject createEarth(float x, float y, int width, int height) {
 		return new Earth(x,y,width,height);
 	}
 	
@@ -24,4 +25,19 @@ public class ObjectFactory {
 		return new Ship(x, y, gameObjectManager, sceneManager);
 	}
 
+	public static GameObject createBigRubbish(float x, float y, int width, int height) {
+		return new BigRubbish(x,y,width,height);
+	}
+
+	public static GameObject createEnemy(float x, float y) {
+		return new Enemy(x, y);
+	}
+
+	public void createProjectile(float x, float y) {
+		return new Projectile(x, y);
+	}
+
+	public void createPowerUp(float x, float y) {
+		return new PowerUp(x, y);
+	}
 }
