@@ -31,7 +31,7 @@ public class GameObjectManager implements Disposable {
         createEnemy(200, 200);
 		createBigRubbish(300, 300, 100, 100);
         createPowerUp(400, 400);
-		createEarth(Gdx.graphics.getWidth()/2, 50, 200, 200);
+		createEarth(0, -250, Gdx.graphics.getWidth(), Gdx.graphics.getWidth());
 		createShip(200, 200, this, this.sceneManager);
     }
 

@@ -33,7 +33,7 @@ public class Earth extends GameObject{
 
 	@Override
 	public void update(float delta) {
-		rotationAngle += 10 * delta;
+		rotationAngle += 7 * delta;
 		rotationAngle %= 360; // keep angle between 0 and 360
 		sprite.setRotation(rotationAngle);
 	}
@@ -47,15 +47,14 @@ public class Earth extends GameObject{
 	@Override
 	public void draw(ShapeRenderer shape) {
 		float barWidth = sprite.getWidth() / 2;
-		float barHeight = 10;  // The height of the health bar
-		float barX = sprite.getX();
+		float barHeight = 10;  // The thickness of the bar
+		float barX = sprite.getX() + (sprite.getWidth() - barWidth) / 2;  // Center the health bar
 		float barY = sprite.getY() + sprite.getHeight();
 
 		shape.setColor(Color.BLACK);
 		shape.rect(barX, barY, barWidth, barHeight);
 		shape.setColor(Color.GREEN);
 		shape.rect(barX, barY, barWidth * this.healthPercentage / 100, barHeight);
-
 	}
 
 	@Override

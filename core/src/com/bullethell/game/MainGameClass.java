@@ -1,5 +1,6 @@
 package com.bullethell.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.bullethell.game.Audio.AudioManager;
 import com.bullethell.game.IO.InputManager;
@@ -14,13 +15,14 @@ public class MainGameClass {
     private AudioManager audioManager;
     
     public MainGameClass () {
+        Gdx.graphics.setWindowedMode(Gdx.graphics.getWidth() * 2/3 , Gdx.graphics.getWidth() * 3/2);
         sceneManager = SceneManager.getInstance();
         inputManager = new InputManager();
         audioManager = new AudioManager();
         shapeRenderer = new ShapeRenderer();
         gameObjectManager = new GameObjectManager(sceneManager);
-        
         audioManager.playBackgroundMusic();
+        
     }
     
     public void render() {
