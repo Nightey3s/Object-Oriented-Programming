@@ -39,27 +39,27 @@ public class GameObjectManager implements Disposable {
 	}
 
     public void createPlayer(float x, float y) {
-        Player player = new Player(x, y, this, sceneManager); // Pass SceneManager to Player constructor
+        Player player = ObjectFactory.createPlayer(x, y, this, sceneManager); // Pass SceneManager to Player constructor
         addGameObject(player);
         collisionManager.isCollidable(player);
     }
 
 	public void createEnemy(float x, float y) {
-		Enemy enemy = new Enemy(x, y);
+		Enemy enemy = ObjectFactory.createEnemy(x, y);
 		addGameObject(enemy);
 		collisionManager.isCollidable(enemy);
 		aiManager.addEnemy(enemy);
 	}
 
 	public void createProjectile(float x, float y) {
-		Projectile projectile = new Projectile(x, y);
+		Projectile projectile = ObjectFactory.createProjectile(x, y);
 		addGameObject(projectile);
 		collisionManager.isCollidable(projectile);
 		AudioManager.getInstance().playBulletSound();
 	}
 
 	public void createPowerUp(float x, float y) {
-		PowerUp powerUp = new PowerUp(x, y);
+		PowerUp powerUp = ObjectFactory.createPowerUp(x, y);
 		addGameObject(powerUp);
 		collisionManager.isCollidable(powerUp);
 	}

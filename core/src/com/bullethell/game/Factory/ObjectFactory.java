@@ -25,4 +25,15 @@ public class ObjectFactory {
 		return new BigRubbish(x,y,width,height);
 	}
 
+	public static GameObject createEnemy(float x, float y) {
+		return new Enemy(x, y);
+	}
+
+	public void createProjectile(float x, float y) {
+		return new Projectile(x, y);
+	}
+
+	public void createPowerUp(float x, float y) {
+		return new PowerUp(x, y);
+	}
 }
