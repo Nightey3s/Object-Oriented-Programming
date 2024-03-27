@@ -2,19 +2,50 @@ package com.bullethell.game.gameObject;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Earth extends TextureObject{
-	
-	public Earth() {
-		super("Earth.png",0, 0, 100, 100);
+
+public class Earth extends GameObject{
+	private float rotationAngle = 0;
+	private Sprite sprite;
+	private Texture tex;
+
+	public Earth(float x,float y,int width,int height) {
+		super(x, y, width, height);
+		this.tex = new Texture(Gdx.files.internal("earth.png"));
+		sprite = new Sprite(this.tex);
+		sprite.setOriginCenter();
+		sprite.setSize(width, height);
+		sprite.setPosition(x, y);
 	}
 	
 	@Override
+    public Sprite getSprite() {
+        return sprite;  // Return the actual sprite
+    }
+
+	@Override
 	public void update(float delta) {
-		// TODO make it rotate??
-		
+		rotationAngle += 0.1f * delta;
+		rotationAngle %= 360; // keep angle between 0 and 360
+		sprite.setRotation(rotationAngle);
+	}
+
+	@Override
+	public void draw(SpriteBatch batch) {
+		sprite.draw(batch);
+	}
+
+	@Override
+	public void draw(ShapeRenderer shape) {
+		// Null since object is sprite
+	}
+
+	@Override
+	public void dispose() {
+		this.dispose();
 	}
 
 }
