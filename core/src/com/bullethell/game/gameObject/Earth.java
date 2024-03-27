@@ -19,6 +19,7 @@ public class Earth extends GameObject{
 		sprite.setSize(width, height);
 		sprite.setOriginCenter();
 		sprite.setPosition(x, y);
+		this.bounds = sprite.getBoundingRectangle();
 	}
 	
 	@Override
