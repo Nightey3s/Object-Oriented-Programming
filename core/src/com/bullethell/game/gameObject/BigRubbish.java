@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.Color;
 
 public class BigRubbish extends Enemy {
     private Sprite sprite;
@@ -33,6 +34,8 @@ public class BigRubbish extends Enemy {
     @Override
     public void draw(ShapeRenderer shape) {
         // empty
+        shape.setColor(Color.ORANGE); // Testing for collision
+		shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
     }
     
     @Override
