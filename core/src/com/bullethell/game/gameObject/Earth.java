@@ -5,12 +5,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.Color;
 
 
 public class Earth extends GameObject{
 	private float rotationAngle = 0;
 	private Sprite sprite;
 	private Texture tex;
+	private int healthPercentage = 10;
 
 	public Earth(float x,float y,int width,int height) {
 		super(x, y, width, height);
@@ -41,9 +43,19 @@ public class Earth extends GameObject{
 		sprite.draw(batch);
 	}
 
+	// Draw the health bar
 	@Override
 	public void draw(ShapeRenderer shape) {
-		// Null since object is sprite
+		float barWidth = sprite.getWidth() / 2;
+		float barHeight = 10;  // The height of the health bar
+		float barX = sprite.getX();
+		float barY = sprite.getY() + sprite.getHeight();
+
+		shape.setColor(Color.BLACK);
+		shape.rect(barX, barY, barWidth, barHeight);
+		shape.setColor(Color.GREEN);
+		shape.rect(barX, barY, barWidth * this.healthPercentage / 100, barHeight);
+
 	}
 
 	@Override

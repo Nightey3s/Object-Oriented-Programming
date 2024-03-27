@@ -12,7 +12,7 @@ public class ObjectFactory {
 	private static final float SR_SPEED = 100;
 	private static final float BR_SPEED = 150;
 
-	public static GameObject createPlayer(float x, float y, GameObjectManager gameObjectManager,
+	public static Player createPlayer(float x, float y, GameObjectManager gameObjectManager,
 			SceneManager sceneManager) {
 		return new Player(x, y, gameObjectManager, sceneManager);
 	}
@@ -29,15 +29,15 @@ public class ObjectFactory {
 		return new BigRubbish(x,y,width,height);
 	}
 
-	public static GameObject createEnemy(float x, float y) {
+	public static Enemy createEnemy(float x, float y) {
 		return new Enemy(x, y);
 	}
 
-	public void createProjectile(float x, float y) {
+	public static Projectile createProjectile(float x, float y) {
 		return new Projectile(x, y);
 	}
 
-	public void createPowerUp(float x, float y) {
+	public static PowerUp createPowerUp(float x, float y) {
 		return new PowerUp(x, y);
 	}
 }
