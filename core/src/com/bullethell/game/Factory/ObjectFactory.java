@@ -1,5 +1,6 @@
 package com.bullethell.game.Factory;
 
+import com.bullethell.game.Ai.AIPatterns;
 import com.bullethell.game.gameObject.*;
 import com.bullethell.game.scene.SceneManager;
 import com.badlogic.gdx.Game;
@@ -18,15 +19,15 @@ public class ObjectFactory {
 	}
 
 	public static GameObject createEarth(float x, float y, int width, int height) {
-		return new Earth(x,y,width,height);
+		return new Earth(x, y, width, height);
 	}
-	
+
 	public static Ship createShip(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
 		return new Ship(x, y, gameObjectManager, sceneManager);
 	}
 
 	public static GameObject createBigRubbish(float x, float y, int width, int height) {
-		return new BigRubbish(x,y,width,height);
+		return new BigRubbish(x, y, width, height);
 	}
 
 	public static Enemy createEnemy(float x, float y) {

@@ -14,36 +14,35 @@ import com.bullethell.game.Factory.ObjectFactory;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-
 public class GameObjectManager implements Disposable {
-    private Array<GameObject> gameObjects;
-    private CollisionManager collisionManager;
-    private AiManager aiManager;
-    private SceneManager sceneManager; // Add SceneManager field
+	private Array<GameObject> gameObjects;
+	private CollisionManager collisionManager;
+	private AiManager aiManager;
+	private SceneManager sceneManager; // Add SceneManager field
 	private SpriteBatch batch;
 
-    public GameObjectManager(SceneManager sceneManager) { // Add SceneManager parameter
-        this.sceneManager = sceneManager; // Initialize SceneManager field
-        gameObjects = new Array<>();
-        collisionManager = new CollisionManager();
-        aiManager = new AiManager();
-        createPlayer(100, 100);
-        createEnemy(200, 800);
+	public GameObjectManager(SceneManager sceneManager) { // Add SceneManager parameter
+		this.sceneManager = sceneManager; // Initialize SceneManager field
+		gameObjects = new Array<>();
+		collisionManager = new CollisionManager();
+		aiManager = new AiManager();
+		createPlayer(100, 100);
+		createEnemy(200, 800);
 		createBigRubbish(300, 300, 100, 100);
-        createPowerUp(400, 400);
+		createPowerUp(400, 400);
 		createEarth(0, -250, Gdx.graphics.getWidth(), Gdx.graphics.getWidth());
 		createShip(200, 200, this, this.sceneManager);
-    }
+	}
 
-	public void setBatch(SpriteBatch batch) { 
+	public void setBatch(SpriteBatch batch) {
 		this.batch = batch;
 	}
 
-    public void createPlayer(float x, float y) {
-        Player player = ObjectFactory.createPlayer(x, y, this, sceneManager); // Pass SceneManager to Player constructor
-        addGameObject(player);
-        collisionManager.isCollidable(player);
-    }
+	public void createPlayer(float x, float y) {
+		Player player = ObjectFactory.createPlayer(x, y, this, sceneManager); // Pass SceneManager to Player constructor
+		addGameObject(player);
+		collisionManager.isCollidable(player);
+	}
 
 	public void createEnemy(float x, float y) {
 		Enemy enemy = ObjectFactory.createEnemy(x, y);
@@ -70,7 +69,7 @@ public class GameObjectManager implements Disposable {
 		addGameObject(earth);
 		collisionManager.isCollidable(earth);
 	}
-	
+
 	public void createShip(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
 		Ship ship = ObjectFactory.createShip(x, y, gameObjectManager, sceneManager);
 		addGameObject(ship);
@@ -109,13 +108,13 @@ public class GameObjectManager implements Disposable {
 		}
 	}
 
-//    public void draw(SpriteBatch batch)
-//    {
-//        for (GameObject gameObject : gameObjects)
-//        {
-//            gameObject.draw(batch);
-//        }
-//    }
+	// public void draw(SpriteBatch batch)
+	// {
+	// for (GameObject gameObject : gameObjects)
+	// {
+	// gameObject.draw(batch);
+	// }
+	// }
 
 	public void draw(ShapeRenderer shape) {
 		for (GameObject gameObject : gameObjects) {
@@ -125,7 +124,7 @@ public class GameObjectManager implements Disposable {
 
 	public void draw(SpriteBatch batch) {
 		for (GameObject gameObject : gameObjects) {
-			if (gameObject.getSprite() != null) {  // Check if the GameObject has a Sprite
+			if (gameObject.getSprite() != null) { // Check if the GameObject has a Sprite
 				gameObject.draw(batch);
 			}
 		}
