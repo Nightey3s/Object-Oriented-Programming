@@ -56,6 +56,7 @@ public class Enemy extends GameObject implements IMovable {
 		move(delta);
 	}
 
+
    @Override
    public void draw(SpriteBatch batch) {
 		 

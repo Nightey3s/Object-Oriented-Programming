@@ -3,6 +3,7 @@ package com.bullethell.game.gameObject;
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class PowerUp extends GameObject {
 
@@ -19,11 +20,10 @@ public class PowerUp extends GameObject {
         // PowerUp specific logic here
     }
 
-//    @Override
-//    public void draw(SpriteBatch batch)
-//    {
-//        batch.draw(texture, bounds.x, bounds.y);
-//    }
+    @Override
+    public void draw(SpriteBatch batch) {
+    	
+    }
     
     @Override
     public void draw(ShapeRenderer shape)

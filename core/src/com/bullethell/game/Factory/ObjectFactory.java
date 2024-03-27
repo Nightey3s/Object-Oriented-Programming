@@ -20,6 +20,10 @@ public class ObjectFactory {
 	public static GameObject createEarth(float x, float y, int width, int height) {
 		return new Earth(x,y,width,height);
 	}
+	
+	public static Ship createShip(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
+		return new Ship(x, y, gameObjectManager, sceneManager);
+	}
 
 	public static GameObject createBigRubbish(float x, float y, int width, int height) {
 		return new BigRubbish(x,y,width,height);
