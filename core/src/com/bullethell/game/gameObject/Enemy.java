@@ -4,6 +4,7 @@ package com.bullethell.game.gameObject;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.bullethell.game.Ai.AIPatterns;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Enemy extends GameObject implements IMovable {
 	// private Texture texture;
@@ -50,11 +51,9 @@ public class Enemy extends GameObject implements IMovable {
 		move(delta);
 	}
 
-//    @Override
-//    public void draw(SpriteBatch batch)
-//    {
-//        batch.draw(texture, bounds.x, bounds.y);
-//    }
+    @Override
+    public void draw(SpriteBatch batch) {
+    }
 
 	@Override
 	public void draw(ShapeRenderer shape) {

@@ -19,5 +19,9 @@ public class ObjectFactory {
 	public static Earth createEarth(float x, float y, int width, int height) {
 		return new Earth(x,y,width,height);
 	}
+	
+	public static Ship createShip(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
+		return new Ship(x, y, gameObjectManager, sceneManager);
+	}
 
 }

@@ -31,6 +31,7 @@ public class GameObjectManager implements Disposable {
         createEnemy(200, 200);
         createPowerUp(400, 400);
 		createEarth(Gdx.graphics.getWidth()/2, 50, 200, 200);
+		createShip(200, 200, this, this.sceneManager);
     }
 
 	public void setBatch(SpriteBatch batch) { 
@@ -67,6 +68,12 @@ public class GameObjectManager implements Disposable {
 		Earth earth = ObjectFactory.createEarth(x, y, width, height);
 		addGameObject(earth);
 		collisionManager.isCollidable(earth);
+	}
+	
+	public void createShip(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
+		Ship ship = ObjectFactory.createShip(x, y, gameObjectManager, sceneManager);
+		addGameObject(ship);
+		//collisionManager.isCollidable(ship);
 	}
 
 	public void addGameObject(GameObject gameObject) {

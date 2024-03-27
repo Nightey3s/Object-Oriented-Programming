@@ -4,6 +4,7 @@ package com.bullethell.game.gameObject;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Projectile extends GameObject implements IMovable {
     private float speed;
@@ -43,11 +44,10 @@ public class Projectile extends GameObject implements IMovable {
     	return this.outOfBounds;
     }
 
-//    @Override
-//    public void draw(SpriteBatch batch)
-//    {
-//        batch.draw(texture, bounds.x, bounds.y);
-//    }
+    @Override
+    public void draw(SpriteBatch batch) {
+
+    }
     
     @Override
     public void draw(ShapeRenderer shape)

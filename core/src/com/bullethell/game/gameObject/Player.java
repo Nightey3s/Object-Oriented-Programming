@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.bullethell.game.IO.InputManager;
 import com.bullethell.game.collision.CollisionManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.bullethell.game.scene.SceneManager;
 
 public class Player extends GameObject implements IMovable {
@@ -18,6 +19,7 @@ public class Player extends GameObject implements IMovable {
        
     private GameObjectManager gameObjectManager;
     private SceneManager sceneManager; // 
+    
     
 
     public Player(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager)
@@ -82,11 +84,10 @@ public class Player extends GameObject implements IMovable {
     }
 
 
-//    @Override
-//    public void draw(SpriteBatch batch)
-//    {
-//        batch.draw(texture, bounds.x, bounds.y);
-//    }
+    @Override
+    public void draw(SpriteBatch batch) {
+
+    }
     
     @Override
     public void draw(ShapeRenderer shape)
@@ -94,6 +95,8 @@ public class Player extends GameObject implements IMovable {
     	shape.setColor(Color.GREEN);
         shape.rect(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
     }
+    
+    
     
     @Override
     public void dispose()
