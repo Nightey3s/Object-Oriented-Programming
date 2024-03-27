@@ -84,7 +84,7 @@ public class SceneManager{
 
     public void startGame()
     {
-        sceneList.insert(3, new GameScene(this));
+        sceneList.insert(3, new GameScene(getInstance()));
         setCurrentScene(sceneList.get(3));
     }
     

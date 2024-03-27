@@ -23,14 +23,14 @@ public class MainMenu extends Scene{
                 }
         });
 
-        TextButton exitButton = createButton("Exit",Gdx.graphics.getWidth() / 2,200, new ClickListener() {
+        TextButton exitButton = createButton("Exit",Gdx.graphics.getWidth() / 2,150, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
             }
         });
 
-        TextButton highscoreButton = createButton("High Scores",Gdx.graphics.getWidth() / 2,150, new ClickListener() {
+        TextButton highscoreButton = createButton("High Scores",Gdx.graphics.getWidth() / 2,200, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().getSceneItem(2)); 

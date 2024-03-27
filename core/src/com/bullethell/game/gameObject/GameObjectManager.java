@@ -1,5 +1,6 @@
 package com.bullethell.game.gameObject;
 
+import com.badlogic.gdx.Gdx;
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
@@ -9,6 +10,9 @@ import com.bullethell.game.Ai.AiManager;
 import com.bullethell.game.Audio.AudioManager;
 import com.bullethell.game.collision.CollisionManager;
 import com.bullethell.game.scene.SceneManager;
+import com.bullethell.game.Factory.ObjectFactory;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 public class GameObjectManager implements Disposable {
@@ -16,6 +20,7 @@ public class GameObjectManager implements Disposable {
     private CollisionManager collisionManager;
     private AiManager aiManager;
     private SceneManager sceneManager; // Add SceneManager field
+	private SpriteBatch batch;
 
     public GameObjectManager(SceneManager sceneManager) { // Add SceneManager parameter
         this.sceneManager = sceneManager; // Initialize SceneManager field
@@ -23,10 +28,14 @@ public class GameObjectManager implements Disposable {
         collisionManager = new CollisionManager();
         aiManager = new AiManager();
         createPlayer(100, 100);
-
         createEnemy(200, 200);
         createPowerUp(400, 400);
+		createEarth(Gdx.graphics.getWidth()/2, 50, 200, 200);
     }
+
+	public void setBatch(SpriteBatch batch) { 
+		this.batch = batch;
+	}
 
     public void createPlayer(float x, float y) {
         Player player = new Player(x, y, this, sceneManager); // Pass SceneManager to Player constructor
@@ -54,6 +63,12 @@ public class GameObjectManager implements Disposable {
 		collisionManager.isCollidable(powerUp);
 	}
 
+	public void createEarth(float x, float y, int width, int height) {
+		Earth earth = ObjectFactory.createEarth(x, y, width, height);
+		addGameObject(earth);
+		collisionManager.isCollidable(earth);
+	}
+
 	public void addGameObject(GameObject gameObject) {
 		gameObjects.add(gameObject);
 	}
@@ -62,7 +77,7 @@ public class GameObjectManager implements Disposable {
 		for (GameObject gameObject : gameObjects) {
 			gameObject.update(delta);
 			if (gameObject instanceof Projectile && ((Projectile) gameObject).isOutOfBounds()) {
-
+				// TO DO: Actually remove the projectile from the gameObjects array
 				System.out.println("Projectile Destroyed");
 
 			}
@@ -90,7 +105,15 @@ public class GameObjectManager implements Disposable {
 
 	public void draw(ShapeRenderer shape) {
 		for (GameObject gameObject : gameObjects) {
-			gameObject.draw(shape);
+			gameObject.draw(shape); // if has sprite will do nothing
+		}
+	}
+
+	public void draw(SpriteBatch batch) {
+		for (GameObject gameObject : gameObjects) {
+			if (gameObject.getSprite() != null) {  // Check if the GameObject has a Sprite
+				gameObject.draw(batch);
+			}
 		}
 	}
 

@@ -2,6 +2,7 @@ package com.bullethell.game.Factory;
 
 import com.bullethell.game.gameObject.*;
 import com.bullethell.game.scene.SceneManager;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ObjectFactory {
 	private static final String P_ASSET = "Player.png";
@@ -15,16 +16,8 @@ public class ObjectFactory {
 		return new Player(x, y, gameObjectManager, sceneManager);
 	}
 
-	public static GameObject createSmallRubbish(float x, float y) {
-
-		return new SmallRubbish(SR_ASSET, SR_SPEED, x, y);
-
-	}
-
-	public static GameObject createBigRubbish(float x, float y) {
-
-		return new BigRubbish(SR_ASSET, SR_SPEED, x, y);
-
+	public static Earth createEarth(float x, float y, int width, int height) {
+		return new Earth(x,y,width,height);
 	}
 
 }
