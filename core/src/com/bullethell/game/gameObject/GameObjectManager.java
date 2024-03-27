@@ -110,9 +110,7 @@ public class GameObjectManager implements Disposable {
 	}
 
 	public void draw(SpriteBatch batch) {
-		System.err.println("Drawing Sprite");
 		for (GameObject gameObject : gameObjects) {
-			System.out.println("Sprite: " + gameObject.getSprite());  // Print the sprite
 			if (gameObject.getSprite() != null) {  // Check if the GameObject has a Sprite
 				gameObject.draw(batch);
 			}

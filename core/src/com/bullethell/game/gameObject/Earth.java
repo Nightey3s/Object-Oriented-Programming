@@ -14,10 +14,10 @@ public class Earth extends GameObject{
 
 	public Earth(float x,float y,int width,int height) {
 		super(x, y, width, height);
-		this.tex = new Texture(Gdx.files.internal("earth.png"));
+		this.tex = new Texture(Gdx.files.internal("BigRubbish.png"));
 		sprite = new Sprite(this.tex);
-		sprite.setOriginCenter();
 		sprite.setSize(width, height);
+		sprite.setOriginCenter();
 		sprite.setPosition(x, y);
 	}
 	
@@ -28,7 +28,7 @@ public class Earth extends GameObject{
 
 	@Override
 	public void update(float delta) {
-		rotationAngle += 0.1f * delta;
+		rotationAngle += 10 * delta;
 		rotationAngle %= 360; // keep angle between 0 and 360
 		sprite.setRotation(rotationAngle);
 	}

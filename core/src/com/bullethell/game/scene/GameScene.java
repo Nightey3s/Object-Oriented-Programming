@@ -33,12 +33,13 @@ public class GameScene extends Scene{
         ScreenUtils.clear(0.1f, 0.1f, 0.1f, 1);
         deltaTime = Gdx.graphics.getDeltaTime();
 
+        // Shape rendering
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled); // Or Line, depending on your preference
         gameObjectManager.update(deltaTime);
         gameObjectManager.draw(shapeRenderer); // Pass the ShapeRenderer to the draw method
         shapeRenderer.end();
 
-        // Display the current score
+        // batch rendering
         batch.begin();
         batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         gameObjectManager.draw(batch); // Pass the SpriteBatch to the draw method

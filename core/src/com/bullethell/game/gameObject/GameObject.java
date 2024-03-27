@@ -19,9 +19,8 @@ public abstract class GameObject {
     
 
     public abstract void update(float delta);
-    //public abstract void draw(SpriteBatch batch);
     public abstract void draw(ShapeRenderer shape);
-    public void draw(SpriteBatch batch) {};
+    public abstract void draw(SpriteBatch batch);
     public abstract void dispose();
 
     public Sprite getSprite() {
