@@ -13,36 +13,35 @@ public class Player extends GameObject implements IMovable {
     private float speed;
     private int health;
     private boolean isAlive = true;
-    private float fireTimer = 0.0f;
-    private final float FIRE_RATE = 0.15f;//0.15 seconds
+    // private float fireTimer = 0.0f;
+    // private final float FIRE_RATE = 0.15f;// 0.15 seconds
     private GameObjectManager gameObjectManager;
-    private SceneManager sceneManager; // 
-    
-    
+    private SceneManager sceneManager; //
 
-    public Player(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager)
-    {
+    public Player(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
         super(x, y, 64, 64); // Example size, adjust as needed
-        //texture = new Texture("TODO");
+        // texture = new Texture("TODO");
         this.speed = 100.0f;
         this.gameObjectManager = gameObjectManager;
-        this.sceneManager = sceneManager; 
+        this.sceneManager = sceneManager;
         this.health = 100;
     }
 
     public int getHealth() {
         return health;
     }
-   
+
     public void playerDied() {
-        sceneManager.setFinalScore();    
+        sceneManager.setFinalScore();
         sceneManager.changeScene(sceneManager.getSceneItem(2));
         isAlive = false;
-        
+
     }
+
     public boolean isAlive() {
         return isAlive;
     }
+
     public void takeDamage(int damage) {
         this.health -= damage;
         if (this.health <= 0) {
@@ -51,26 +50,18 @@ public class Player extends GameObject implements IMovable {
     }
 
     @Override
-    public void move(float delta)
-    {
-    	//InputManager.handleMovement(this.bounds, this.speed, delta);
-    	InputManager.playerControl.handleMovement(this.bounds, this.speed, delta);
-    }
-  
-    @Override
-    public void update(float delta)
-    {
-        move(delta);
-        fireTimer += delta;
-        if (fireTimer >= FIRE_RATE) {
-            fireProjectile();
-            fireTimer = 0; // Reset the fire timer
-        }
-       
+    public void move(float delta) {
+        // InputManager.handleMovement(this.bounds, this.speed, delta);
+        InputManager.playerControl.handleMovement(this.bounds, this.speed, delta);
     }
 
-    private void fireProjectile()
-    {
+    @Override
+    public void update(float delta) {
+        move(delta);
+
+    }
+
+    protected void fireProjectile() {
         // Example projectile position; adjust according to your needs
         float projectileX = (this.bounds.x + this.bounds.width / 2);
         float projectileY = this.bounds.y + this.bounds.height;
@@ -79,25 +70,19 @@ public class Player extends GameObject implements IMovable {
         gameObjectManager.createProjectile(projectileX, projectileY);
     }
 
-
     @Override
     public void draw(SpriteBatch batch) {
 
     }
 
-    
     @Override
-    public void draw(ShapeRenderer shape)
-    {
-    	shape.setColor(Color.GREEN);
+    public void draw(ShapeRenderer shape) {
+        shape.setColor(Color.GREEN);
         shape.rect(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
     }
-    
-    
-    
+
     @Override
-    public void dispose()
-    {
+    public void dispose() {
         this.dispose();
     }
 

@@ -17,10 +17,9 @@ public class Ship extends Player {
 	private Sprite sprite;
 	private Texture spriteSheet;
 	private float speed;
-	private TextureRegion[] shipStates; // Array to hold different ship states
-	private int currentShipState; // Index to track current ship state
+	// private TextureRegion[] shipStates; // Array to hold different ship states
+	// private int currentShipState; // Index to track current ship state
 	private TextureRegion neutralRegion, leftRegion1, leftRegion2, rightRegion1, rightRegion2;
-	private float stateTime;
 	private float fireTimer = 0.0f;
 	private final float FIRE_RATE = 0.15f;// 0.15 seconds
 	private boolean wasLeftKeyPressed;
@@ -80,42 +79,64 @@ public class Ship extends Player {
 		boolean isLeftKeyPressedCurrently = Gdx.input.isKeyPressed(Keys.A);
 		boolean isRightKeyPressedCurrently = Gdx.input.isKeyPressed(Keys.D);
 
+		// Handling left key press for tilting the ship
 		if (isLeftKeyPressedCurrently) {
 			if (!wasLeftKeyPressed) {
 				// The left key was just pressed
-				stateTime = 0;
 				this.sprite.setRegion(leftRegion1);
-			} else if (stateTime > FIRE_RATE) {
+			} else {
 				// The left key is being held down
 				this.sprite.setRegion(leftRegion2);
 			}
-			stateTime += delta; // Increment the time the key has been held down
 		} else if (wasLeftKeyPressed) {
 			// The left key was just released
 			this.sprite.setRegion(neutralRegion);
 		}
 		wasLeftKeyPressed = isLeftKeyPressedCurrently;
 
+		// Handling right key press for tilting the ship
 		if (isRightKeyPressedCurrently) {
 			if (!wasRightKeyPressed) {
 				// The right key was just pressed
-				stateTime = 0;
 				this.sprite.setRegion(rightRegion1);
-			} else if (stateTime > FIRE_RATE) {
+			} else {
 				// The right key is being held down
 				this.sprite.setRegion(rightRegion2);
 			}
-			stateTime += delta; // Increment the time the key has been held down
 		} else if (wasRightKeyPressed) {
 			// The right key was just released
 			this.sprite.setRegion(neutralRegion);
 		}
 		wasRightKeyPressed = isRightKeyPressedCurrently;
 
-		// If no keys are being pressed or held, reset to neutral
+		// Reset to neutral if no tilt keys are pressed
 		if (!isLeftKeyPressedCurrently && !isRightKeyPressedCurrently) {
 			this.sprite.setRegion(neutralRegion);
-			stateTime = 0; // Reset the time since no key is pressed
+		}
+
+		// Check if the spacebar was just pressed for an immediate shot
+		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+			fireProjectile(); // Fire immediately on just pressed
+			fireTimer = FIRE_RATE; // Initialize fireTimer to ensure a delay before the next shot
+		}
+
+		// If the spacebar is held down, continue checking for continuous firing
+		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
+			// Only start counting after the immediate shot delay has passed
+			if (fireTimer < FIRE_RATE) {
+				fireTimer += delta; // Increment timer
+			}
+
+			// Once the timer exceeds FIRE_RATE, fire and reset the timer for continuous
+			// firing
+			if (fireTimer >= FIRE_RATE) {
+				fireProjectile(); // Fire a projectile
+				fireTimer = 0; // Reset the timer after firing
+			}
+		} else {
+			// If the spacebar is not pressed, reset the timer to allow for immediate firing
+			// on the next press
+			fireTimer = 0;
 		}
 
 		// Update the sprite's position

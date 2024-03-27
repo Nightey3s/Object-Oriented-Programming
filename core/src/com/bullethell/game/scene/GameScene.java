@@ -2,6 +2,7 @@ package com.bullethell.game.scene;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -9,13 +10,14 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.bullethell.game.ScoreManager;
 import com.bullethell.game.gameObject.GameObjectManager;
 
-public class GameScene extends Scene{
+public class GameScene extends Scene {
     private GameObjectManager gameObjectManager;
     private ShapeRenderer shapeRenderer;
     private BitmapFont font;
     private SpriteBatch batch;
-    private SceneManager sceneManager; 
+    private SceneManager sceneManager;
     private float deltaTime;
+    private Texture backgroundTexture;
 
     public GameScene(SceneManager sceneManager) {
         super();
@@ -23,8 +25,12 @@ public class GameScene extends Scene{
         this.sceneManager = sceneManager; // Initialize SceneManager field
         shapeRenderer = new ShapeRenderer(); // Initialize the ShapeRenderer
         this.batch = new SpriteBatch(); // Initialize the SpriteBatch
-        gameObjectManager = new GameObjectManager(this.sceneManager); // Pass SceneManager to GameObjectManager constructor
+        gameObjectManager = new GameObjectManager(this.sceneManager); // Pass SceneManager to GameObjectManager
+                                                                      // constructor
+
         gameObjectManager.setBatch(batch);
+
+        backgroundTexture = new Texture(Gdx.files.internal("game_scene.png"));
 
     }
 
@@ -32,6 +38,10 @@ public class GameScene extends Scene{
     public void sceneRender() {
         ScreenUtils.clear(0.1f, 0.1f, 0.1f, 1);
         deltaTime = Gdx.graphics.getDeltaTime();
+
+        batch.begin();
+        batch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.end();
 
         // Shape rendering
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled); // Or Line, depending on your preference
@@ -46,10 +56,9 @@ public class GameScene extends Scene{
         font.draw(batch, "Score: " + ScoreManager.getInstance().getScore(), 10, Gdx.graphics.getHeight() - 10);
         batch.end();
     }
-    
+
     @Override
-    public void dispose()
-    {
+    public void dispose() {
         super.dispose();
         font.dispose(); // Dispose the BitmapFont
         batch.dispose(); // Dispose the SpriteBatch
