@@ -29,6 +29,7 @@ public class GameObjectManager implements Disposable {
         aiManager = new AiManager();
         createPlayer(100, 100);
         createEnemy(200, 200);
+		createBigRubbish(300, 300, 100, 100);
         createPowerUp(400, 400);
 		createEarth(Gdx.graphics.getWidth()/2, 50, 200, 200);
     }
@@ -64,9 +65,15 @@ public class GameObjectManager implements Disposable {
 	}
 
 	public void createEarth(float x, float y, int width, int height) {
-		Earth earth = ObjectFactory.createEarth(x, y, width, height);
+		GameObject earth = ObjectFactory.createEarth(x, y, width, height);
 		addGameObject(earth);
 		collisionManager.isCollidable(earth);
+	}
+
+	public void createBigRubbish(float x, float y, int width, int height) {
+		GameObject bigRubbish = ObjectFactory.createBigRubbish(x, y, width, height);
+		addGameObject(bigRubbish);
+		collisionManager.isCollidable(bigRubbish);
 	}
 
 	public void addGameObject(GameObject gameObject) {

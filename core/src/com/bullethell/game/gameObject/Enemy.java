@@ -4,6 +4,7 @@ package com.bullethell.game.gameObject;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.bullethell.game.Ai.AIPatterns;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Enemy extends GameObject implements IMovable {
 	// private Texture texture;
@@ -21,6 +22,11 @@ public class Enemy extends GameObject implements IMovable {
 		super(x, y, 64, 64); // Example size, adjust as needed
 		// texture = new Texture("TODO");
 		this.speed = (float) (Math.random() * 75 + 25); // Random speed from 25 to 100
+	}
+
+	public Enemy(float x, float y, int width, int height, float speed){
+		super(x, y, width, height);
+		this.speed = speed;
 	}
 
 	@Override
@@ -50,11 +56,10 @@ public class Enemy extends GameObject implements IMovable {
 		move(delta);
 	}
 
-//    @Override
-//    public void draw(SpriteBatch batch)
-//    {
-//        batch.draw(texture, bounds.x, bounds.y);
-//    }
+   @Override
+   public void draw(SpriteBatch batch) {
+		 
+    }
 
 	@Override
 	public void draw(ShapeRenderer shape) {

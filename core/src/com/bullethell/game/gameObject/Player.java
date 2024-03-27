@@ -6,16 +6,14 @@ import com.bullethell.game.IO.InputManager;
 import com.bullethell.game.collision.CollisionManager;
 import com.badlogic.gdx.graphics.Color;
 import com.bullethell.game.scene.SceneManager;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Player extends GameObject implements IMovable {
     private float speed;
     private int health;
     private boolean isAlive = true;
-
-
     private float fireTimer = 0.0f;
     private final float FIRE_RATE = 0.15f;//0.15 seconds
-       
     private GameObjectManager gameObjectManager;
     private SceneManager sceneManager; // 
     
@@ -68,7 +66,6 @@ public class Player extends GameObject implements IMovable {
             fireTimer = 0; // Reset the fire timer
         }
        
-        
     }
 
     private void fireProjectile()
@@ -82,11 +79,10 @@ public class Player extends GameObject implements IMovable {
     }
 
 
-//    @Override
-//    public void draw(SpriteBatch batch)
-//    {
-//        batch.draw(texture, bounds.x, bounds.y);
-//    }
+   @Override
+   public void draw(SpriteBatch batch)
+   {
+   }
     
     @Override
     public void draw(ShapeRenderer shape)
