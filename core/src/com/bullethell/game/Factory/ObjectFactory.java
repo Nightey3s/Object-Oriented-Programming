@@ -30,6 +30,22 @@ public class ObjectFactory {
 		return new BigRubbish(x, y, width, height);
 	}
 
+	public static GameObject createBattery(float x, float y, int width, int height) {
+		return new Battery(x, y, width, height);
+	}
+
+	public static GameObject createBox(float x, float y, int width, int height) {
+		return new StyrofoamBox(x, y, width, height);
+	}
+
+	public static GameObject createCup(float x, float y, int width, int height) {
+		return new StyrofoamCup(x, y, width, height);
+	}
+
+	public static GameObject createToxic(float x, float y, int width, int height) {
+		return new ToxicWaste(x, y, width, height);
+	}
+
 	public static Enemy createEnemy(float x, float y) {
 		return new Enemy(x, y);
 	}

@@ -21,19 +21,23 @@ public class GameObjectManager implements Disposable {
 	private SceneManager sceneManager; // Add SceneManager field
 	private SpriteBatch batch;
 	private float delta;
-	
+
 	public GameObjectManager(SceneManager sceneManager) { // Add SceneManager parameter
 		this.sceneManager = sceneManager; // Initialize SceneManager field
 		gameObjects = new Array<>();
 		collisionManager = new CollisionManager();
-        collisionManager.setGameObjectManager(this);
+		collisionManager.setGameObjectManager(this);
 		aiManager = new AiManager();
-		//createPlayer(100, 100);
+		// createPlayer(100, 100);
 		createEnemy(200, 800);
 		createBigRubbish(300, 300, 100, 100);
 		createPowerUp(400, 400);
 		createEarth(0, -250, Gdx.graphics.getWidth(), Gdx.graphics.getWidth());
 		createShip(200, 200, this, this.sceneManager);
+		createBattery(100, 800, 40, 50);
+		createBox(150, 900, 40, 50);
+		createCup(250, 850, 40, 50);
+		createToxic(300, 750, 40, 50);
 	}
 
 	public void setBatch(SpriteBatch batch) {
@@ -84,6 +88,30 @@ public class GameObjectManager implements Disposable {
 		collisionManager.isCollidable(bigRubbish);
 	}
 
+	public void createBattery(float x, float y, int width, int height) {
+		GameObject battery = ObjectFactory.createBattery(x, y, width, height);
+		addGameObject(battery);
+		collisionManager.isCollidable(battery);
+	}
+
+	public void createBox(float x, float y, int width, int height) {
+		GameObject box = ObjectFactory.createBox(x, y, width, height);
+		addGameObject(box);
+		collisionManager.isCollidable(box);
+	}
+
+	public void createCup(float x, float y, int width, int height) {
+		GameObject cup = ObjectFactory.createCup(x, y, width, height);
+		addGameObject(cup);
+		collisionManager.isCollidable(cup);
+	}
+
+	public void createToxic(float x, float y, int width, int height) {
+		GameObject toxic = ObjectFactory.createToxic(x, y, width, height);
+		addGameObject(toxic);
+		collisionManager.isCollidable(toxic);
+	}
+
 	public void addGameObject(GameObject gameObject) {
 		gameObjects.add(gameObject);
 	}
@@ -99,7 +127,7 @@ public class GameObjectManager implements Disposable {
 				break;
 			}
 		}
-		
+
 	}
 
 	public void update(float delta) {
@@ -143,6 +171,7 @@ public class GameObjectManager implements Disposable {
 	public float getDelta() {
 		return delta;
 	}
+
 	public void draw(ShapeRenderer shape) {
 		for (GameObject gameObject : gameObjects) {
 			gameObject.draw(shape); // if has sprite will do nothing
