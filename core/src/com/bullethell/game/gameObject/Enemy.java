@@ -23,7 +23,6 @@ public class Enemy extends GameObject implements IMovable {
 
 	public Enemy(float x, float y) {
 		super(x, y, 64, 64); // Example size, adjust as needed
-		// texture = new Texture("TODO");
 		this.speed = (float) (Math.random() * 75 + 25); // Random speed from 25 to 100
 	}
 
@@ -71,12 +70,13 @@ public class Enemy extends GameObject implements IMovable {
 		return this.outOfBounds;
 	}
 
+	public int getHealth() {
+		return this.healthPoints;
+	}
+
 	// if healthPoints is 0 enemy is destroyed
 	public void takeDamage(int damage) {
 		this.healthPoints -= damage;
-		if (this.healthPoints <= 0) {
-			this.dispose();
-		}
 	}
 
 	@Override

@@ -60,12 +60,11 @@ public class CollisionManager implements iCollision {
 		} else if (Object1 instanceof Player && Object2 instanceof PowerUp) {
 			System.out.println("Player picked up power up");
 			AudioManager.getInstance().playCollectSound();
-		} else if ((Object1 instanceof Projectile || Object2 instanceof Projectile)
-				&& (Object1 instanceof Enemy || Object2 instanceof Enemy)) {
+		} else if (Object1 instanceof Projectile || Object2 instanceof Enemy) {
+			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object1);
+			((Enemy) Object2).takeDamage(10);
 			System.out.println("Projectile hit enemy");
 			AudioManager.getInstance().playBulletCollision();
-			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object1);
-			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object2);
 			Player player = null;
 			for (GameObject obj : collisionList) {
 				if (obj instanceof Player) {
@@ -76,6 +75,23 @@ public class CollisionManager implements iCollision {
 			if (player.isAlive()) {
 				ScoreManager.getInstance().addScore(10); // Add 10 points to the score
 			}
+		} else if (Object1 instanceof Enemy || Object2 instanceof Projectile) {
+			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object2);
+			((Enemy) Object1).takeDamage(10); 
+			System.out.println("Projectile hit enemy");
+			AudioManager.getInstance().playBulletCollision();
+			Player player = null;
+			for (GameObject obj : collisionList) {
+				if (obj instanceof Player) {
+					player = (Player) obj;
+					break;
+				}
+			}
+			if (player.isAlive()) {
+				ScoreManager.getInstance().addScore(10); // Add 10 points to the score
+			}
+		} else {
+
 		}
 	}
 

@@ -12,9 +12,9 @@ public class SmallRubbish extends Enemy {
     private Texture tex;
     private float speed = 50;
 
-    public SmallRubbish(float x, float y, int width, int height) {
-        super(x, y, width, height, 10, 10);
-        this.tex = new Texture(Gdx.files.internal("SmallRubbish.png"));
+    public SmallRubbish(float x, float y, int width, int height, String texturePath) {
+        super(x, y, width, height, 5, 20);
+        this.tex = new Texture(Gdx.files.internal(texturePath));
         sprite = new Sprite(this.tex);
         sprite.setSize(width, height);
         sprite.setOriginCenter();

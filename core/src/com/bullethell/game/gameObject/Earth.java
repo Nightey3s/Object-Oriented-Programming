@@ -56,8 +56,8 @@ public class Earth extends GameObject{
 		shape.setColor(Color.GREEN);
 		shape.rect(barX, barY, barWidth * this.healthPercentage / 100, barHeight);
 
-		shape.setColor(Color.ORANGE); // Testing for collision
-		shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+		// shape.setColor(Color.ORANGE); // Testing for collision
+		// shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 
 	@Override
