@@ -3,12 +3,14 @@ package com.bullethell.game.gameObject;
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.bullethell.game.Ai.AIPatterns;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Enemy extends GameObject implements IMovable {
 	// private Texture texture;
 	private float speed;
+	private boolean outOfBounds = false;
 	private AIPatterns AItype;
 
 	public Enemy(float x, float y, AIPatterns AItype) {
@@ -24,7 +26,7 @@ public class Enemy extends GameObject implements IMovable {
 		this.speed = (float) (Math.random() * 75 + 25); // Random speed from 25 to 100
 	}
 
-	public Enemy(float x, float y, int width, int height, float speed){
+	public Enemy(float x, float y, int width, int height, float speed) {
 		super(x, y, width, height);
 		this.speed = speed;
 	}
@@ -54,13 +56,23 @@ public class Enemy extends GameObject implements IMovable {
 	@Override
 	public void update(float delta) {
 		move(delta);
+		checkBounds();
 	}
 
+	public void checkBounds() {
+		if (this.bounds.y + this.bounds.height < 0) {
+			this.outOfBounds = true;
+		}
+	}
 
-   @Override
-   public void draw(SpriteBatch batch) {
-		 
-    }
+	public boolean isOutOfBounds() {
+		return this.outOfBounds;
+	}
+
+	@Override
+	public void draw(SpriteBatch batch) {
+
+	}
 
 	@Override
 	public void draw(ShapeRenderer shape) {

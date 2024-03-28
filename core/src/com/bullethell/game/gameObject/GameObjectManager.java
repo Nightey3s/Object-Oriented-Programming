@@ -1,17 +1,17 @@
 package com.bullethell.game.gameObject;
 
+import java.util.Iterator;
+
 import com.badlogic.gdx.Gdx;
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import com.bullethell.game.Ai.AIPatterns;
 import com.bullethell.game.Ai.AiManager;
 import com.bullethell.game.Audio.AudioManager;
 import com.bullethell.game.collision.CollisionManager;
 import com.bullethell.game.scene.SceneManager;
 import com.bullethell.game.Factory.ObjectFactory;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameObjectManager implements Disposable {
@@ -87,13 +87,20 @@ public class GameObjectManager implements Disposable {
 	}
 
 	public void update(float delta) {
-		for (GameObject gameObject : gameObjects) {
-			gameObject.update(delta);
-			if (gameObject instanceof Projectile && ((Projectile) gameObject).isOutOfBounds()) {
-				// TO DO: Actually remove the projectile from the gameObjects array
-				System.out.println("Projectile Destroyed");
 
+		Iterator<GameObject> iterator = gameObjects.iterator();
+		while (iterator.hasNext()) {
+			GameObject gameObject = iterator.next();
+			gameObject.update(delta);
+			if (gameObject instanceof Enemy && ((Enemy) gameObject).isOutOfBounds()) {
+				System.out.println("Enemy Destroyed");
+				iterator.remove();
 			}
+			if (gameObject instanceof Projectile && ((Projectile) gameObject).isOutOfBounds()) {
+				System.out.println("Projectile Destroyed");
+				iterator.remove();
+			}
+
 		}
 
 		// Collision detection cycle (Might need to move to simulation class)
