@@ -1,11 +1,11 @@
 package com.bullethell.game.gameObject;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 
 public class Earth extends GameObject{
@@ -54,12 +54,18 @@ public class Earth extends GameObject{
 		shape.setColor(Color.BLACK);
 		shape.rect(barX, barY, barWidth, barHeight);
 		shape.setColor(Color.GREEN);
-		shape.rect(barX, barY, barWidth * this.healthPercentage / 100, barHeight);
+		shape.rect(barX, barY, barWidth * this.healthPercentage / 10, barHeight);
 
 		// shape.setColor(Color.ORANGE); // Testing for collision
 		// shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
-
+	public void takeDamage(int damage) {
+        this.healthPercentage -= damage;
+	}
+	public void increaseHealth(int damage) {
+        this.healthPercentage -= damage;
+	}
+		
 	@Override
 	public void dispose() {
 		this.dispose();
