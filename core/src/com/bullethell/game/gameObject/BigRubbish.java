@@ -42,5 +42,10 @@ public class BigRubbish extends Enemy {
     public void dispose() {
         this.dispose();
     }
+    
+	@Override
+	public Sprite getSprite() {
+		return sprite; // Return the actual sprite
+	}
 
 }
