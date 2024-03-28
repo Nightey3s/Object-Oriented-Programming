@@ -22,6 +22,7 @@ public class Ship extends Player {
 	private TextureRegion neutralRegion, leftRegion1, leftRegion2, rightRegion1, rightRegion2;
 	private float fireTimer = 0.0f;
 	private final float FIRE_RATE = 0.15f;// 0.15 seconds
+	private boolean isFiring = false;
 	private boolean wasLeftKeyPressed;
 	private boolean wasRightKeyPressed;
 
@@ -78,6 +79,7 @@ public class Ship extends Player {
 		super.update(delta);
 		boolean isLeftKeyPressedCurrently = Gdx.input.isKeyPressed(Keys.A);
 		boolean isRightKeyPressedCurrently = Gdx.input.isKeyPressed(Keys.D);
+		boolean isSpacePressed = Gdx.input.isKeyPressed(Keys.SPACE);
 
 		// Handling left key press for tilting the ship
 		if (isLeftKeyPressedCurrently) {
@@ -114,29 +116,20 @@ public class Ship extends Player {
 			this.sprite.setRegion(neutralRegion);
 		}
 
-		// Check if the spacebar was just pressed for an immediate shot
-		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-			fireProjectile(); // Fire immediately on just pressed
-			fireTimer = FIRE_RATE; // Initialize fireTimer to ensure a delay before the next shot
-		}
-
-		// If the spacebar is held down, continue checking for continuous firing
-		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
-			// Only start counting after the immediate shot delay has passed
-			if (fireTimer < FIRE_RATE) {
-				fireTimer += delta; // Increment timer
-			}
-
-			// Once the timer exceeds FIRE_RATE, fire and reset the timer for continuous
-			// firing
-			if (fireTimer >= FIRE_RATE) {
-				fireProjectile(); // Fire a projectile
+		if (isSpacePressed) {
+			if (!isFiring) {
+				fireProjectile(); // Fire immediately on first press
+				isFiring = true; // Mark that we're firing
 				fireTimer = 0; // Reset the timer after firing
+			} else {
+				fireTimer += delta; // Increment timer only if we've started firing
+				if (fireTimer >= FIRE_RATE) {
+					fireProjectile(); // Fire a projectile
+					fireTimer -= FIRE_RATE; // Adjust the timer for the next shot
+				}
 			}
 		} else {
-			// If the spacebar is not pressed, reset the timer to allow for immediate firing
-			// on the next press
-			fireTimer = 0;
+			isFiring = false; // Spacebar released, reset the firing flag
 		}
 
 		// Update the sprite's position
