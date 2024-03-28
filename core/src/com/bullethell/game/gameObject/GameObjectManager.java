@@ -20,11 +20,13 @@ public class GameObjectManager implements Disposable {
 	private AiManager aiManager;
 	private SceneManager sceneManager; // Add SceneManager field
 	private SpriteBatch batch;
-
+	private float delta;
+	
 	public GameObjectManager(SceneManager sceneManager) { // Add SceneManager parameter
 		this.sceneManager = sceneManager; // Initialize SceneManager field
 		gameObjects = new Array<>();
 		collisionManager = new CollisionManager();
+        collisionManager.setGameObjectManager(this);
 		aiManager = new AiManager();
 		createPlayer(100, 100);
 		createEnemy(200, 800);
@@ -86,18 +88,34 @@ public class GameObjectManager implements Disposable {
 		gameObjects.add(gameObject);
 	}
 
-	public void update(float delta) {
+	public void removeGameObject(float delta, GameObject GO) {
+		Iterator<GameObject> iterator = gameObjects.iterator();
+		while (iterator.hasNext()) {
+			GameObject gameObject = iterator.next();
+			gameObject.update(delta);
+			if (GO == gameObject) {
+				iterator.remove();
+				collisionManager.removeCollidable(GO);
+				break;
+			}
+		}
+		
+	}
 
+	public void update(float delta) {
+		this.delta = delta;
 		Iterator<GameObject> iterator = gameObjects.iterator();
 		while (iterator.hasNext()) {
 			GameObject gameObject = iterator.next();
 			gameObject.update(delta);
 			if (gameObject instanceof Enemy && ((Enemy) gameObject).isOutOfBounds()) {
 				System.out.println("Enemy Destroyed");
+				collisionManager.removeCollidable(gameObject);
 				iterator.remove();
 			}
 			if (gameObject instanceof Projectile && ((Projectile) gameObject).isOutOfBounds()) {
 				System.out.println("Projectile Destroyed");
+				collisionManager.removeCollidable(gameObject);
 				iterator.remove();
 			}
 
@@ -122,7 +140,9 @@ public class GameObjectManager implements Disposable {
 	// gameObject.draw(batch);
 	// }
 	// }
-
+	public float getDelta() {
+		return delta;
+	}
 	public void draw(ShapeRenderer shape) {
 		for (GameObject gameObject : gameObjects) {
 			gameObject.draw(shape); // if has sprite will do nothing
