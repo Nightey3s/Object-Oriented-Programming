@@ -29,7 +29,7 @@ public class GameObjectManager implements Disposable {
 		collisionManager.setGameObjectManager(this);
 		aiManager = new AiManager();
 		// createPlayer(100, 100);
-		createEnemy(200, 800);
+		//createEnemy(200, 800);
 		createBigRubbish(300, 900, 100, 100);    
 		createPowerUp(400, 400);
 		createEarth(0, -250, Gdx.graphics.getWidth(), Gdx.graphics.getWidth());
