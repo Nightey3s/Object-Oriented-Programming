@@ -38,6 +38,7 @@ public class GameObjectManager implements Disposable {
 		createBox(150, 900, 40, 50);
 		createCup(250, 850, 40, 50);
 		createToxic(300, 750, 40, 50);
+		createSmallRubbish(100, 750, 40, 50);
 	}
 
 	public void setBatch(SpriteBatch batch) {
@@ -110,6 +111,12 @@ public class GameObjectManager implements Disposable {
 		GameObject toxic = ObjectFactory.createToxic(x, y, width, height);
 		addGameObject(toxic);
 		collisionManager.isCollidable(toxic);
+	}
+
+	public void createSmallRubbish(float x, float y, int width, int height) {
+		GameObject smallRubbish = ObjectFactory.createSmallRubbish(x, y, width, height);
+		addGameObject(smallRubbish);
+		collisionManager.isCollidable(smallRubbish);
 	}
 
 	public void addGameObject(GameObject gameObject) {

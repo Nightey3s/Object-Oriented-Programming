@@ -46,6 +46,10 @@ public class ObjectFactory {
 		return new ToxicWaste(x, y, width, height);
 	}
 
+	public static GameObject createSmallRubbish(float x, float y, int width, int height) {
+		return new SmallRubbish(x, y, width, height);
+	}
+
 	public static Enemy createEnemy(float x, float y) {
 		return new Enemy(x, y);
 	}
