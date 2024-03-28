@@ -50,7 +50,7 @@ public class MainMenu extends Scene {
         Gdx.gl.glClearColor(0, .25f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        batch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.draw(backgroundTexture, -900, 0);
         batch.end();
 
         stage.act();
