@@ -1,6 +1,7 @@
 package com.bullethell.game.gameObject;
 
 import java.util.Iterator;
+import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -21,6 +22,13 @@ public class GameObjectManager implements Disposable {
 	private SceneManager sceneManager; // Add SceneManager field
 	private SpriteBatch batch;
 	private float delta;
+	private int cap = 5;
+	private int count = 0;
+	private int bigcap = 1;
+	private int bigcount = 0;
+	private Random random;
+	private int gameW = Gdx.graphics.getWidth();
+	private int gameH = Gdx.graphics.getHeight();
 
 	public GameObjectManager(SceneManager sceneManager) { // Add SceneManager parameter
 		this.sceneManager = sceneManager; // Initialize SceneManager field
@@ -29,20 +37,40 @@ public class GameObjectManager implements Disposable {
 		collisionManager.setGameObjectManager(this);
 		aiManager = new AiManager();
 		// createPlayer(100, 100);
-		//createEnemy(200, 800);
-		createBigRubbish(300, 900, 100, 100);    
+		// createEnemy(200, 800);
 		createPowerUp(400, 400);
-		createEarth(0, -250, Gdx.graphics.getWidth(), Gdx.graphics.getWidth());
+		createEarth(0, -250, gameW, gameW);
 		createShip(200, 200, this, this.sceneManager);
-		createSmallRubbish(150, 750, 40, 50);
-		createSmallRubbish(200, 750, 40, 50);
-		createSmallRubbish(250, 750, 40, 50);
-		createSmallRubbish(300, 750, 40, 50);
-		createSmallRubbish(50, 750, 40, 50);
+
+		random = new Random();
 	}
 
 	public void setBatch(SpriteBatch batch) {
 		this.batch = batch;
+	}
+
+	public void minuscount() {
+		count -= 1;
+	}
+
+	public void pluscap() {
+		cap += 1;
+	}
+
+	public void pluscount() {
+		count += 1;
+	}
+
+	public void minusbigcount() {
+		bigcount -= 1;
+	}
+
+	public void plusbigcap() {
+		bigcap += 1;
+	}
+
+	public void plusbigcount() {
+		bigcount += 1;
 	}
 
 	public void createPlayer(float x, float y) {
@@ -83,16 +111,27 @@ public class GameObjectManager implements Disposable {
 		collisionManager.isCollidable(ship);
 	}
 
-	public void createBigRubbish(float x, float y, int width, int height) {
-		GameObject bigRubbish = ObjectFactory.createBigRubbish(x, y, width, height);
+	public void createBigRubbish(float x, float y) {
+		GameObject bigRubbish = ObjectFactory.createBigRubbish(x, y);
 		addGameObject(bigRubbish);
 		collisionManager.isCollidable(bigRubbish);
 	}
 
-	public void createSmallRubbish(float x, float y, int width, int height) {
-		GameObject smallRubbish = ObjectFactory.createSmallRubbish(x, y, width, height, ObjectFactory.getRandomSmallTexture());
+	public void createSmallRubbish(float x, float y) {
+		GameObject smallRubbish = ObjectFactory.createSmallRubbish(x, y, ObjectFactory.getRandomSmallTexture());
 		addGameObject(smallRubbish);
 		collisionManager.isCollidable(smallRubbish);
+	}
+
+	public void spawnBigRubbish() {
+		createBigRubbish(random.nextFloat(100, gameW - 100), random.nextFloat(600, gameH));
+		pluscount();
+		plusbigcount();
+	}
+
+	public void spawnSmallRubbish() {
+		createSmallRubbish(random.nextFloat(100, gameW - 100), random.nextFloat(600, gameH));
+		pluscount();
 	}
 
 	public void addGameObject(GameObject gameObject) {
@@ -121,11 +160,19 @@ public class GameObjectManager implements Disposable {
 			if (gameObject instanceof Enemy && ((Enemy) gameObject).isOutOfBounds()) {
 				System.out.println("Enemy Destroyed");
 				collisionManager.removeCollidable(gameObject);
+				minuscount();
+				if (gameObject instanceof BigRubbish) {
+					minusbigcount();
+				}
 				iterator.remove();
 			}
 			if (gameObject instanceof Enemy && ((Enemy) gameObject).getHealth() <= 0) {
 				System.out.println("Enemy Destroyed");
 				collisionManager.removeCollidable(gameObject);
+				if (gameObject instanceof BigRubbish) {
+					minusbigcount();
+				}
+				minuscount();
 				iterator.remove();
 			}
 			if (gameObject instanceof Projectile && ((Projectile) gameObject).isOutOfBounds()) {
@@ -135,7 +182,21 @@ public class GameObjectManager implements Disposable {
 			}
 
 		}
+		while (count <= cap) {
+			if (bigcount < bigcap) {
+				int rand = random.nextInt();
+				if (rand % 15 == 0) {
+					spawnBigRubbish();
+					System.out.println("bigcount " + bigcount);
+				} else if (rand % 5 == 0) {
+					spawnSmallRubbish();
 
+				}
+			} else {
+				spawnSmallRubbish();
+			}
+
+		}
 
 		// Collision detection cycle (Might need to move to simulation class)
 		for (int i = 0; i < collisionManager.getCollisionList().size; i++) {
