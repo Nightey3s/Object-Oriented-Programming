@@ -13,7 +13,7 @@ public class SmallRubbish extends Enemy {
     private float speed = 50;
 
     public SmallRubbish(float x, float y, int width, int height) {
-        super(x, y, width, height, 10);
+        super(x, y, width, height, 10, 10);
         this.tex = new Texture(Gdx.files.internal("SmallRubbish.png"));
         sprite = new Sprite(this.tex);
         sprite.setSize(width, height);

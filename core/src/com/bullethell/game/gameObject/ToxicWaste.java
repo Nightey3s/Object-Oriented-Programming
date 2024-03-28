@@ -13,7 +13,7 @@ public class ToxicWaste extends Enemy {
     private float speed = 50;
 
     public ToxicWaste(float x, float y, int width, int height) {
-        super(x, y, width, height, 10);
+        super(x, y, width, height, 10, 50);
         this.tex = new Texture(Gdx.files.internal("toxic.png"));
         sprite = new Sprite(this.tex);
         sprite.setSize(width, height);
