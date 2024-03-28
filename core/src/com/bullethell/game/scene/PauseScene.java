@@ -24,6 +24,7 @@ public class PauseScene extends Scene {
             @Override
                 public void clicked(InputEvent event, float x, float y) {
                 SceneManager.getInstance().quitGame(); // clear the game scene.
+                ScoreManager.getInstance().resetScore();
                 SceneManager.getInstance().changeScene(SceneManager.getInstance().getSceneItem(0)); // Go To Main Menu
                 }
         });
