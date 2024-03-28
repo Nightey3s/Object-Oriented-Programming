@@ -28,7 +28,7 @@ public class GameObjectManager implements Disposable {
 		collisionManager = new CollisionManager();
         collisionManager.setGameObjectManager(this);
 		aiManager = new AiManager();
-		createPlayer(100, 100);
+		//createPlayer(100, 100);
 		createEnemy(200, 800);
 		createBigRubbish(300, 300, 100, 100);
 		createPowerUp(400, 400);

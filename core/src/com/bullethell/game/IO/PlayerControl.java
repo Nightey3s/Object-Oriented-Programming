@@ -36,7 +36,7 @@ public class PlayerControl {
 	    float boundWidth = Gdx.graphics.getWidth();
 	
 	    if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT)) {
-	        currentSpeed = 2.0f;
+	        currentSpeed *= 2.0f;
 	    }
 	
 	    if (Gdx.input.isKeyPressed(Keys.W) && sprite.getY() + sprite.getHeight() + currentSpeed * delta < boundHeight) {
