@@ -2,7 +2,6 @@ package com.bullethell.game.gameObject;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-//import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
@@ -27,7 +26,7 @@ public class PowerUp extends GameObject {
         super(x, y, 64, 64); // Example size, adjust as needed
         // Default type can be set here if needed
     }
-    
+
     @Override
     public void update(float delta) {
         // PowerUp specific logic here

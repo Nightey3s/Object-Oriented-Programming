@@ -4,16 +4,16 @@ import java.util.Iterator;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.bullethell.game.Ai.AiManager;
 import com.bullethell.game.Audio.AudioManager;
+import com.bullethell.game.Factory.ObjectFactory;
 import com.bullethell.game.collision.CollisionManager;
 import com.bullethell.game.scene.SceneManager;
-import com.bullethell.game.Factory.ObjectFactory;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameObjectManager implements Disposable {
 	private Array<GameObject> gameObjects;
@@ -124,13 +124,17 @@ public class GameObjectManager implements Disposable {
 	}
 
 	public void spawnBigRubbish() {
-		createBigRubbish(random.nextFloat(100, gameW - 100), random.nextFloat(600, gameH));
+		float x = 100 + random.nextFloat() * (gameW - 200);
+		float y = 600 + random.nextFloat() * (gameH - 600);
+		createBigRubbish(x, y);
 		pluscount();
 		plusbigcount();
 	}
-
+	
 	public void spawnSmallRubbish() {
-		createSmallRubbish(random.nextFloat(100, gameW - 100), random.nextFloat(600, gameH));
+		float x = 100 + random.nextFloat() * (gameW - 200);
+		float y = 600 + random.nextFloat() * (gameH - 600);
+		createSmallRubbish(x, y);
 		pluscount();
 	}
 
