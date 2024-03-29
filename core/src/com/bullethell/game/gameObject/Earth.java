@@ -12,7 +12,7 @@ public class Earth extends GameObject{
 	private float rotationAngle = 0;
 	private Sprite sprite;
 	private Texture tex;
-	private int healthPercentage = 10;
+	private int healthPercentage = 100;
 
 	public Earth(float x,float y,int width,int height) {
 		super(x, y, width, height, GameObjectTypes.Earth);

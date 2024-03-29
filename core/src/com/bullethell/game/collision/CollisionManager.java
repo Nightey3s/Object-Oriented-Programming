@@ -3,6 +3,7 @@ package com.bullethell.game.collision;
 import com.badlogic.gdx.utils.Array;
 import com.bullethell.game.ScoreManager;
 import com.bullethell.game.Audio.AudioManager;
+import com.bullethell.game.gameObject.Earth;
 import com.bullethell.game.gameObject.Enemy;
 import com.bullethell.game.gameObject.GameObject;
 import com.bullethell.game.gameObject.GameObjectManager;
@@ -52,18 +53,34 @@ public class CollisionManager implements iCollision {
 		if (Object1 instanceof Player && Object2 instanceof Enemy) {
 			System.out.println("Player moved into the enemy - takes damage");
 			AudioManager.getInstance().playCollisionSound();
-			((Player) Object1).takeDamage(10); // Player takes 10 damage
+			((Player) Object1).takeDamage(20);
+			((Enemy) Object2).takeDamage(20);// Player takes 10 damage
 		} else if (Object1 instanceof Enemy && Object2 instanceof Player) {
 			System.out.println("Enemy hit the Player - takes damage");
 			AudioManager.getInstance().playCollisionSound();
-			((Player) Object2).takeDamage(10); // Player takes 10 damage
-		} else if (Object1 instanceof Player && Object2 instanceof PowerUp) {
+			((Enemy) Object1).takeDamage(20);
+			((Player) Object2).takeDamage(20); // Player takes 10 damage
+		} 
+		else if (Object1 instanceof Enemy && Object2 instanceof Earth) {
+			System.out.println("Enemy hit the Earth - takes damage");
+			AudioManager.getInstance().playCollisionSound();
+			((Enemy) Object1).takeDamage(20);
+			((Earth) Object2).takeDamage(20); // Player takes 10 damage
+		} 
+		else if (Object1 instanceof Earth && Object2 instanceof Enemy) {
+			System.out.println("Enemy hit the Earth - takes damage");
+			AudioManager.getInstance().playCollisionSound();
+			((Earth) Object1).takeDamage(20);
+			((Enemy) Object2).takeDamage(20); // Player takes 10 damage
+		} 
+		else if (Object1 instanceof Player && Object2 instanceof PowerUp) {
 			System.out.println("Player picked up power up");
 			Player player = (Player) Object1;
 			PowerUp powerUp = (PowerUp) Object2;
 			// Remove the power-up from the game
 			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), powerUp);
 			AudioManager.getInstance().playCollectSound();
+			
 		} else if (Object1 instanceof Projectile && Object2 instanceof Enemy) {
 			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object1);
 			((Enemy) Object2).takeDamage(10);
