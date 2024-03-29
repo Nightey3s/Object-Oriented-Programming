@@ -30,8 +30,6 @@ public class GameScene extends Scene {
 		gameObjectManager = new GameObjectManager(this.sceneManager); // Pass SceneManager to GameObjectManager
 																		// constructor
 
-		gameObjectManager.setBatch(batch);
-
 		backgroundTexture = new Texture(Gdx.files.internal("game_scene.png"));
 
 	}

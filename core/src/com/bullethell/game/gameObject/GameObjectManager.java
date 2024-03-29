@@ -19,7 +19,6 @@ public class GameObjectManager implements Disposable {
 	private CollisionManager collisionManager;
 	private AiManager aiManager;
 	private SceneManager sceneManager; // Add SceneManager field
-	private SpriteBatch batch;
 	private float delta;
 	private int cap = 5;
 	private int count = 0;
@@ -48,9 +47,6 @@ public class GameObjectManager implements Disposable {
 		randomBool = random.nextBoolean();
 	}
 
-	public void setBatch(SpriteBatch batch) {
-		this.batch = batch;
-	}
 
 	public void minuscount() {
 		count -= 1;
