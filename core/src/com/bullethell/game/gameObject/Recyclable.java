@@ -53,8 +53,8 @@ public class Recyclable extends GameObject {
     @Override
     public void draw(ShapeRenderer shape) {
         // empty
-        shape.setColor(Color.ORANGE); // Testing for collision
-        shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+        // shape.setColor(Color.ORANGE); // Testing for collision
+        // shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
     }
 
     @Override
