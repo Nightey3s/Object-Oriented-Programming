@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.bullethell.game.IO.InputManager;
 import com.bullethell.game.scene.SceneManager;
+import com.bullethell.game.collision.CollisionManager;
 
 public class Player extends GameObject implements IMovable {
     private float speed;
@@ -18,6 +19,9 @@ public class Player extends GameObject implements IMovable {
     private boolean doubleDamageActive; // Flag to indicate if double damage is active
     private float doubleDamageDuration; // Duration for which double damage remains active
     private float doubleDamageTimer; // Timer to track the duration of double damage
+    protected boolean isFlashing = false; // Flag to indicate if the player is flashing
+
+
 
     public Player(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
         super(x, y, 64, 64, GameObjectTypes.Player); // Example size, adjust as needed
@@ -25,6 +29,7 @@ public class Player extends GameObject implements IMovable {
         doubleDamageActive = false;
         doubleDamageDuration = 5; // Default duration for double damage (in seconds)
         doubleDamageTimer = 0;
+        isFlashing = false;
     
         // texture = new Texture("TODO");
         this.speed = 100.0f;
@@ -58,6 +63,23 @@ public class Player extends GameObject implements IMovable {
         }
     }
 
+    public void startFlashing() {
+        isFlashing = true;
+    }
+
+    public void stopFlashing() {
+        isFlashing = false;
+    }
+
+    public boolean getFlashing() {
+        return isFlashing;
+    }
+
+    public void damageEffect(float delta) {
+     
+    }
+
+
     @Override
     public void move(float delta) {
         // InputManager.handleMovement(this.bounds, this.speed, delta);
@@ -86,6 +108,7 @@ public class Player extends GameObject implements IMovable {
         // Create a projectile at the player's position (or offset as needed)
         gameObjectManager.createProjectile(projectileX, projectileY);
     }
+
 
     @Override
     public void draw(SpriteBatch batch) {

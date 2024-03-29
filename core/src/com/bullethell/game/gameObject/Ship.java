@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bullethell.game.IO.InputManager;
+import com.bullethell.game.collision.CollisionManager;
 import com.bullethell.game.scene.SceneManager;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,6 +26,9 @@ public class Ship extends Player {
 	private boolean isFiring = false;
 	private boolean wasLeftKeyPressed;
 	private boolean wasRightKeyPressed;
+	private float opacity = 1.0f;
+    private float flashTimer = 0; // Timer to track the duration of the flashing effect
+    private float flashDuration = 2.0f; // Duration for which the flashing effect remains active
 
 	public Ship(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
 		super(x, y, gameObjectManager, sceneManager); // Assumes that your ship is 100x100 in size.
@@ -56,6 +60,23 @@ public class Ship extends Player {
 	}
 
 	@Override
+	public void damageEffect(float delta) {
+		if (isFlashing) {
+            flashTimer += delta; // Increase the timer by the time since the last frame
+			System.err.println("FLASH TIMER:" + flashTimer);
+            if (flashTimer >= flashDuration) {
+                stopFlashing(); // Stop flashing when the duration is over
+				flashTimer = 0; // Reset the timer after flashing
+                this.setOpacity(1.0f); // Reset the opacity to full
+                 // Re-enable collision detection
+            } else {
+                this.setOpacity((float) Math.abs(Math.sin(flashTimer * 10))); // Adjust the value as needed
+				sprite.setAlpha(opacity);
+            }
+        }
+	}
+
+	@Override
 	public void move(float delta) {
 		// InputManager.handleMovement(this.bounds, this.speed, delta);
 		InputManager.playerControl.handleMovement2(this.sprite, this.speed, delta);
@@ -71,11 +92,19 @@ public class Ship extends Player {
 		return sprite; // Return the actual sprite
 	}
 
+	public void setOpacity(float opacity) {
+		this.opacity = opacity;
+	}
+
+	public float getOpacity() {
+		return opacity;
+	}
+	
 	@Override
 	public void update(float delta) {
 		move(delta);
 		this.bounds = sprite.getBoundingRectangle();// Update sprite bounds
-
+		damageEffect(delta);
 		super.update(delta);
 		boolean isLeftKeyPressedCurrently = Gdx.input.isKeyPressed(Keys.A);
 		boolean isRightKeyPressedCurrently = Gdx.input.isKeyPressed(Keys.D);

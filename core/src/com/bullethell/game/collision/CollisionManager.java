@@ -1,5 +1,6 @@
 package com.bullethell.game.collision;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.bullethell.game.ScoreManager;
 import com.bullethell.game.Audio.AudioManager;
@@ -14,6 +15,7 @@ import com.bullethell.game.gameObject.Projectile;
 public class CollisionManager implements iCollision {
 	private Array<GameObject> collisionList;
 	private GameObjectManager gameObjectManager;
+	private Array<GameObject> tempCollisionList;
 
 	public void setGameObjectManager(GameObjectManager manager) {
 		this.gameObjectManager = manager;
@@ -22,6 +24,7 @@ public class CollisionManager implements iCollision {
 	// Constructor
 	public CollisionManager() {
 		this.collisionList = new Array<GameObject>();
+		this.tempCollisionList = new Array<GameObject>();
 	}
 
 	// getters and setters
@@ -42,12 +45,10 @@ public class CollisionManager implements iCollision {
 		collisionList.removeValue(Object, true);
 	}
 
-	// Might have to add remove method depending on implementation of destroying
-	// objects.
-
 	public boolean checkCollision(GameObject Object1, GameObject Object2) {
 		return Object1.getBounds().overlaps(Object2.getBounds());
 	}
+
 
 	public void resolveCollision(GameObject Object1, GameObject Object2) {
 		if (Object1 instanceof Player && Object2 instanceof Enemy) {

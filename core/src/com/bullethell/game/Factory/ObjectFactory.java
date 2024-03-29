@@ -30,7 +30,7 @@ public class ObjectFactory {
 		add("battery.png");
 		add("styrofoam_cup.png");
 		add("styrofoam_box.png");
-		add("SmallRubbish.png");
+		add("food.png");
 	}};
 	private static final List<String> BIGTEXTURE_PATHS = new ArrayList<String>() {{
 		add("toxic.png");
@@ -42,6 +42,14 @@ public class ObjectFactory {
 		add("x2Dmg.png");
 		add("x2Points.png");
 
+	}};
+
+	private static final List<String> RECTEXTURE_PATHS = new ArrayList<String>() {{
+		add("cardboard.png");
+		add("bottle.png");
+		add("canDrinks.png");
+		add("newspaper.png");
+		add("glass.png");
 	}};
 
 	public static String getRandomSmallTexture() {
@@ -56,6 +64,11 @@ public class ObjectFactory {
 	public static String getRandomPowerUp() {
 		int randomIndex = (int) (Math.random() * POWERUPTEXTURE_PATHS.size());
 		return POWERUPTEXTURE_PATHS.get(randomIndex);
+	}
+
+	public static String getRandomRecTexture() {
+		int randomIndex = (int) (Math.random() * RECTEXTURE_PATHS.size());
+		return RECTEXTURE_PATHS.get(randomIndex);
 	}
 
 	public static Player createPlayer(float x, float y, GameObjectManager gameObjectManager,
@@ -78,7 +91,11 @@ public class ObjectFactory {
 	public static GameObject createSmallRubbish(float x, float y, String texfilepath) {
 		return new SmallRubbish(x, y, SR_W, SR_H, texfilepath);
 	}
-	
+
+	public static GameObject createRecyclable(float x, float y, String texfilepath) {
+		return new Recyclable(x, y, SR_W, SR_H, texfilepath);
+	}
+
 	public static Enemy createEnemy(float x, float y) {
 		return new Enemy(x, y);
 	}
