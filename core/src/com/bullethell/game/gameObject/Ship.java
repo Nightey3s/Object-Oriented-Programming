@@ -72,19 +72,10 @@ public class Ship extends Player {
 		return sprite; // Return the actual sprite
 	}
 
-	public void setOpacity(float opacity) {
-		this.opacity = opacity;
-	}
-
-	public float getOpacity() {
-		return opacity;
-	}
-	
 	@Override
 	public void update(float delta) {
 		move(delta);
 		this.bounds = sprite.getBoundingRectangle();// Update sprite bounds
-		damageEffect(delta);
 		super.update(delta);
 		boolean isLeftKeyPressedCurrently = Gdx.input.isKeyPressed(Keys.A);
 		boolean isRightKeyPressedCurrently = Gdx.input.isKeyPressed(Keys.D);

@@ -204,9 +204,6 @@ public class GameObjectManager implements Disposable {
 				collisionManager.removeCollidable(gameObject);
 				iterator.remove();
 			}
-			if (gameObject instanceof Ship && !((Player) gameObject).getFlashing()) {
-				collisionManager.isCollidable(gameObject); // once flashing stops player can collide again
-			}
 
 		}
 		while (count <= cap) {
