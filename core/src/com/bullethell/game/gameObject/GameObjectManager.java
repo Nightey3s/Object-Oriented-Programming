@@ -30,7 +30,7 @@ public class GameObjectManager implements Disposable {
 	private int gameW = Gdx.graphics.getWidth();
 	private int gameH = Gdx.graphics.getHeight();
 	private float timeSinceLastPowerUp = 0f;
-    private final float powerUpSpawnInterval = 5f; 
+	private final float powerUpSpawnInterval = 5f;
 
 	public GameObjectManager(SceneManager sceneManager) { // Add SceneManager parameter
 		this.sceneManager = sceneManager; // Initialize SceneManager field
@@ -40,8 +40,8 @@ public class GameObjectManager implements Disposable {
 		aiManager = new AiManager();
 		// createPlayer(100, 100);
 		// createEnemy(200, 800);
-		//createPowerUp(400, 400);
-		createEarth(0, -250, gameW, gameW);
+		// createPowerUp(400, 400);
+		createEarth(0, -450, gameW, gameW);
 		createShip(200, 200, this, this.sceneManager);
 
 		random = new Random();
@@ -96,10 +96,10 @@ public class GameObjectManager implements Disposable {
 	}
 
 	public void createPowerUp(float x, float y) {
-        PowerUp powerUp = ObjectFactory.createPowerUp(x, y, ObjectFactory.getRandomPowerUp());
-        addGameObject(powerUp);
-        collisionManager.isCollidable(powerUp);
-    }
+		PowerUp powerUp = ObjectFactory.createPowerUp(x, y, ObjectFactory.getRandomPowerUp());
+		addGameObject(powerUp);
+		collisionManager.isCollidable(powerUp);
+	}
 
 	public void createEarth(float x, float y, int width, int height) {
 		GameObject earth = ObjectFactory.createEarth(x, y, width, height);
@@ -139,11 +139,12 @@ public class GameObjectManager implements Disposable {
 		createSmallRubbish(x, y);
 		pluscount();
 	}
+
 	public void spawnPowerUp() {
-        float x = 100 + random.nextFloat() * (gameW - 200);
-        float y = 600 + random.nextFloat() * (gameH - 600);
-        createPowerUp(x, y);
-    }
+		float x = 100 + random.nextFloat() * (gameW - 200);
+		float y = 600 + random.nextFloat() * (gameH - 600);
+		createPowerUp(x, y);
+	}
 
 	public void addGameObject(GameObject gameObject) {
 		gameObjects.add(gameObject);
@@ -210,9 +211,9 @@ public class GameObjectManager implements Disposable {
 
 		}
 		if (timeSinceLastPowerUp >= powerUpSpawnInterval) {
-            spawnPowerUp(); // Spawn a power-up
-            timeSinceLastPowerUp = 0f; // Reset the timer
-        }
+			spawnPowerUp(); // Spawn a power-up
+			timeSinceLastPowerUp = 0f; // Reset the timer
+		}
 		// Collision detection cycle
 		for (int i = 0; i < collisionManager.getCollisionList().size; i++) {
 			for (int j = i + 1; j < collisionManager.getCollisionList().size; j++) {
