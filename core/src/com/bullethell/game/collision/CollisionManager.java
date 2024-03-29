@@ -3,7 +3,6 @@ package com.bullethell.game.collision;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.bullethell.game.gameObject.GameObject;
-import com.bullethell.game.gameObject.GameObjectTypes;
 import com.bullethell.game.gameObject.GameObjectManager;
 import com.bullethell.game.ScoreManager;
 import com.bullethell.game.Audio.AudioManager;
@@ -11,6 +10,8 @@ import com.bullethell.game.gameObject.Enemy;
 import com.bullethell.game.gameObject.Player;
 import com.bullethell.game.gameObject.PowerUp;
 import com.bullethell.game.gameObject.Projectile;
+import com.bullethell.game.gameObject.Earth;
+
 
 public class CollisionManager implements iCollision {
 	private Array<GameObject> collisionList;
@@ -113,6 +114,12 @@ public class CollisionManager implements iCollision {
 				} else if (Object2.getType() == GameObjectTypes.PowerUp) { // Player and PowerUp
 					System.out.println("Player picked up power up");
 					AudioManager.getInstance().playCollectSound();
+
+				} else if (Object2.getType() == GameObjectTypes.Recyclable) { // Player and Recyclable
+					AudioManager.getInstance().playCollisionSound();
+					((Player) Object1).takeDamage(10);
+					((Player) Object1).startFlashing();
+					removeCollidable(Object1);
 				}
 
 				break;
@@ -132,6 +139,22 @@ public class CollisionManager implements iCollision {
 					}
 					if (player.isAlive()) {
 						ScoreManager.getInstance().addScore(10);
+					} 
+
+				} else if (Object2.getType() == GameObjectTypes.Recyclable) { // Projectile and Recyclable
+					gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object1);
+					((Enemy) Object1).takeDamage(10);
+					System.out.println("Projectile hit enemy");
+					AudioManager.getInstance().playBulletCollision();
+					Player player = null;
+					for (GameObject obj : collisionList) {
+						if (obj instanceof Player) {
+							player = (Player) obj;
+							break;
+						}
+					}
+					if (player.isAlive()) {
+						ScoreManager.getInstance().addScore(-10); // lose 10 points to the score
 					}
 				}
 				break;
@@ -140,7 +163,7 @@ public class CollisionManager implements iCollision {
 				if (Object2.getType() == GameObjectTypes.Player) { // Enemy and Player
 					System.out.println("Enemy hit the Player - takes damage");
 					AudioManager.getInstance().playCollisionSound();
-					// ((Player) Object2).takeDamage(10);
+					((Player) Object2).takeDamage(10);
 					((Player) Object2).startFlashing();
 
 				} else if (Object2.getType() == GameObjectTypes.Projectile) { // Enemy and Projectile
@@ -159,18 +182,57 @@ public class CollisionManager implements iCollision {
 						ScoreManager.getInstance().addScore(10); // Add 10 points to the score
 					}
 				}
-			}
-
+			}break;
+			
 			case PowerUp: {
 				if (Object2.getType() == GameObjectTypes.Player) { // PowerUp and Player
 					System.out.println("Player picked up power up");
 					AudioManager.getInstance().playCollectSound();
 				}
-			}
+			}break;
 
 			case Earth: {
+				if (Object2.getType() == GameObjectTypes.Enemy) { // Earth and Enemy
+					gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object2);
+					// (Object1).takeDamage(10);
+					System.out.println("Enemy hit the Earth - takes damage");
+				}
+				else if (Object2.getType() == GameObjectTypes.Recyclable) { // Earth and Projectile
+					gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object2);
+					((Earth) Object1).increaseHealth(10);
+					System.out.println("Earth picked up recyclable - increase health");
+				}
+			}break;
 
-			}
+			case Recyclable: {
+				if (Object2.getType() == GameObjectTypes.Earth) { // Recyclable and Earth
+					gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object1);
+					((Earth) Object2).increaseHealth(10);
+					System.out.println("Earth picked up recyclable - increase health");
+				}
+				else if (Object2.getType() == GameObjectTypes.Player) { // Recyclable and Player
+					AudioManager.getInstance().playCollisionSound();
+					((Player) Object2).takeDamage(10);
+					((Player) Object2).startFlashing();
+					removeCollidable(Object2);
+
+				} else if (Object2.getType() == GameObjectTypes.Projectile) { // Recyclable and Projectile
+					gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object2);
+					((Enemy) Object1).takeDamage(10);
+					System.out.println("Projectile hit enemy");
+					AudioManager.getInstance().playBulletCollision();
+					Player player = null;
+					for (GameObject obj : collisionList) {
+						if (obj instanceof Player) {
+							player = (Player) obj;
+							break;
+						}
+					}
+					if (player.isAlive()) {
+						ScoreManager.getInstance().addScore(-10); // Add 10 points to the score
+					}
+				}
+			}break;
 		}
 	}
 

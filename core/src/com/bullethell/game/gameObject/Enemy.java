@@ -3,6 +3,7 @@ package com.bullethell.game.gameObject;
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.bullethell.game.Ai.AIPatterns;
+import com.bullethell.game.collision.GameObjectTypes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

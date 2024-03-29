@@ -3,6 +3,7 @@ package com.bullethell.game.gameObject;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.bullethell.game.collision.GameObjectTypes;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public abstract class GameObject {

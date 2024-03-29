@@ -1,4 +1,4 @@
-package com.bullethell.game.gameObject;
+package com.bullethell.game.collision;
 
 // Utility class to define the available type of GameObjects that have unique collisions
 // - to bypass the use of instanceof for performance improvements.

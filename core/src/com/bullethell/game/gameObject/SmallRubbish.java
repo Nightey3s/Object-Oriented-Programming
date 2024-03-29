@@ -10,7 +10,8 @@ import com.badlogic.gdx.graphics.Color;
 public class SmallRubbish extends Enemy {
     private Sprite sprite;
     private Texture tex;
-    private float speed;
+    private float speed = 50;
+    
 
     public SmallRubbish(float x, float y, int width, int height, String texturePath) {
         super(x, y, width, height, 50, 20);

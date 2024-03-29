@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 import com.bullethell.game.ScoreManager;
+import com.bullethell.game.collision.GameObjectTypes;
 
 public class PowerUp extends GameObject {
     private enum PowerUpType {

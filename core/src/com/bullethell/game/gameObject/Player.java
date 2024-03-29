@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.bullethell.game.IO.InputManager;
 import com.bullethell.game.scene.SceneManager;
 import com.bullethell.game.collision.CollisionManager;
+import com.bullethell.game.collision.GameObjectTypes;
 
 public class Player extends GameObject implements IMovable {
     private float speed;
