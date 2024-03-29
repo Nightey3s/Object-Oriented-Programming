@@ -75,6 +75,10 @@ public class Earth extends GameObject {
 		// shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 
+	public int earthHealth() {
+		return healthPercentage;
+	}
+
 	public void earthDied() {
 		sceneManager.setFinalScore();
 		sceneManager.changeScene(sceneManager.getSceneItem(2));
