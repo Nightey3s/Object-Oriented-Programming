@@ -13,7 +13,7 @@ public class Projectile extends GameObject implements IMovable {
     public Projectile(float x, float y)
     {
         super(x, y, 3, 15, GameObjectTypes.Projectile); // Example size, adjust as needed
-        this.speed = 500.0f;
+        this.speed = 1000.0f;
     }
 
     @Override

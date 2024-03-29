@@ -139,12 +139,23 @@ public class Ship extends Player {
 	@Override
 	public void draw(SpriteBatch batch) {
 		sprite.draw(batch);
+
 	}
 
 	@Override
-	public void draw(ShapeRenderer shapeRenderer) {
+	public void draw(ShapeRenderer shape) {
 		// shapeRenderer.setColor(Color.ORANGE); // Testing for collision
 		// shapeRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+		float barWidth = sprite.getWidth() / 2;
+		float barHeight = 10; // The thickness of the bar
+		float barX = sprite.getX() + (sprite.getWidth() - barWidth) / 2; // Center the health bar
+		float barY = sprite.getY() + sprite.getHeight();
+
+		shape.setColor(Color.BLACK);
+		shape.rect(barX, barY, barWidth, barHeight);
+		shape.setColor(Color.GREEN);
+		shape.rect(barX, barY, barWidth * getHealth() / 100, barHeight);
+
 	}
 
 	@Override

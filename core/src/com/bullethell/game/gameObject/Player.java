@@ -30,7 +30,7 @@ public class Player extends GameObject implements IMovable {
         doubleDamageTimer = 0;
     
         // texture = new Texture("TODO");
-        this.speed = 100.0f;
+        this.speed = 300.0f;
         this.gameObjectManager = gameObjectManager;
         this.sceneManager = sceneManager;
         this.health = 100;
@@ -97,6 +97,7 @@ public class Player extends GameObject implements IMovable {
     }
 
     @Override
+    
     public void draw(ShapeRenderer shape) {
         shape.setColor(Color.GREEN);
         shape.rect(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
