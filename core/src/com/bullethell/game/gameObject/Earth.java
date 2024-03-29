@@ -12,7 +12,8 @@ public class Earth extends GameObject{
 	private float rotationAngle = 0;
 	private Sprite sprite;
 	private Texture tex;
-	private int healthPercentage = 10;
+	private int healthPercentage = 40;
+	private int maxHealth = 100;
 
 	public Earth(float x,float y,int width,int height) {
 		super(x, y, width, height, GameObjectTypes.Earth);
@@ -31,11 +32,20 @@ public class Earth extends GameObject{
         return sprite;  // Return the actual sprite
     }
 
+	public void setHealthPercentage(int healthPercentage) {
+		if (healthPercentage >= maxHealth) {
+			this.healthPercentage = 100;
+		} else {
+			this.healthPercentage = healthPercentage;
+		}
+	}
+
 	@Override
 	public void update(float delta) {
 		rotationAngle += 7 * delta;
 		rotationAngle %= 360; // keep angle between 0 and 360
 		sprite.setRotation(rotationAngle);
+		setHealthPercentage(healthPercentage);
 	}
 
 	@Override
@@ -54,7 +64,7 @@ public class Earth extends GameObject{
 		shape.setColor(Color.BLACK);
 		shape.rect(barX, barY, barWidth, barHeight);
 		shape.setColor(Color.GREEN);
-		shape.rect(barX, barY, barWidth * this.healthPercentage / 10, barHeight);
+		shape.rect(barX, barY, barWidth * this.healthPercentage / 100, barHeight);
 
 		// shape.setColor(Color.ORANGE); // Testing for collision
 		// shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
@@ -63,7 +73,7 @@ public class Earth extends GameObject{
         this.healthPercentage -= damage;
 	}
 	public void increaseHealth(int damage) {
-        this.healthPercentage -= damage;
+        this.healthPercentage += damage;
 	}
 		
 	@Override

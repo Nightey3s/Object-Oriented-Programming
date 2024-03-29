@@ -27,6 +27,7 @@ public class GameObjectManager implements Disposable {
 	private int bigcap = 1;
 	private int bigcount = 0;
 	private Random random;
+	private boolean randomBool = true;
 	private int gameW = Gdx.graphics.getWidth();
 	private int gameH = Gdx.graphics.getHeight();
 
@@ -43,6 +44,7 @@ public class GameObjectManager implements Disposable {
 		createShip(200, 200, this, this.sceneManager);
 
 		random = new Random();
+		randomBool = random.nextBoolean();
 	}
 
 	public void setBatch(SpriteBatch batch) {
@@ -118,9 +120,18 @@ public class GameObjectManager implements Disposable {
 	}
 
 	public void createSmallRubbish(float x, float y) {
-		GameObject smallRubbish = ObjectFactory.createSmallRubbish(x, y, ObjectFactory.getRandomSmallTexture());
-		addGameObject(smallRubbish);
-		collisionManager.isCollidable(smallRubbish);
+		if (randomBool) {
+			GameObject smallRubbish = ObjectFactory.createSmallRubbish(x, y, ObjectFactory.getRandomSmallTexture());
+			addGameObject(smallRubbish);
+			collisionManager.isCollidable(smallRubbish);
+			randomBool = random.nextBoolean();
+		}
+		else {
+			GameObject smallRubbish = ObjectFactory.createRecyclable(x, y, ObjectFactory.getRandomRecTexture());
+			addGameObject(smallRubbish);
+			collisionManager.isCollidable(smallRubbish);
+			randomBool = random.nextBoolean();
+		}
 	}
 
 	public void spawnBigRubbish() {

@@ -10,10 +10,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class Recyclable extends Enemy {
     private Sprite sprite;
     private Texture tex;
-    private float speed;
+    private float speed = 50;
 
 	public Recyclable(float x, float y, int width, int height, String texturePath) {
-		super(x, y, width, height, 5, 20);
+		super(x, y, width, height, 50, 20);
         this.type = GameObjectTypes.Recyclable;
         this.tex = new Texture(Gdx.files.internal(texturePath));
         sprite = new Sprite(this.tex);
