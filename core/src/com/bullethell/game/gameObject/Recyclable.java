@@ -7,14 +7,16 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class Recyclable extends Enemy {
+public class Recyclable extends GameObject {
     private Sprite sprite;
     private Texture tex;
     private float speed = 50;
+    private int healthPoints;
+    private boolean outOfBounds = false;
 
 	public Recyclable(float x, float y, int width, int height, String texturePath) {
-		super(x, y, width, height, 50, 20);
-        this.type = GameObjectTypes.Recyclable;
+		super(x, y, 40, 50, GameObjectTypes.Recyclable);
+        this.healthPoints = 20;
         this.tex = new Texture(Gdx.files.internal(texturePath));
         sprite = new Sprite(this.tex);
         sprite.setSize(width, height);
@@ -22,6 +24,24 @@ public class Recyclable extends Enemy {
         sprite.setPosition(x, y);
         this.bounds = sprite.getBoundingRectangle();
     }
+
+    public void takeDamage(int damage) {
+		this.healthPoints -= damage;
+	}
+
+    public int getHealth() {
+        return healthPoints;
+    }
+
+    public void checkBounds() {
+		if (this.bounds.y + this.bounds.height < 0) {
+			this.outOfBounds = true;
+		}
+	}
+
+	public boolean isOutOfBounds() {
+		return this.outOfBounds;
+	}
 
     @Override
     public void update(float delta) {

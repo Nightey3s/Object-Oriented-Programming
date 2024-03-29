@@ -7,16 +7,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-
-public class Earth extends GameObject{
+public class Earth extends GameObject {
 	private float rotationAngle = 0;
 	private Sprite sprite;
 	private Texture tex;
 	private int healthPercentage = 40;
 	private int maxHealth = 100;
 
-
-	public Earth(float x,float y,int width,int height) {
+	public Earth(float x, float y, int width, int height) {
 		super(x, y, width, height, GameObjectTypes.Earth);
 
 		this.tex = new Texture(Gdx.files.internal("Earth.png"));
@@ -27,15 +25,17 @@ public class Earth extends GameObject{
 		sprite.setPosition(x, y);
 		this.bounds = sprite.getBoundingRectangle();
 	}
-	
+
 	@Override
-    public Sprite getSprite() {
-        return sprite;  // Return the actual sprite
-    }
+	public Sprite getSprite() {
+		return sprite; // Return the actual sprite
+	}
 
 	public void setHealthPercentage(int healthPercentage) {
 		if (healthPercentage >= maxHealth) {
 			this.healthPercentage = 100;
+		} else if (healthPercentage <= 0) {
+			this.healthPercentage = 0;
 		} else {
 			this.healthPercentage = healthPercentage;
 		}
@@ -58,8 +58,8 @@ public class Earth extends GameObject{
 	@Override
 	public void draw(ShapeRenderer shape) {
 		float barWidth = sprite.getWidth() / 2;
-		float barHeight = 10;  // The thickness of the bar
-		float barX = sprite.getX() + (sprite.getWidth() - barWidth) / 2;  // Center the health bar
+		float barHeight = 10; // The thickness of the bar
+		float barX = sprite.getX() + (sprite.getWidth() - barWidth) / 2; // Center the health bar
 		float barY = sprite.getY() + sprite.getHeight();
 
 		shape.setColor(Color.BLACK);
@@ -70,13 +70,19 @@ public class Earth extends GameObject{
 		// shape.setColor(Color.ORANGE); // Testing for collision
 		// shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
+
+	public int getHealth() {
+		return healthPercentage;
+	}
+
 	public void takeDamage(int damage) {
-        this.healthPercentage -= damage;
+		this.healthPercentage -= damage;
 	}
+
 	public void increaseHealth(int damage) {
-        this.healthPercentage += damage;
+		this.healthPercentage += damage;
 	}
-		
+
 	@Override
 	public void dispose() {
 		this.dispose();

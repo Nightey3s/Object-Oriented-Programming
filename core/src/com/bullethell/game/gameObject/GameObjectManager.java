@@ -203,6 +203,16 @@ public class GameObjectManager implements Disposable {
 				System.out.println("Projectile Destroyed");
 				collisionManager.removeCollidable(gameObject);
 				iterator.remove();
+			} 
+			if (gameObject instanceof Recyclable && ((Recyclable) gameObject).isOutOfBounds()) {
+				System.out.println("Recyclable Destroyed");
+				collisionManager.removeCollidable(gameObject);
+				iterator.remove();
+			}
+			if (gameObject instanceof Recyclable && ((Recyclable) gameObject).getHealth() <= 0) {
+				System.out.println("Recyclable Destroyed");
+				collisionManager.removeCollidable(gameObject);
+				iterator.remove();
 			}
 
 		}
