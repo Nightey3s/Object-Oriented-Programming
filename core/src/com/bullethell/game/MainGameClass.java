@@ -15,7 +15,7 @@ public class MainGameClass {
     private AudioManager audioManager;
 
     public MainGameClass() {
-        Gdx.graphics.setWindowedMode(Gdx.graphics.getWidth() * 2 / 3, Gdx.graphics.getWidth() * 3 / 2);
+        Gdx.graphics.setWindowedMode(Gdx.graphics.getWidth(), Gdx.graphics.getWidth() * 3 / 2);
         sceneManager = SceneManager.getInstance();
         inputManager = new InputManager();
         audioManager = new AudioManager();
