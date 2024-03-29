@@ -75,7 +75,7 @@ public class Earth extends GameObject {
 		// shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 
-	public int earthHealth() {
+	public int getHealth() {
 		return healthPercentage;
 	}
 
