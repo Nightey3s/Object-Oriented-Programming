@@ -1,7 +1,9 @@
 package com.bullethell.game.Factory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.bullethell.game.gameObject.BigRubbish;
 import com.bullethell.game.gameObject.Earth;
@@ -10,6 +12,7 @@ import com.bullethell.game.gameObject.GameObject;
 import com.bullethell.game.gameObject.GameObjectManager;
 import com.bullethell.game.gameObject.Player;
 import com.bullethell.game.gameObject.PowerUp;
+import com.bullethell.game.gameObject.PowerUpType;
 import com.bullethell.game.gameObject.Projectile;
 import com.bullethell.game.gameObject.Ship;
 import com.bullethell.game.gameObject.SmallRubbish;
@@ -37,15 +40,12 @@ public class ObjectFactory {
 			add("BigRubbish.png");
 		}
 	};
-	private static final List<String> POWERUPTEXTURE_PATHS = new ArrayList<String>() {
+	private static final HashMap<PowerUpType, String> POWERUP_TEXTURES = new HashMap<PowerUpType, String>() {
 		{
-			add("upHealth.png");
-			add("upTime.png");
-			add("x2Dmg.png");
-			add("x2Points.png");
+			put(PowerUpType.INCREASE_EARTH_HEALTH, "upHealth.png");
+			put(PowerUpType.DOUBLE_DAMAGE, "x2Dmg.png");
+			put(PowerUpType.DOUBLE_POINTS, "x2Points.png");
 
-		}
-	};
 
 	private static final List<String> RECTEXTURE_PATHS = new ArrayList<String>() {
 		{
@@ -67,10 +67,12 @@ public class ObjectFactory {
 		return BIGTEXTURE_PATHS.get(randomIndex);
 	}
 
-	public static String getRandomPowerUp() {
-		int randomIndex = (int) (Math.random() * POWERUPTEXTURE_PATHS.size());
-		return POWERUPTEXTURE_PATHS.get(randomIndex);
-	}
+
+	public static PowerUp createPowerUp(float x, float y) {
+		List<PowerUpType> keys = new ArrayList<>(POWERUP_TEXTURES.keySet());
+		PowerUpType randomType = keys.get((int) (Math.random() * keys.size()));
+		String texturePath = POWERUP_TEXTURES.get(randomType);
+		return new PowerUp(x, y, 64, 64, texturePath, randomType); // Adjust size as needed
 
 	public static String getRandomRecTexture() {
 		int randomIndex = (int) (Math.random() * RECTEXTURE_PATHS.size());
@@ -110,7 +112,10 @@ public class ObjectFactory {
 		return new Projectile(x, y);
 	}
 
-	public static PowerUp createPowerUp(float x, float y, String texfilepath) {
-		return new PowerUp(x, y, 64, 64, texfilepath); // Adjust size as needed
+
+
+	public static String getRandomPowerUp() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

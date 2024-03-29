@@ -93,7 +93,7 @@ public class GameObjectManager implements Disposable {
 	}
 
 	public void createPowerUp(float x, float y) {
-		PowerUp powerUp = ObjectFactory.createPowerUp(x, y, ObjectFactory.getRandomPowerUp());
+		PowerUp powerUp = ObjectFactory.createPowerUp(x, y);
 		addGameObject(powerUp);
 		collisionManager.isCollidable(powerUp);
 	}
@@ -102,6 +102,7 @@ public class GameObjectManager implements Disposable {
 		GameObject earth = ObjectFactory.createEarth(x, y, width, height, sceneManager);
 		addGameObject(earth);
 		collisionManager.isCollidable(earth);
+		collisionManager.setEarth((Earth)earth);
 	}
 
 	public void createShip(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
