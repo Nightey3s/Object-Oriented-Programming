@@ -8,6 +8,7 @@ public enum GameObjectTypes {
     PowerUp,
     Projectile,
     Earth,
+    Recyclable,
     
     // Add other types as needed
 }

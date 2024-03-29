@@ -23,11 +23,20 @@ public class ObjectFactory {
 		add("battery.png");
 		add("styrofoam_cup.png");
 		add("styrofoam_box.png");
-		add("SmallRubbish.png");
+		add("food_waste.png");
+
 	}};
 	private static final List<String> BIGTEXTURE_PATHS = new ArrayList<String>() {{
 		add("toxic.png");
 		add("BigRubbish.png");
+	}};
+
+	private static final List<String> RECTEXTURE_PATHS = new ArrayList<String>() {{
+		add("cardboard.png");
+		add("plastic_bottle.png");
+		add("canDrinks.png");
+		add("newspaper.png");
+		add("glass.png");
 	}};
 
 	public static String getRandomSmallTexture() {

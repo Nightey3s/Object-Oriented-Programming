@@ -1,19 +1,20 @@
 package com.bullethell.game.gameObject;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.Color;
 
-public class SmallRubbish extends Enemy {
+public class Recyclable extends Enemy {
     private Sprite sprite;
     private Texture tex;
     private float speed;
 
-    public SmallRubbish(float x, float y, int width, int height, String texturePath) {
-        super(x, y, width, height, 50, 20);
+	public Recyclable(float x, float y, int width, int height, String texturePath) {
+		super(x, y, width, height, 5, 20);
+        this.type = GameObjectTypes.Recyclable;
         this.tex = new Texture(Gdx.files.internal(texturePath));
         sprite = new Sprite(this.tex);
         sprite.setSize(width, height);
