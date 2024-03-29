@@ -104,7 +104,7 @@ public class GameObjectManager implements Disposable {
 	}
 
 	public void createEarth(float x, float y, int width, int height) {
-		GameObject earth = ObjectFactory.createEarth(x, y, width, height);
+		GameObject earth = ObjectFactory.createEarth(x, y, width, height, sceneManager);
 		addGameObject(earth);
 		collisionManager.isCollidable(earth);
 	}
