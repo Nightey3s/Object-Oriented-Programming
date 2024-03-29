@@ -1,5 +1,6 @@
 package com.bullethell.game.collision;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.bullethell.game.gameObject.GameObject;
 import com.bullethell.game.gameObject.GameObjectTypes;
@@ -14,6 +15,7 @@ import com.bullethell.game.gameObject.Projectile;
 public class CollisionManager implements iCollision {
 	private Array<GameObject> collisionList;
 	private GameObjectManager gameObjectManager;
+	private Array<GameObject> tempCollisionList;
 
 	public void setGameObjectManager(GameObjectManager manager) {
 		this.gameObjectManager = manager;
@@ -22,6 +24,7 @@ public class CollisionManager implements iCollision {
 	// Constructor
 	public CollisionManager() {
 		this.collisionList = new Array<GameObject>();
+		this.tempCollisionList = new Array<GameObject>();
 	}
 
 	// getters and setters
@@ -42,14 +45,11 @@ public class CollisionManager implements iCollision {
 		collisionList.removeValue(Object, true);
 	}
 
-	// Might have to add remove method depending on implementation of destroying
-	// objects.
-
 	public boolean checkCollision(GameObject Object1, GameObject Object2) {
 		return Object1.getBounds().overlaps(Object2.getBounds());
 	}
 
-	// =====================Deprecated in favor of switch-cases.=====================
+	// ===================== Spaghetti code Deprecated in favor of switch-cases.=====================
 	// public void resolveCollision(GameObject Object1, GameObject Object2) {
 	// 	if (Object1 instanceof Player && Object2 instanceof Enemy) {
 	// 		System.out.println("Player moved into the enemy - takes damage");
@@ -106,6 +106,9 @@ public class CollisionManager implements iCollision {
 					System.out.println("Player moved into the enemy - takes damage");
 					AudioManager.getInstance().playCollisionSound();
 					((Player) Object1).takeDamage(10);
+					((Player) Object1).startFlashing();
+					removeCollidable(Object1);
+
 
 				} else if (Object2.getType() == GameObjectTypes.PowerUp) { // Player and PowerUp
 					System.out.println("Player picked up power up");
@@ -137,7 +140,8 @@ public class CollisionManager implements iCollision {
 				if (Object2.getType() == GameObjectTypes.Player) { // Enemy and Player
 					System.out.println("Enemy hit the Player - takes damage");
 					AudioManager.getInstance().playCollisionSound();
-					((Player) Object2).takeDamage(10);
+					// ((Player) Object2).takeDamage(10);
+					((Player) Object2).startFlashing();
 
 				} else if (Object2.getType() == GameObjectTypes.Projectile) { // Enemy and Projectile
 					gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object2);
