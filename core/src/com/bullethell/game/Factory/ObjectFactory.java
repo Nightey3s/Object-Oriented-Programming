@@ -78,8 +78,8 @@ public class ObjectFactory {
 		return new Player(x, y, gameObjectManager, sceneManager);
 	}
 
-	public static GameObject createEarth(float x, float y, int width, int height) {
-		return new Earth(x, y, width, height);
+	public static GameObject createEarth(float x, float y, int width, int height, SceneManager sceneManager) {
+		return new Earth(x, y, width, height, sceneManager);
 	}
 
 	public static Ship createShip(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {

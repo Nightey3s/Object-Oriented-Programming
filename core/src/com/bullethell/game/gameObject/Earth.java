@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.bullethell.game.scene.SceneManager;
 
 public class Earth extends GameObject {
 	private float rotationAngle = 0;
@@ -13,8 +14,10 @@ public class Earth extends GameObject {
 	private Texture tex;
 	private int healthPercentage = 40;
 	private int maxHealth = 100;
+	private SceneManager sceneManager;
+	private boolean isAlive = true;
 
-	public Earth(float x, float y, int width, int height) {
+	public Earth(float x, float y, int width, int height, SceneManager sceneManager) {
 		super(x, y, width, height, GameObjectTypes.Earth);
 
 		this.tex = new Texture(Gdx.files.internal("Earth.png"));
@@ -24,6 +27,7 @@ public class Earth extends GameObject {
 		sprite.setOriginCenter();
 		sprite.setPosition(x, y);
 		this.bounds = sprite.getBoundingRectangle();
+		this.sceneManager = sceneManager;
 	}
 
 	@Override
@@ -71,12 +75,17 @@ public class Earth extends GameObject {
 		// shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 
-	public int getHealth() {
-		return healthPercentage;
+	public void earthDied() {
+		sceneManager.setFinalScore();
+		sceneManager.changeScene(sceneManager.getSceneItem(2));
+		isAlive = false;
 	}
 
 	public void takeDamage(int damage) {
 		this.healthPercentage -= damage;
+		if (this.healthPercentage <= 0) {
+			earthDied(); // Call playerDied method when health is 0 or less
+		}
 	}
 
 	public void increaseHealth(int damage) {
