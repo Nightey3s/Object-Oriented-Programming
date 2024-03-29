@@ -26,9 +26,6 @@ public class Ship extends Player {
 	private boolean isFiring = false;
 	private boolean wasLeftKeyPressed;
 	private boolean wasRightKeyPressed;
-	private float opacity = 1.0f;
-    private float flashTimer = 0; // Timer to track the duration of the flashing effect
-    private float flashDuration = 2.0f; // Duration for which the flashing effect remains active
 
 	public Ship(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
 		super(x, y, gameObjectManager, sceneManager); // Assumes that your ship is 100x100 in size.
@@ -57,23 +54,6 @@ public class Ship extends Player {
 		this.speed = 100f;
 		this.bounds = sprite.getBoundingRectangle();
 
-	}
-
-	@Override
-	public void damageEffect(float delta) {
-		if (isFlashing) {
-            flashTimer += delta; // Increase the timer by the time since the last frame
-			System.err.println("FLASH TIMER:" + flashTimer);
-            if (flashTimer >= flashDuration) {
-                stopFlashing(); // Stop flashing when the duration is over
-				flashTimer = 0; // Reset the timer after flashing
-                this.setOpacity(1.0f); // Reset the opacity to full
-                 // Re-enable collision detection
-            } else {
-                this.setOpacity((float) Math.abs(Math.sin(flashTimer * 10))); // Adjust the value as needed
-				sprite.setAlpha(opacity);
-            }
-        }
 	}
 
 	@Override

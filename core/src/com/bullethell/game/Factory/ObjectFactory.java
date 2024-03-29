@@ -13,7 +13,9 @@ import com.bullethell.game.gameObject.PowerUp;
 import com.bullethell.game.gameObject.Projectile;
 import com.bullethell.game.gameObject.Ship;
 import com.bullethell.game.gameObject.SmallRubbish;
+import com.bullethell.game.gameObject.Recyclable;
 import com.bullethell.game.scene.SceneManager;
+
 
 public class ObjectFactory {
 	private static final String P_ASSET = "Player.png";

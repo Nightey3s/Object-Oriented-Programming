@@ -19,7 +19,6 @@ public class Player extends GameObject implements IMovable {
     private boolean doubleDamageActive; // Flag to indicate if double damage is active
     private float doubleDamageDuration; // Duration for which double damage remains active
     private float doubleDamageTimer; // Timer to track the duration of double damage
-    protected boolean isFlashing = false; // Flag to indicate if the player is flashing
 
 
 
@@ -62,23 +61,6 @@ public class Player extends GameObject implements IMovable {
             playerDied(); // Call playerDied method when health is 0 or less
         }
     }
-
-    public void startFlashing() {
-        isFlashing = true;
-    }
-
-    public void stopFlashing() {
-        isFlashing = false;
-    }
-
-    public boolean getFlashing() {
-        return isFlashing;
-    }
-
-    public void damageEffect(float delta) {
-     
-    }
-
 
     @Override
     public void move(float delta) {
