@@ -16,7 +16,7 @@ public class PauseScene extends Scene {
         TextButton continueButton = createButton("Continue", Gdx.graphics.getWidth() / 2, 250, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().getSceneItem(3));
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().getSceneItem(4));
             }
         });
 

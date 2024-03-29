@@ -20,11 +20,7 @@ import com.bullethell.game.gameObject.Recyclable;
 import com.bullethell.game.scene.SceneManager;
 
 public class ObjectFactory {
-	private static final String P_ASSET = "Player.png";
-	private static final String SR_ASSET = "SmallRubbish.png";
 	private static final String BR_ASSET = "BigRubbish.png";
-	private static final float SR_SPEED = 100;
-	private static final float BR_SPEED = 150;
 	private static final int BR_W = 100;
 	private static final int BR_H = 100;
 	private static final int SR_W = 40;
@@ -49,8 +45,7 @@ public class ObjectFactory {
 			put(PowerUpType.INCREASE_EARTH_HEALTH, "upHealth.png");
 			put(PowerUpType.DOUBLE_DAMAGE, "x2Dmg.png");
 			put(PowerUpType.DOUBLE_POINTS, "x2Points.png");
-		}
-	};
+
 
 	private static final List<String> RECTEXTURE_PATHS = new ArrayList<String>() {
 		{
@@ -72,12 +67,12 @@ public class ObjectFactory {
 		return BIGTEXTURE_PATHS.get(randomIndex);
 	}
 
+
 	public static PowerUp createPowerUp(float x, float y) {
 		List<PowerUpType> keys = new ArrayList<>(POWERUP_TEXTURES.keySet());
 		PowerUpType randomType = keys.get((int) (Math.random() * keys.size()));
 		String texturePath = POWERUP_TEXTURES.get(randomType);
 		return new PowerUp(x, y, 64, 64, texturePath, randomType); // Adjust size as needed
-	}
 
 	public static String getRandomRecTexture() {
 		int randomIndex = (int) (Math.random() * RECTEXTURE_PATHS.size());

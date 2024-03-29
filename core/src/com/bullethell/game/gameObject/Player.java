@@ -6,14 +6,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.bullethell.game.IO.InputManager;
 import com.bullethell.game.scene.SceneManager;
-import com.bullethell.game.collision.CollisionManager;
 
 public class Player extends GameObject implements IMovable {
     private float speed;
     private int health;
     private boolean isAlive = true;
-    // private float fireTimer = 0.0f;
-    // private final float FIRE_RATE = 0.15f;// 0.15 seconds
     private GameObjectManager gameObjectManager;
     private SceneManager sceneManager; //
     private boolean doubleDamageActive; // Flag to indicate if double damage is active
@@ -28,8 +25,6 @@ public class Player extends GameObject implements IMovable {
         doubleDamageActive = false;
         doubleDamageDuration = 5; // Default duration for double damage (in seconds)
         doubleDamageTimer = 0;
-    
-        // texture = new Texture("TODO");
         this.speed = 300.0f;
         this.gameObjectManager = gameObjectManager;
         this.sceneManager = sceneManager;
@@ -63,8 +58,7 @@ public class Player extends GameObject implements IMovable {
 
     @Override
     public void move(float delta) {
-        // InputManager.handleMovement(this.bounds, this.speed, delta);
-        InputManager.playerControl.handleMovement(this.bounds, this.speed, delta);
+        InputManager.playerControl.handleTextureMovement(this.bounds, this.speed, delta);
     }
 
     @Override

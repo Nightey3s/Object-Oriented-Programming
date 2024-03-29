@@ -1,7 +1,5 @@
 package com.bullethell.game.scene;
 
-import java.util.Random;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -20,7 +18,6 @@ public class GameScene extends Scene {
 	private SceneManager sceneManager;
 	private float deltaTime;
 	private Texture backgroundTexture;
-	private Random random;
 	private float gameX = Gdx.graphics.getWidth();
 	private float gameY = Gdx.graphics.getHeight();
 	
@@ -32,8 +29,6 @@ public class GameScene extends Scene {
 		this.batch = new SpriteBatch(); // Initialize the SpriteBatch
 		gameObjectManager = new GameObjectManager(this.sceneManager); // Pass SceneManager to GameObjectManager
 																		// constructor
-
-		gameObjectManager.setBatch(batch);
 
 		backgroundTexture = new Texture(Gdx.files.internal("game_scene.png"));
 

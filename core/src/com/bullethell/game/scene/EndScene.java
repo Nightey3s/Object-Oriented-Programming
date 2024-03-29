@@ -11,12 +11,10 @@ import java.util.List;
 
 public class EndScene extends Scene {
     private List<Integer> highScores;
-    private SceneManager sceneManager;
 
     public EndScene(List<Integer> highScores, SceneManager sceneManager) {
         super();
         this.highScores = highScores;
-        this.sceneManager = sceneManager;
 
         TextButton returnButton = createButton("Return To Menu", Gdx.graphics.getWidth() / 2, 200, new ClickListener() {
             @Override

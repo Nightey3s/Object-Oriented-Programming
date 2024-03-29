@@ -123,5 +123,6 @@ public class AudioManager {
 		bulletSound.dispose();
 		bulletCollision.dispose();
 		bulletCollision2.dispose();
+		healSound.dispose();
 	}
 }

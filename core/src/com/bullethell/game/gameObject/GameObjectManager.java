@@ -5,7 +5,6 @@ import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-//import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
@@ -20,7 +19,6 @@ public class GameObjectManager implements Disposable {
 	private CollisionManager collisionManager;
 	private AiManager aiManager;
 	private SceneManager sceneManager; // Add SceneManager field
-	private SpriteBatch batch;
 	private float delta;
 	private int cap = 5;
 	private int count = 0;
@@ -49,9 +47,6 @@ public class GameObjectManager implements Disposable {
 		randomBool = random.nextBoolean();
 	}
 
-	public void setBatch(SpriteBatch batch) {
-		this.batch = batch;
-	}
 
 	public void minuscount() {
 		count -= 1;
@@ -250,13 +245,6 @@ public class GameObjectManager implements Disposable {
 		}
 	}
 
-	// public void draw(SpriteBatch batch)
-	// {
-	// for (GameObject gameObject : gameObjects)
-	// {
-	// gameObject.draw(batch);
-	// }
-	// }
 	public float getDelta() {
 		return delta;
 	}

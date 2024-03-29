@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class PlayerControl {
 	
-	public void handleMovement(Rectangle bounds, float speed, float delta) {
+	public void handleTextureMovement(Rectangle bounds, float speed, float delta) {
         float currentSpeed = speed;
         float boundHeight = Gdx.graphics.getHeight();
         float boundWidth = Gdx.graphics.getWidth();
@@ -30,7 +30,7 @@ public class PlayerControl {
         }
     }
 
-	public void handleMovement2(Sprite sprite, float speed, float delta) {
+	public void handleSpriteMovement(Sprite sprite, float speed, float delta) {
 	    float currentSpeed = speed;
 	    float boundHeight = Gdx.graphics.getHeight();
 	    float boundWidth = Gdx.graphics.getWidth();

@@ -80,7 +80,6 @@ public class CollisionManager implements iCollision {
 			((Enemy) Object2).takeDamage(20);
 		} else if (Object1 instanceof Player && Object2 instanceof PowerUp) { // Player and PowerUp collision
 			System.out.println("Player picked up power up");
-			Player player = (Player) Object1;
 			PowerUp powerUp = (PowerUp) Object2;
 			// Remove the power-up from the game
 			powerUp.applyPowerUp(player, earth);
@@ -125,6 +124,9 @@ public class CollisionManager implements iCollision {
 				((Earth) Object2).increaseHealth(20);
 			}
 
+			ScoreManager.getInstance().addScore(20);
+
+
 		} else if (Object1 instanceof Earth && Object2 instanceof Recyclable) { // Earth and Recyclable
 			// Earth recover 20 health
 			AudioManager.getInstance().playHealSound();
@@ -132,6 +134,8 @@ public class CollisionManager implements iCollision {
 				((Earth) Object1).increaseHealth(20);
 			}
 			((Recyclable) Object2).takeDamage(20);
+
+			ScoreManager.getInstance().addScore(20);
 		} else if (Object1 instanceof Recyclable && Object2 instanceof Projectile) { // Recyclable and Projectile
 			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object2);
 			((Recyclable) Object1).takeDamage(10);
@@ -162,18 +166,6 @@ public class CollisionManager implements iCollision {
 			if (player.isAlive()) {
 				ScoreManager.getInstance().addScore(-10);
 			}
-		} else if (Object1 instanceof Recyclable && Object2 instanceof Player) { // Recyclable and Player
-			System.out.println("Recyclable hit the Player - takes damage");
-			AudioManager.getInstance().playCollisionSound();
-			((Recyclable) Object1).takeDamage(20);
-			((Player) Object2).takeDamage(20);
-		} else if (Object1 instanceof Player && Object2 instanceof Readable) { // Player and Recyclable
-			System.out.println("Recyclable hit the Player - takes damage");
-			AudioManager.getInstance().playCollisionSound();
-			((Recyclable) Object2).takeDamage(20);
-			((Player) Object1).takeDamage(20);
-		} else {
-
 		}
 	}
 
