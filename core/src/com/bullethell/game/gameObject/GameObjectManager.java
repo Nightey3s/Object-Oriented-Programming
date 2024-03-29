@@ -208,11 +208,13 @@ public class GameObjectManager implements Disposable {
 				System.out.println("Recyclable Destroyed");
 				collisionManager.removeCollidable(gameObject);
 				iterator.remove();
+				minuscount();
 			}
 			if (gameObject instanceof Recyclable && ((Recyclable) gameObject).getHealth() <= 0) {
 				System.out.println("Recyclable Destroyed");
 				collisionManager.removeCollidable(gameObject);
 				iterator.remove();
+				minuscount();
 			}
 
 		}
