@@ -20,7 +20,7 @@ public class Player extends GameObject implements IMovable {
     private float doubleDamageTimer; // Timer to track the duration of double damage
 
     public Player(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
-        super(x, y, 64, 64); // Example size, adjust as needed
+        super(x, y, 64, 64, GameObjectTypes.Player); // Example size, adjust as needed
         // Other initialization...
         doubleDamageActive = false;
         doubleDamageDuration = 5; // Default duration for double damage (in seconds)

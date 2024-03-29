@@ -17,13 +17,13 @@ public class PowerUp extends GameObject {
 
     private PowerUpType type;
 
-    public PowerUp(float x, float y, PowerUpType type) {
-        super(x, y, 64, 64); // Example size, adjust as needed
-        this.type = type;
+    public PowerUp(float x, float y, PowerUpType Ptype) {
+        super(x, y, 64, 64, GameObjectTypes.PowerUp); // Example size, adjust as needed
+        this.type = Ptype;
     }
     
     public PowerUp(float x, float y) {
-        super(x, y, 64, 64); // Example size, adjust as needed
+        super(x, y, 64, 64, GameObjectTypes.PowerUp); // Example size, adjust as needed
         // Default type can be set here if needed
     }
 
