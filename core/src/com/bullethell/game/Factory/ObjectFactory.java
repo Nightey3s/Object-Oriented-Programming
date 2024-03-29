@@ -16,43 +16,46 @@ import com.bullethell.game.gameObject.SmallRubbish;
 import com.bullethell.game.gameObject.Recyclable;
 import com.bullethell.game.scene.SceneManager;
 
-
 public class ObjectFactory {
-	private static final String P_ASSET = "Player.png";
-	private static final String SR_ASSET = "SmallRubbish.png";
 	private static final String BR_ASSET = "BigRubbish.png";
-	private static final float SR_SPEED = 100;
-	private static final float BR_SPEED = 150;
-	private static final int BR_W= 100;
-	private static final int BR_H= 100;
+	private static final int BR_W = 100;
+	private static final int BR_H = 100;
 	private static final int SR_W = 40;
 	private static final int SR_H = 50;
-	
-	private static final List<String> SMALLTEXTURE_PATHS = new ArrayList<String>() {{
-		add("battery.png");
-		add("styrofoam_cup.png");
-		add("styrofoam_box.png");
-		add("food.png");
-	}};
-	private static final List<String> BIGTEXTURE_PATHS = new ArrayList<String>() {{
-		add("toxic.png");
-		add("BigRubbish.png");
-	}};
-	private static final List<String> POWERUPTEXTURE_PATHS = new ArrayList<String>() {{
-		add("upHealth.png");
-		add("upTime.png");
-		add("x2Dmg.png");
-		add("x2Points.png");
 
-	}};
+	private static final List<String> SMALLTEXTURE_PATHS = new ArrayList<String>() {
+		{
+			add("battery.png");
+			add("styrofoam_cup.png");
+			add("styrofoam_box.png");
+			add("food.png");
+		}
+	};
+	private static final List<String> BIGTEXTURE_PATHS = new ArrayList<String>() {
+		{
+			add("toxic.png");
+			add("BigRubbish.png");
+		}
+	};
+	private static final List<String> POWERUPTEXTURE_PATHS = new ArrayList<String>() {
+		{
+			add("upHealth.png");
+			add("upTime.png");
+			add("x2Dmg.png");
+			add("x2Points.png");
 
-	private static final List<String> RECTEXTURE_PATHS = new ArrayList<String>() {{
-		add("cardboard.png");
-		add("bottle.png");
-		add("canDrinks.png");
-		add("newspaper.png");
-		add("glass.png");
-	}};
+		}
+	};
+
+	private static final List<String> RECTEXTURE_PATHS = new ArrayList<String>() {
+		{
+			add("cardboard.png");
+			add("bottle.png");
+			add("canDrinks.png");
+			add("newspaper.png");
+			add("glass.png");
+		}
+	};
 
 	public static String getRandomSmallTexture() {
 		int randomIndex = (int) (Math.random() * SMALLTEXTURE_PATHS.size());
@@ -63,6 +66,7 @@ public class ObjectFactory {
 		int randomIndex = (int) (Math.random() * BIGTEXTURE_PATHS.size());
 		return BIGTEXTURE_PATHS.get(randomIndex);
 	}
+
 	public static String getRandomPowerUp() {
 		int randomIndex = (int) (Math.random() * POWERUPTEXTURE_PATHS.size());
 		return POWERUPTEXTURE_PATHS.get(randomIndex);

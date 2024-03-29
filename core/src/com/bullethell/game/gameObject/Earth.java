@@ -15,7 +15,6 @@ public class Earth extends GameObject {
 	private int healthPercentage = 40;
 	private int maxHealth = 100;
 	private SceneManager sceneManager;
-	private boolean isAlive = true;
 
 	public Earth(float x, float y, int width, int height, SceneManager sceneManager) {
 		super(x, y, width, height, GameObjectTypes.Earth);
@@ -71,8 +70,6 @@ public class Earth extends GameObject {
 		shape.setColor(Color.GREEN);
 		shape.rect(barX, barY, barWidth * this.healthPercentage / 100, barHeight);
 
-		// shape.setColor(Color.ORANGE); // Testing for collision
-		// shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 
 	public int getHealth() {
@@ -82,7 +79,6 @@ public class Earth extends GameObject {
 	public void earthDied() {
 		sceneManager.setFinalScore();
 		sceneManager.changeScene(sceneManager.getSceneItem(2));
-		isAlive = false;
 	}
 
 	public void takeDamage(int damage) {

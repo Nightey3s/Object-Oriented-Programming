@@ -31,9 +31,6 @@ public class SmallRubbish extends Enemy {
 
     @Override
     public void draw(ShapeRenderer shape) {
-        // empty
-        // shape.setColor(Color.ORANGE); // Testing for collision
-        // shape.rect(bounds.x, bounds.y, bounds.width, bounds.height);
     }
 
     @Override
