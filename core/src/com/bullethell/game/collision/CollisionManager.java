@@ -16,9 +16,14 @@ public class CollisionManager implements iCollision {
 	private Array<GameObject> collisionList;
 	private GameObjectManager gameObjectManager;
 	private int bulletdamage = 10;
+	private Earth earth;
 
 	public void setGameObjectManager(GameObjectManager manager) {
 		this.gameObjectManager = manager;
+	}
+
+	public void setEarth(Earth earth) {
+		this.earth = earth;
 	}
 
 	// Constructor
@@ -78,6 +83,7 @@ public class CollisionManager implements iCollision {
 			Player player = (Player) Object1;
 			PowerUp powerUp = (PowerUp) Object2;
 			// Remove the power-up from the game
+			powerUp.applyPowerUp(player, earth);
 			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), powerUp);
 			AudioManager.getInstance().playCollectSound();
 
@@ -118,14 +124,14 @@ public class CollisionManager implements iCollision {
 			if (((Earth) Object2).getHealth() < 100) {
 				((Earth) Object2).increaseHealth(20);
 			}
-			
+
 		} else if (Object1 instanceof Earth && Object2 instanceof Recyclable) { // Earth and Recyclable
 			// Earth recover 20 health
 			AudioManager.getInstance().playHealSound();
 			if (((Earth) Object1).getHealth() < 100) {
 				((Earth) Object1).increaseHealth(20);
 			}
-			((Recyclable) Object2).takeDamage(20); 
+			((Recyclable) Object2).takeDamage(20);
 		} else if (Object1 instanceof Recyclable && Object2 instanceof Projectile) { // Recyclable and Projectile
 			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object2);
 			((Recyclable) Object1).takeDamage(10);
