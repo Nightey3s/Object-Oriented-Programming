@@ -114,16 +114,16 @@ public class CollisionManager implements iCollision {
 				ScoreManager.getInstance().addScore(10); // Add 10 points to the score
 			}
 		} else if (Object1 instanceof Recyclable && Object2 instanceof Earth) { // Recyclable and Earth
-			System.out.println("Recyclable hit the Earth - takes damage");
-			AudioManager.getInstance().playCollisionSound();
+			System.out.println("Recyclable hit the Earth - heal HP");
+			AudioManager.getInstance().playHealSound();
 			((Recyclable) Object1).takeDamage(20);
 			if (((Earth) Object2).getHealth() < 100) {
 				((Earth) Object2).increaseHealth(20); 
 			}
 			// Player takes 10 damage
 		} else if (Object1 instanceof Earth && Object2 instanceof Recyclable) { // Earth and Recyclable
-			System.out.println("Recyclable hit the Earth - takes damage");
-			AudioManager.getInstance().playCollisionSound();
+			System.out.println("Recyclable hit the Earth - heal HP");
+			AudioManager.getInstance().playHealSound();
 			if (((Earth) Object1).getHealth() < 100) {
 				((Earth) Object1).increaseHealth(20); 
 			}
@@ -132,7 +132,7 @@ public class CollisionManager implements iCollision {
 			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object2);
 			((Recyclable) Object1).takeDamage(10);
 			System.out.println("Projectile hit Recyclable");
-			AudioManager.getInstance().playBulletCollision();
+			AudioManager.getInstance().playBulletCollision2();
 			Player player = null;
 			for (GameObject obj : collisionList) {
 				if (obj instanceof Player) {
@@ -147,7 +147,7 @@ public class CollisionManager implements iCollision {
 			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object1);
 			((Recyclable) Object2).takeDamage(10);
 			System.out.println("Projectile hit Recyclable");
-			AudioManager.getInstance().playBulletCollision();
+			AudioManager.getInstance().playBulletCollision2();
 			Player player = null;
 			for (GameObject obj : collisionList) {
 				if (obj instanceof Player) {
