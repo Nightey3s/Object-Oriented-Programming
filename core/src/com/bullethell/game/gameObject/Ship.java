@@ -143,8 +143,8 @@ public class Ship extends Player {
 
 	@Override
 	public void draw(ShapeRenderer shapeRenderer) {
-		shapeRenderer.setColor(Color.ORANGE); // Testing for collision
-		shapeRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+		// shapeRenderer.setColor(Color.ORANGE); // Testing for collision
+		// shapeRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 
 	@Override
