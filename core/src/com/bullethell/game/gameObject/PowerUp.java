@@ -63,7 +63,6 @@ public class PowerUp extends GameObject {
 	public void applyPowerUp(Player player, Earth earth) {
 		switch (type) {
 		case DOUBLE_POINTS:
-			System.out.println("DoublePoints here");
 			// Apply double points effect to player for 5 seconds
 			ScoreManager.getInstance().activateDoubleScore(); // Activate double score
 			// Schedule timer to revert the effect after 5 seconds
@@ -75,7 +74,6 @@ public class PowerUp extends GameObject {
 			}, 5f); // Use float value for the delay
 			break;
 		case DOUBLE_DAMAGE:
-			System.out.println("Doubledmg here");
 			// Apply double damage effect to player for 5 seconds
 			player.setDoubleDamage(true);
 			// Schedule timer to revert the effect after 5 seconds
@@ -87,7 +85,6 @@ public class PowerUp extends GameObject {
 			}, 5);
 			break;
 		case INCREASE_EARTH_HEALTH:
-			System.out.println("Increase health here");
 			// Increase Earth's health
 			earth.increaseHealth(30); // Adjust the value as needed
 			break;
