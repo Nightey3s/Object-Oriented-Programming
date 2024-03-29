@@ -1,12 +1,19 @@
 package com.bullethell.game.Factory;
 
-import com.bullethell.game.Ai.AIPatterns;
-import com.bullethell.game.gameObject.*;
-import com.bullethell.game.scene.SceneManager;
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.bullethell.game.gameObject.BigRubbish;
+import com.bullethell.game.gameObject.Earth;
+import com.bullethell.game.gameObject.Enemy;
+import com.bullethell.game.gameObject.GameObject;
+import com.bullethell.game.gameObject.GameObjectManager;
+import com.bullethell.game.gameObject.Player;
+import com.bullethell.game.gameObject.PowerUp;
+import com.bullethell.game.gameObject.Projectile;
+import com.bullethell.game.gameObject.Ship;
+import com.bullethell.game.gameObject.SmallRubbish;
+import com.bullethell.game.scene.SceneManager;
 
 public class ObjectFactory {
 	private static final String P_ASSET = "Player.png";
@@ -29,6 +36,13 @@ public class ObjectFactory {
 		add("toxic.png");
 		add("BigRubbish.png");
 	}};
+	private static final List<String> POWERUPTEXTURE_PATHS = new ArrayList<String>() {{
+		add("upHealth.png");
+		add("upTime.png");
+		add("x2Dmg.png");
+		add("x2Points.png");
+
+	}};
 
 	public static String getRandomSmallTexture() {
 		int randomIndex = (int) (Math.random() * SMALLTEXTURE_PATHS.size());
@@ -38,6 +52,10 @@ public class ObjectFactory {
 	public static String getRandomBigTexture() {
 		int randomIndex = (int) (Math.random() * BIGTEXTURE_PATHS.size());
 		return BIGTEXTURE_PATHS.get(randomIndex);
+	}
+	public static String getRandomPowerUp() {
+		int randomIndex = (int) (Math.random() * POWERUPTEXTURE_PATHS.size());
+		return POWERUPTEXTURE_PATHS.get(randomIndex);
 	}
 
 	public static Player createPlayer(float x, float y, GameObjectManager gameObjectManager,
@@ -60,7 +78,7 @@ public class ObjectFactory {
 	public static GameObject createSmallRubbish(float x, float y, String texfilepath) {
 		return new SmallRubbish(x, y, SR_W, SR_H, texfilepath);
 	}
-
+	
 	public static Enemy createEnemy(float x, float y) {
 		return new Enemy(x, y);
 	}
@@ -69,7 +87,7 @@ public class ObjectFactory {
 		return new Projectile(x, y);
 	}
 
-	public static PowerUp createPowerUp(float x, float y) {
-		return new PowerUp(x, y);
+	public static PowerUp createPowerUp(float x, float y, String texfilepath) {
+		return new PowerUp(x, y, 64, 64, texfilepath); // Adjust size as needed
 	}
 }
