@@ -3,6 +3,7 @@ package com.bullethell.game.scene;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -22,11 +23,11 @@ public class MainMenu extends Scene {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 SceneManager.getInstance().startGame();
-                SceneManager.getInstance().changeScene(SceneManager.getInstance().getSceneItem(3));
+                SceneManager.getInstance().changeScene(SceneManager.getInstance().getSceneItem(4));
             }
         });
 
-        TextButton exitButton = createButton("Exit", Gdx.graphics.getWidth() / 2, 150, new ClickListener() {
+        TextButton exitButton = createButton("Exit", Gdx.graphics.getWidth() / 2, 100, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
@@ -40,9 +41,18 @@ public class MainMenu extends Scene {
             }
         });
 
+        TextButton instruction = createButton("Game Instructions", Gdx.graphics.getWidth() / 2, 150,
+                new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        SceneManager.getInstance().changeScene(SceneManager.getInstance().getSceneItem(3));
+                    }
+                });
+
         this.stage.addActor(playButton);
         this.stage.addActor(exitButton);
         this.stage.addActor(highscoreButton);
+        this.stage.addActor(instruction);
     }
 
     @Override
@@ -56,13 +66,13 @@ public class MainMenu extends Scene {
         stage.act();
         stage.draw();
         batch.begin();
-        font.draw(batch, "Title Screen!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
-        font.draw(batch, "Press Space to play.", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .25f);
-        font.draw(batch, "Press P to pause.", Gdx.graphics.getWidth() * .20f, Gdx.graphics.getHeight() * .20f);
-        font.draw(batch, "Press Q to quit to main menu.", Gdx.graphics.getWidth() * .15f,
-                Gdx.graphics.getHeight() * .15f);
-        font.draw(batch, "Press H to view high scores.", Gdx.graphics.getWidth() * .10f,
-                Gdx.graphics.getHeight() * .10f);
+
+        GlyphLayout layout = new GlyphLayout();
+        String text = "SAVE THE EARTH";
+        layout.setText(font, text);
+        float textWidth = (Gdx.graphics.getWidth() - layout.width) / 2;
+        font.draw(batch, text, textWidth, Gdx.graphics.getHeight() * .75f);
+
         batch.end();
     }
 

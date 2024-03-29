@@ -1,6 +1,9 @@
 package com.bullethell.game.gameObject;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Timer;
@@ -16,25 +19,30 @@ public class PowerUp extends GameObject {
     }
 
     private PowerUpType type;
+    private Sprite sprite;
+    private Texture tex;
+    private float speed = 50;
 
-    public PowerUp(float x, float y, PowerUpType Ptype) {
-        super(x, y, 64, 64, GameObjectTypes.PowerUp); // Example size, adjust as needed
-        this.type = Ptype;
-    }
-    
-    public PowerUp(float x, float y) {
-        super(x, y, 64, 64, GameObjectTypes.PowerUp); // Example size, adjust as needed
-        // Default type can be set here if needed
+    public PowerUp(float x, float y, int width, int height, String texturePath) {
+        super(x, y, width, height,GameObjectTypes.PowerUp);
+        this.tex = new Texture(Gdx.files.internal(texturePath));
+        sprite = new Sprite(this.tex);
+        sprite.setSize(width, height);
+        sprite.setOriginCenter();
+        sprite.setPosition(x, y);
+        this.bounds = sprite.getBoundingRectangle();
     }
 
     @Override
     public void update(float delta) {
-        // PowerUp specific logic here
+        // Moving down slowly.
+        sprite.setY(sprite.getY() - speed * delta);
+        bounds.y = sprite.getY();
     }
 
     @Override
     public void draw(SpriteBatch batch) {
-        // Draw sprite if needed
+        sprite.draw(batch);
     }
 
     @Override
@@ -49,7 +57,10 @@ public class PowerUp extends GameObject {
     public void dispose() {
         // Dispose resources if needed
     }
-
+    @Override
+    public Sprite getSprite() {
+        return sprite; // Return the actual sprite
+    }
     public void applyPowerUp(Player player, Earth earth, ScoreManager scoreManager) {
         switch (type) {
             case DOUBLE_POINTS:

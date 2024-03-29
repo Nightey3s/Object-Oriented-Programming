@@ -10,7 +10,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public class SceneManager{
+public class SceneManager {
     private static SceneManager instance;
     private Scene currentScene;
     private Array<Scene> sceneList;
@@ -61,18 +61,19 @@ public class SceneManager{
         return sceneList.get(index);
     }
 
-    public void initScenes() { 
+    public void initScenes() {
         // Add all scenes to the sceneList
         sceneList.insert(0, new MainMenu());
         sceneList.insert(1, new PauseScene());
         sceneList.insert(2, new EndScene(highScores, this)); // Add EndScene to sceneList
+        sceneList.insert(3, new InstructionScene());
         // Default Scene
         multiplexer.addProcessor(sceneList.get(0).getStage());
         setCurrentScene(sceneList.get(0));
     }
 
     public void changeScene(Scene newScene) { // Change multiplexer aswell.
-        //currentScene.dispose();
+        // currentScene.dispose();
         this.multiplexer.clear();
         this.multiplexer.addProcessor(newScene.getStage());
         this.currentScene = newScene;
@@ -82,19 +83,17 @@ public class SceneManager{
         this.currentScene.sceneRender();
     }
 
-    public void startGame()
-    {
-        sceneList.insert(3, new GameScene(getInstance()));
-        setCurrentScene(sceneList.get(3));
+    public void startGame() {
+        sceneList.insert(4, new GameScene(getInstance()));
+        setCurrentScene(sceneList.get(4));
     }
-    
-    public void quitGame()
-    {
-       for (Scene scene : sceneList) {
+
+    public void quitGame() {
+        for (Scene scene : sceneList) {
             if (scene instanceof GameScene) {
                 scene.dispose();
             } else
-            return;
+                return;
         }
     }
 }

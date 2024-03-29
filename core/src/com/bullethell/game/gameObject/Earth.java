@@ -15,6 +15,7 @@ public class Earth extends GameObject{
 	private int healthPercentage = 40;
 	private int maxHealth = 100;
 
+
 	public Earth(float x,float y,int width,int height) {
 		super(x, y, width, height, GameObjectTypes.Earth);
 
