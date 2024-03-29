@@ -2,6 +2,7 @@ package com.bullethell.game.scene;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -39,10 +40,18 @@ public class PauseScene extends Scene {
         batch.begin();
         stage.act();
         stage.draw();
-        font.draw(batch, "Pause Screen!", Gdx.graphics.getWidth() / 2,
-                Gdx.graphics.getHeight() * .75f);
-        font.draw(batch, "Current Score: " + ScoreManager.getInstance().getScore(), Gdx.graphics.getWidth() / 2,
-                Gdx.graphics.getHeight() * .05f);
+
+        GlyphLayout layout = new GlyphLayout();
+        String pauseText = "Pause Screen!";
+        layout.setText(font, pauseText);
+        float pauseTextWidth = (Gdx.graphics.getWidth() - layout.width) / 2;
+        font.draw(batch, pauseText, pauseTextWidth, Gdx.graphics.getHeight() * .75f);
+
+        String scoreText = "Current Score: " + ScoreManager.getInstance().getScore();
+        layout.setText(font, scoreText);
+        float scoreTextWidth = (Gdx.graphics.getWidth() - layout.width) / 2;
+        font.draw(batch, scoreText, scoreTextWidth, Gdx.graphics.getHeight() * .7f);
+
         batch.end();
     }
 
