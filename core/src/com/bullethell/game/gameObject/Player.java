@@ -28,7 +28,6 @@ public class Player extends GameObject implements IMovable {
         doubleDamageActive = false;
         doubleDamageDuration = 5; // Default duration for double damage (in seconds)
         doubleDamageTimer = 0;
-        isFlashing = false;
     
         // texture = new Texture("TODO");
         this.speed = 100.0f;
