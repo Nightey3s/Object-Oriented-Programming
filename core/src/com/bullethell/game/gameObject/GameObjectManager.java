@@ -130,7 +130,7 @@ public class GameObjectManager implements Disposable {
 		pluscount();
 		plusbigcount();
 	}
-	
+
 	public void spawnSmallRubbish() {
 		float x = 100 + random.nextFloat() * (gameW - 200);
 		float y = 600 + random.nextFloat() * (gameH - 600);
@@ -202,7 +202,7 @@ public class GameObjectManager implements Disposable {
 
 		}
 
-		// Collision detection cycle (Might need to move to simulation class)
+		// Collision detection cycle
 		for (int i = 0; i < collisionManager.getCollisionList().size; i++) {
 			for (int j = i + 1; j < collisionManager.getCollisionList().size; j++) {
 				if (collisionManager.checkCollision(collisionManager.getCollisionItem(i),

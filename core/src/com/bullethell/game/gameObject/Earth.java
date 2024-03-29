@@ -15,7 +15,7 @@ public class Earth extends GameObject{
 	private int healthPercentage = 10;
 
 	public Earth(float x,float y,int width,int height) {
-		super(x, y, width, height);
+		super(x, y, width, height, GameObjectTypes.Earth);
 
 		this.tex = new Texture(Gdx.files.internal("Earth.png"));
 

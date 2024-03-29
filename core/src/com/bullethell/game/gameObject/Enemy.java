@@ -15,19 +15,19 @@ public class Enemy extends GameObject implements IMovable {
 	private int healthPoints;
 
 	public Enemy(float x, float y, AIPatterns AItype, int healthPoints) {
-		super(x, y, 64, 64); // Example size, adjust as needed
+		super(x, y, 64, 64, GameObjectTypes.Enemy); // Example size, adjust as needed
 		this.healthPoints = healthPoints;
 		this.speed = (float) (Math.random() * 75 + 25); // Random speed from 25 to 100
 		this.AItype = AItype;
 	}
 
 	public Enemy(float x, float y) {
-		super(x, y, 64, 64); // Example size, adjust as needed
+		super(x, y, 64, 64, GameObjectTypes.Enemy); // Example size, adjust as needed
 		this.speed = (float) (Math.random() * 75 + 25); // Random speed from 25 to 100
 	}
 
 	public Enemy(float x, float y, int width, int height, float speed, int healthPoints) {
-		super(x, y, width, height);
+		super(x, y, width, height, GameObjectTypes.Enemy);
 		this.speed = speed;
 		this.healthPoints = healthPoints;
 	}

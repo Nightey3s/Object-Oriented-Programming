@@ -12,8 +12,7 @@ public class Projectile extends GameObject implements IMovable {
     private float screenHeight = Gdx.graphics.getHeight();
     public Projectile(float x, float y)
     {
-        super(x, y, 3, 15); // Example size, adjust as needed
-        //texture = new Texture("TODO");
+        super(x, y, 3, 15, GameObjectTypes.Projectile); // Example size, adjust as needed
         this.speed = 500.0f;
     }
 

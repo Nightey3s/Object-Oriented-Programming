@@ -7,14 +7,16 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public abstract class GameObject {
     protected Rectangle bounds;
+    protected GameObjectTypes type;
     
     public GameObject() {
     	
     }
 
-    public GameObject(float x, float y, float width, float height)
+    public GameObject(float x, float y, float width, float height, GameObjectTypes type)
     {
         this.bounds = new Rectangle(x, y, width, height);
+        this.type = type;
     }
     
 
@@ -40,5 +42,10 @@ public abstract class GameObject {
     public float getYPos()
     {
     	return this.bounds.y;
+    }
+
+    public GameObjectTypes getType()
+    {
+        return type;
     }
 }
