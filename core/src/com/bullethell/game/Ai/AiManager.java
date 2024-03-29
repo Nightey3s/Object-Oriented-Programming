@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.Array;
 import com.bullethell.game.gameObject.Enemy;
-import com.bullethell.game.gameObject.GameObject;
-import com.bullethell.game.gameObject.Player;
 
 public class AiManager {
 

@@ -4,9 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.bullethell.game.IO.InputManager;
-import com.bullethell.game.collision.CollisionManager;
 import com.bullethell.game.scene.SceneManager;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -51,7 +49,7 @@ public class Ship extends Player {
 		this.sprite.setPosition(x, y); // Set the sprite's position
 		this.sprite.setSize(34, 64); // Set the sprite's size
 		this.sprite.setOriginCenter();
-		this.speed = 100f;
+		this.speed = 200f;
 		this.bounds = sprite.getBoundingRectangle();
 
 	}
