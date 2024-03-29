@@ -46,7 +46,8 @@ public class ObjectFactory {
 			put(PowerUpType.DOUBLE_DAMAGE, "x2Dmg.png");
 			put(PowerUpType.DOUBLE_POINTS, "x2Points.png");
 
-
+		}
+	};
 	private static final List<String> RECTEXTURE_PATHS = new ArrayList<String>() {
 		{
 			add("cardboard.png");
@@ -67,12 +68,12 @@ public class ObjectFactory {
 		return BIGTEXTURE_PATHS.get(randomIndex);
 	}
 
-
 	public static PowerUp createPowerUp(float x, float y) {
 		List<PowerUpType> keys = new ArrayList<>(POWERUP_TEXTURES.keySet());
 		PowerUpType randomType = keys.get((int) (Math.random() * keys.size()));
 		String texturePath = POWERUP_TEXTURES.get(randomType);
 		return new PowerUp(x, y, 64, 64, texturePath, randomType); // Adjust size as needed
+	}
 
 	public static String getRandomRecTexture() {
 		int randomIndex = (int) (Math.random() * RECTEXTURE_PATHS.size());
@@ -111,8 +112,6 @@ public class ObjectFactory {
 	public static Projectile createProjectile(float x, float y) {
 		return new Projectile(x, y);
 	}
-
-
 
 	public static String getRandomPowerUp() {
 		// TODO Auto-generated method stub

@@ -47,7 +47,6 @@ public class GameObjectManager implements Disposable {
 		randomBool = random.nextBoolean();
 	}
 
-
 	public void minuscount() {
 		count -= 1;
 	}
@@ -102,12 +101,13 @@ public class GameObjectManager implements Disposable {
 		GameObject earth = ObjectFactory.createEarth(x, y, width, height, sceneManager);
 		addGameObject(earth);
 		collisionManager.isCollidable(earth);
-		collisionManager.setEarth((Earth)earth);
+		collisionManager.setEarth((Earth) earth);
 	}
 
 	public void createShip(float x, float y, GameObjectManager gameObjectManager, SceneManager sceneManager) {
 		Ship ship = ObjectFactory.createShip(x, y, gameObjectManager, sceneManager);
 		addGameObject(ship);
+		collisionManager.setShip((Ship) ship);
 		collisionManager.isCollidable(ship);
 	}
 
@@ -123,8 +123,7 @@ public class GameObjectManager implements Disposable {
 			addGameObject(smallRubbish);
 			collisionManager.isCollidable(smallRubbish);
 			randomBool = random.nextBoolean();
-		}
-		else {
+		} else {
 			GameObject smallRubbish = ObjectFactory.createRecyclable(x, y, ObjectFactory.getRandomRecTexture());
 			addGameObject(smallRubbish);
 			collisionManager.isCollidable(smallRubbish);
@@ -199,7 +198,7 @@ public class GameObjectManager implements Disposable {
 				System.out.println("Projectile Destroyed");
 				collisionManager.removeCollidable(gameObject);
 				iterator.remove();
-			} 
+			}
 			if (gameObject instanceof Recyclable && ((Recyclable) gameObject).isOutOfBounds()) {
 				System.out.println("Recyclable Destroyed");
 				collisionManager.removeCollidable(gameObject);

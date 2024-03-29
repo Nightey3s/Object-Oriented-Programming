@@ -11,12 +11,14 @@ import com.bullethell.game.gameObject.Player;
 import com.bullethell.game.gameObject.PowerUp;
 import com.bullethell.game.gameObject.Projectile;
 import com.bullethell.game.gameObject.Recyclable;
+import com.bullethell.game.gameObject.Ship;
 
 public class CollisionManager implements iCollision {
 	private Array<GameObject> collisionList;
 	private GameObjectManager gameObjectManager;
 	private int bulletdamage = 10;
 	private Earth earth;
+	private Ship ship;
 
 	public void setGameObjectManager(GameObjectManager manager) {
 		this.gameObjectManager = manager;
@@ -24,6 +26,10 @@ public class CollisionManager implements iCollision {
 
 	public void setEarth(Earth earth) {
 		this.earth = earth;
+	}
+
+	public void setShip(Ship ship) {
+		this.ship= ship;
 	}
 
 	// Constructor
@@ -54,6 +60,12 @@ public class CollisionManager implements iCollision {
 	}
 
 	public void resolveCollision(GameObject Object1, GameObject Object2) {
+		if (ship.isDoubleDamageActive()) {
+			bulletdamage = 20;
+		} else {
+			bulletdamage = 10;
+		}
+
 		if (Object1 instanceof Player && Object2 instanceof Enemy) { // Player and Enemy collision
 			System.out.println("Player moved into the enemy - takes damage");
 			AudioManager.getInstance().playCollisionSound();
@@ -80,7 +92,17 @@ public class CollisionManager implements iCollision {
 			((Enemy) Object2).takeDamage(20);
 		} else if (Object1 instanceof Player && Object2 instanceof PowerUp) { // Player and PowerUp collision
 			System.out.println("Player picked up power up");
+			Player player = (Player) Object1;
 			PowerUp powerUp = (PowerUp) Object2;
+			// Remove the power-up from the game
+			powerUp.applyPowerUp(player, earth);
+			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), powerUp);
+			AudioManager.getInstance().playCollectSound();
+
+		} else if (Object1 instanceof PowerUp && Object2 instanceof Player) { // Player and PowerUp collision
+			System.out.println("Player picked up power up");
+			Player player = (Player) Object2;
+			PowerUp powerUp = (PowerUp) Object1;
 			// Remove the power-up from the game
 			powerUp.applyPowerUp(player, earth);
 			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), powerUp);
@@ -88,6 +110,7 @@ public class CollisionManager implements iCollision {
 
 		} else if (Object1 instanceof Projectile && Object2 instanceof Enemy) { // Projectile and Enemy collision
 			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object1);
+
 			((Enemy) Object2).takeDamage(bulletdamage);
 			System.out.println("Projectile hit enemy");
 			AudioManager.getInstance().playBulletCollision();
@@ -103,7 +126,7 @@ public class CollisionManager implements iCollision {
 			}
 		} else if (Object1 instanceof Enemy && Object2 instanceof Projectile) { // Enemy and Projectile collision
 			gameObjectManager.removeGameObject(gameObjectManager.getDelta(), Object2);
-			((Enemy) Object1).takeDamage(10);
+			((Enemy) Object1).takeDamage(bulletdamage);
 			System.out.println("Projectile hit enemy");
 			AudioManager.getInstance().playBulletCollision();
 			Player player = null;
@@ -125,7 +148,6 @@ public class CollisionManager implements iCollision {
 			}
 
 			ScoreManager.getInstance().addScore(20);
-
 
 		} else if (Object1 instanceof Earth && Object2 instanceof Recyclable) { // Earth and Recyclable
 			// Earth recover 20 health

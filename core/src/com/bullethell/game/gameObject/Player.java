@@ -31,7 +31,11 @@ public class Player extends GameObject implements IMovable {
         this.health = 100;
     }
     
-    public void setDoubleDamage(boolean active) {
+    public boolean isDoubleDamageActive() {
+		return doubleDamageActive;
+	}
+
+	public void setDoubleDamage(boolean active) {
         doubleDamageActive = active;
     }
     public int getHealth() {

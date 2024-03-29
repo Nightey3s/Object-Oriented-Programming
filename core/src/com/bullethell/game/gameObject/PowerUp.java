@@ -89,7 +89,7 @@ public class PowerUp extends GameObject {
 		case INCREASE_EARTH_HEALTH:
 			System.out.println("Increase health here");
 			// Increase Earth's health
-			earth.increaseHealth(10); // Adjust the value as needed
+			earth.increaseHealth(30); // Adjust the value as needed
 			break;
 		default:
 			break;
