@@ -49,7 +49,7 @@ public class Ship extends Player {
 	@Override
 	public void move(float delta) {
 		
-		InputManager.playerControl.handleMovement2(this.sprite, this.speed, delta);
+		InputManager.playerControl.handleSpriteMovement(this.sprite, this.speed, delta);
 	}
 
 	@Override
